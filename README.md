@@ -1,5 +1,18 @@
 # 🏌️‍♂️ Sajangnim-nice-shot
-이 프로젝트는 골프 예약을 간편하게 할 수 있는 웹사이트를 제공합니다. 사용자는 원하는 날짜와 시간에 골프장을 예약하고, 자신의 예약 이력을 확인할 수 있습니다. 또한, 예약을 다른 사용자에게 양도하거나, 예약을 취소하는 기능도 제공합니다. 이 웹사이트는 한국에 있는 골프 애호가들이편리하게 일본의 골프장을 예약하고 관리할 수 있도록 도와줍니다.
+이 프로젝트는 골프 예약을 간편하게 할 수 있는 웹사이트를 제공합니다. 사용자는 원하는 날짜와 시간에 골프장을 예약하고, 자신의 예약 이력을 확인할 수 있습니다. 또한, 예약을 다른 사용자에게 양도하거나, 예약을 취소하는 기능도 제공합니다. 이 웹사이트는 한국에 있는 골프 애호가들이 편리하게 일본의 골프장을 예약하고 관리할 수 있도록 도와줍니다.
+
+## 📅 프로젝트 기간
+
+프로젝트 시작일: 2022년 11월 1일
+프로젝트 종료일: 2022년 11월 30일
+
+## 👥 참여자
+
+- 양송이 : PL(Project Leader)
+- 안지우 : SL(Sub Leader)
+- 신훈섭 : DB(Database Managementering)
+- 권단비 : PA(Prototype Architecturerer)
+- 김용환 : DM(Documentation Manager)
 
 ## 🚀 기능
 
@@ -15,19 +28,28 @@
 - **양도:** 사용자는 자신의 예약을 다른 사용자에게 양도할 수 있습니다.
 - **예약 상세:** 사용자는 자신의 예약 상세 정보를 확인할 수 있습니다.
 
+## 🛠️ 기술 스택
+
+이 프로젝트에서 사용된 기술 스택은 다음과 같습니다:
+
+- **데이터베이스:** OracleDB
+- **언어:** Java, JavaScript, HTML, CSS
+- **라이브러리/프레임워크:**  SPRING BOOT, Lombok
+- **버전 관리 툴:** Git
+- **테스트 툴:** 
+- **배포 툴:** AWS
+
 ## 🤝 기여 방법
 
 프로젝트에 기여하는 방법은 다음과 같습니다:
 
-1. **레포지토리 포크:** 이 레포지토리를 포크합니다.
-2. **로컬 환경에 클론:** 포크한 레포지토리를 로컬 환경에 클론합니다. (`git clone https://github.com/yourname/Sajangnim-nice-shot.git`)
-3. **develop 브랜치 체크아웃:** `develop` 브랜치로 이동합니다. (`git checkout develop`)
-4. **새로운 브랜치 생성:** 새로운 기능을 위한 브랜치를 생성합니다. (`git checkout -b feature/YourFeature`)
-5. **변경 사항 커밋:** 변경 사항을 커밋합니다. (`git commit -m 'Add some feature'`)
-6. **브랜치에 푸시:** 변경 사항을 브랜치에 푸시합니다. (`git push origin feature/YourFeature`)
-7. **풀 리퀘스트 제출:** `develop` 브랜치로 풀 리퀘스트를 제출합니다.
-8. **이슈 관리:** 프로젝트 보드에서 이슈를 관리합니다.
-
+1. **레포지토리 클론:** 이 레포지토리를 로컬 환경에 클론합니다. (`git clone https://github.com/yourname/Sajangnim-nice-shot.git`)
+2. **develop 브랜치 체크아웃:** `develop` 브랜치로 이동합니다. (`git checkout develop`)
+3. **새로운 브랜치 생성:** 새로운 기능을 위한 브랜치를 생성합니다. (`git checkout -b feature/YourFeature`)
+4. **변경 사항 커밋:** 변경 사항을 커밋합니다. (`git commit -m 'Add some feature'`)
+5. **브랜치에 푸시:** 변경 사항을 브랜치에 푸시합니다. (`git push origin feature/YourFeature`)
+6. **풀 리퀘스트 제출:** `develop` 브랜치로 풀 리퀘스트를 제출합니다.
+7. **이슈 관리:** 프로젝트 보드에서 이슈를 관리합니다.
 
 
 ## 사용 방법
