@@ -1,0 +1,30 @@
+/* reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+/* header */
+h1 {
+    cursor: pointer;
+}
+header {
+    background-color: white;
+    position: fixed;
+    width: 100%;
+    border: 1px solid;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+section, aside {
+    margin-top: 50px;
+}
+.login_wrap {
+    display: flex;
+    align-items: center;
+}
+
