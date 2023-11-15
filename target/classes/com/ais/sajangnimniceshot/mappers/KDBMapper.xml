@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ais.sajangnimniceshot.mappers.KDBMapper">
+	<select id="authenticateMember" resultType="boolean">
+        SELECT 
+            COUNT(*) 
+        FROM 
+            MEMBERS
+        WHERE
+            MEM_NICKNAME = #{memNickname}
+    </select>
+    <select id="getMemberInfo" resultType="MemberBean">
+        SELECT
+            MEM_NICKNAME AS MEMNICKNAME
+        FROM
+            MEMBERS
+        WHERE
+            MEM_NICKNAME = #{memNickname}
+    </select>
+    
+    <select id="getRsvList" resultType="ReservationBean">
+    	SELECT
+    		RSV_CODE AS RSVCODE,
+    		TO_CHAR(RSV_DATE, 'YYYY-MM-DD') AS RSVDATE,
+    		RSV_TIME AS RSVTIME
+		FROM
+    		RSVDS 
+		JOIN
+    		MEMBERS
+		ON
+    		RSV_MEMNICKNAME = MEM_NICKNAME
+		WHERE
+    		RSV_MEMNICKNAME = #{memNickname}
+    </select>
+</mapper>

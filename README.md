@@ -34,9 +34,9 @@
 
 - **데이터베이스:** OracleDB
 - **언어:** Java, JavaScript, HTML, CSS
-- **라이브러리/프레임워크:**  SPRING BOOT, Lombok
+- **라이브러리/프레임워크:**  SPRING BOOT, Lombok, Mybatis
 - **버전 관리 툴:** Git
-- **테스트 툴:** 
+- **테스트 툴:** junit
 - **배포 툴:** AWS
 
 ## 🤝 기여 방법
