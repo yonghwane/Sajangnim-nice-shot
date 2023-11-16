@@ -38,7 +38,7 @@ public class Authentication implements ServiceRule {
 		MemberBean accessInfo = this.getAccessInfo();
 		if (accessInfo == null) {
 			mav.setViewName("redirect:/");
-			mav.addObject("message", "先にログインをしてください");
+			mav.addObject("message", "먼저 로그인해주세요");
 			return;
 		}
 		switch (serviceCode) {
@@ -53,7 +53,7 @@ public class Authentication implements ServiceRule {
 		}
 		MemberBean accessInfo = this.getAccessInfo();
 		if (accessInfo == null) {
-			model.addAttribute("message", this.encode("先にログインをしてください"));
+			model.addAttribute("message", this.encode("먼저 로그인해주세요"));
 			return;
 		}
 		// 로그인 필요
@@ -73,7 +73,7 @@ public class Authentication implements ServiceRule {
 			RequestContextHolder.getRequestAttributes().setAttribute("accessInfo", memberBean,
 					RequestAttributes.SCOPE_SESSION);
 		} else {
-			mav.addObject("message", "ログイン失敗");
+			mav.addObject("message", "로그인 실패");
 		}
 	}
 
