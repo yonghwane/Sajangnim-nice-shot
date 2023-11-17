@@ -20,16 +20,17 @@
         </header>
         <main>
             <aside>
-            <div onclick="location.href=''">예약</div>
-            <div onclick="location.href='/moveMyPage'">마이페이지</div>
-            <div onclick="location.href=''">이벤트</div>
+	            <div onclick="location.href=''">예약</div>
+	            <div onclick="location.href='/moveMyPage'">마이페이지</div>
+	            <div onclick="location.href=''">이벤트</div>
             </aside>
             
 			<section>
-			<ul class="list">
-                        <div onclick="location.href='/moveMyPage'">마이페이지</div>
-                        <div id="reservation"></div>
-                    </ul>
+				<ul class="list">
+	            	<div onclick="location.href='/moveMyPage'">마이페이지</div>
+	            	<div id="reservation">
+	            	</div>
+	            </ul>
         	</section>
         </main>
     </body>
@@ -40,13 +41,14 @@
         console.log(`${getRsvList}`);
         const getRsvList = JSON.parse(`${getRsvList}`);
         
+        
         const reservation = document.querySelector('#reservation');
         getRsvList.forEach((list) => {
             const li = document.createElement('li');
             const detail = document.createElement('button');
             const cancel = document.createElement('button');
             const transfer = document.createElement('button');
-            li.textContent = list.rsvDate + " " + list.rsvTime;
+            li.textContent = list.rsvDate + " " + list.rsvTime; 
             detail.textContent = "상세";
             cancel.textContent = "취소";
             transfer.textContent = "양도";
