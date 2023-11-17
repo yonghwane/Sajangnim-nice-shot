@@ -80,6 +80,11 @@
 			<artifactId>gson</artifactId>
 			<version>2.10.1</version>
 		</dependency>
+		<dependency>
+    		<groupId>javax.validation</groupId>
+    		<artifactId>validation-api</artifactId>
+    		<version>2.0.1.Final</version> <!-- 최신 버전으로 업데이트 가능 -->
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

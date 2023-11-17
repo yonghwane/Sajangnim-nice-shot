@@ -29,11 +29,11 @@ function sendAjaxPost(serviceCode, formData, callBackFunction) {
 }
 
 function login() {
-    const form = document.createElement('form')
-    document.body.appendChild(form)
-    form.method = 'post'
-    form.action = '/login'
-    const memNickname = document.querySelector('#memNickname')
-    form.appendChild(memNickname)
-    form.submit()
+	const form = document.createElement('form')
+	document.body.appendChild(form)
+	form.method = 'post'
+	form.action = '/login'
+	const memNickname = document.querySelector('#memNickname')
+	form.appendChild(memNickname)
+	form.submit()
 }

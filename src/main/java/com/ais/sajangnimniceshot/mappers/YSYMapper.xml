@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ais.sajangnimniceshot.mappers.YSYMapper">
-	
+	<select id="getReserveDate" >
+		select
+			t.ti_date,
+			t.ti_time
+		from
+			rsvds r join timeslots t on (r.ti_date = r.rsv_date)
+		on
+			rsv_time = null
+		where
+			ti_date = #{ti_date},
+			ti_time = #{ti_time}
+	</select>
+
 </mapper>

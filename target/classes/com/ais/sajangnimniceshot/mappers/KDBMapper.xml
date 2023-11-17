@@ -17,4 +17,19 @@
         WHERE
             MEM_NICKNAME = #{memNickname}
     </select>
+    
+    <select id="getRsvList" resultType="ReservationBean">
+    	SELECT
+    		RSV_CODE AS RSVCODE,
+    		TO_CHAR(RSV_DATE, 'YYYY-MM-DD') AS RSVDATE,
+    		RSV_TIME AS RSVTIME
+		FROM
+    		RSVDS 
+		JOIN
+    		MEMBERS
+		ON
+    		RSV_MEMNICKNAME = MEM_NICKNAME
+		WHERE
+    		RSV_MEMNICKNAME = #{memNickname}
+    </select>
 </mapper>

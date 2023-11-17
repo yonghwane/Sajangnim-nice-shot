@@ -1,5 +1,7 @@
 package com.ais.sajangnimniceshot.services;
 
+import java.net.URLEncoder;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -19,7 +21,8 @@ public class Authentication implements ServiceRule {
 	@Autowired
 	private Gson gson;
 
-	public void backController(String serviceCode, ModelAndView mav) {
+	public void backController(String serviceCode, ModelAndView mav) { // 동기식
+		// 로그인 불필요
 		switch (serviceCode) {
 		case "login":
 			this.login(mav);
@@ -30,12 +33,34 @@ public class Authentication implements ServiceRule {
 		default:
 			break;
 		}
+
+		// 로그인 필요
+		MemberBean accessInfo = this.getAccessInfo();
+		if (accessInfo == null) {
+			mav.setViewName("redirect:/");
+			mav.addObject("message", "先にログインをしてください");
+			return;
+		}
 		switch (serviceCode) {
 		}
 	}
 
-	public void backController(String serviceCode, Model model) {
-
+	public void backController(String serviceCode, Model model) { // 비동기식
+		// 로그인 불필요
+		switch (serviceCode) {
+		default:
+			break;
+		}
+		MemberBean accessInfo = this.getAccessInfo();
+		if (accessInfo == null) {
+			model.addAttribute("message", this.encode("先にログインをしてください"));
+			return;
+		}
+		// 로그인 필요
+		switch (serviceCode) {
+		case "":
+			break;
+		}
 	}
 
 	private void login(ModelAndView mav) {
@@ -72,6 +97,15 @@ public class Authentication implements ServiceRule {
 		sb.append("    <button onclick=\"location.href='/logout'\">로그아웃</button>\n");
 		sb.append("</div>\n");
 		return sb.toString();
+	}
+
+	private String encode(String s) {
+		try {
+			s = URLEncoder.encode(s, "UTF-8");
+		} catch (Exception e) {
+		} finally {
+			return s;
+		}
 	}
 
 }
