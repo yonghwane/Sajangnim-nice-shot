@@ -4,7 +4,7 @@ package com.ais.sajangnimniceshot.beans;
 import lombok.Data;
 
 @Data
-public class PRICESBEAN {
+public class PricesBean {
     private String priCode;
     private String priOption1;
     private String priOption2;

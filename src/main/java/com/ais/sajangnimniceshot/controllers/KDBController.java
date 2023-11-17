@@ -19,6 +19,7 @@ public class KDBController {
 	@GetMapping("/moveMyPage")
     public ModelAndView moveMyPage(ModelAndView mav) {
         mav.setViewName("myPage");
+        System.out.println(mav);
         this.service.backController("moveMyPage", mav);
         this.auth.backController("changeHeader", mav);
         return mav;

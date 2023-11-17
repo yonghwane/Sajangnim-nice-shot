@@ -16,7 +16,7 @@ public class SHSController {
 	@Autowired
 	private Authentication auth;
 	
-	@GetMapping("/moveMyPage/{rsvCode}")
+	@GetMapping("/moveReservedDetail/{rsvCode}")
     public ModelAndView moveMyPageDetail(ModelAndView mav, @PathVariable String rsvCode) {
 		mav.setViewName("myPageDetail");
 		mav.addObject("rsvCode", rsvCode);
