@@ -1,6 +1,8 @@
 package com.ais.sajangnimniceshot.beans;
 
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -16,4 +18,7 @@ public class ReservationBean {
     private String rsvShoes;
     private String rsvStatus;
     private String rsvPrice;
+    
+    private List<PricesBean> pricesBean;
+    
 }

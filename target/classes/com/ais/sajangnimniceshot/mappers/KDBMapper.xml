@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ais.sajangnimniceshot.mappers.KDBMapper">
-	<select id="authenticateMember" resultType="boolean">
+   <select id="authenticateMember" resultType="boolean">
         SELECT 
             COUNT(*) 
         FROM 
@@ -9,7 +9,7 @@
         WHERE
             MEM_NICKNAME = #{memNickname}
     </select>
-	<select id="getMemberInfo" resultType="MemberBean">
+   <select id="getMemberInfo" resultType="MemberBean">
         SELECT
             MEM_NICKNAME AS MEMNICKNAME
         FROM
@@ -18,28 +18,99 @@
             MEM_NICKNAME = #{memNickname}
     </select>
 
-	<select id="getRsvList" resultType="ReservationBean">
-    	SELECT
-    		RSV_CODE AS RSVCODE,
-    		TO_CHAR(RSV_DATE, 'YYYY-MM-DD') AS RSVDATE,
-    		RSV_TIME AS RSVTIME,
-    		RSV_MEMNICKNAME AS RSVMEMNICKNAME
-		FROM
-    		RSVDS 
-		JOIN
-    		MEMBERS
-		ON
-    		RSV_MEMNICKNAME = MEM_NICKNAME
-		WHERE
-    		RSV_MEMNICKNAME = #{memNickname}
+   <select id="getRsvList" resultType="ReservationBean">
+       SELECT
+          RSV_CODE AS RSVCODE,
+          TO_CHAR(RSV_DATE, 'YYYY-MM-DD') AS RSVDATE,
+          RSV_TIME AS RSVTIME,
+          RSV_MEMNICKNAME AS MEMNICKNAME
+      FROM
+          RSVDS 
+      JOIN
+          MEMBERS
+      ON
+          RSV_MEMNICKNAME = MEM_NICKNAME
+      WHERE
+          RSV_MEMNICKNAME = #{memNickname}
     </select>
 
-	<delete id="deleteReservation">
+   <delete id="deleteReservation">
     DELETE FROM
-	    RSVDS
+       RSVDS
     WHERE
-	    RSV_MEMNICKNAME = #{memNickname}
+       RSV_MEMNICKNAME = #{memNickname}
     AND
-	    RSV_CODE = #{rsvCode}
+       RSV_CODE = #{rsvCode}
     </delete>
+
+   <resultMap id="ReservationBean" type="reservationBean">
+      <id property="rsvCode" column="rsv_Code" />
+      <result property="rsvMemNickname" column="rsv_MemNickname" />
+      <result property="rsvDate" column="RSVDATE" />
+      <result property="rsvTime" column="rsv_Time" />
+      <result property="rsvCount" column="rsv_Count" />
+      <result property="rsvHole" column="rsv_Hole" />
+      <result property="rsvCaddy" column="rsv_Caddy" />
+      <result property="rsvClothes" column="rsv_Clothes" />
+      <result property="rsvShoes" column="rsv_Shoes" />
+      <result property="rsvStatus" column="rsv_Status" />
+      <result property="rsvPrice" column="rsv_Price" />
+      <!-- <association property="pricesBean" resultMap="pricesBeanMap"/>-->
+      <collection property="pricesBean" resultMap="pricesBeanMap"></collection>
+   </resultMap>
+   <resultMap id="pricesBeanMap" type="PRICESBEAN">
+      <id property="priCode" column="pri_Code" />
+      <result property="priOption1" column="priOption1" />
+      <result property="priOption2" column="priOption2" />
+      <result property="priOption3" column="priOption3" />
+      <result property="priOption4" column="priOption4" />
+      <result property="priPrice" column="pri_Price" />
+   </resultMap>
+
+   <select id="getReservationDetail" resultMap="ReservationBean"> 
+      select
+         RSV_CODE,
+         RSV_MEMNICKNAME,
+         TO_CHAR(RSV_DATE, 'YYYY-MM-DD') AS RSVDATE,
+         RSV_TIME,
+         RSV_COUNT,
+         RSV_HOLE,
+         RSV_CADDY,
+         RSV_CLOTHES,
+         RSV_SHOES,
+         RSV_STATUS,
+         RSV_PRICE,
+         pri1.PRI_OPTION AS priOption1,
+         pri2.PRI_OPTION AS priOption2,
+         pri3.PRI_OPTION AS priOption3,
+         pri4.PRI_OPTION AS priOption4
+      FROM 
+         RSVDS
+        JOIN
+            PRICES pri1 ON RSV_HOLE = pri1.pri_code
+        JOIN
+            PRICES pri2 ON RSV_CADDY = pri2.pri_code
+        JOIN    
+            PRICES pri3 ON RSV_CLOTHES = pri3.pri_code
+        JOIN    
+            PRICES pri4 ON RSV_SHOES = pri4.pri_code
+      WHERE 
+         RSV_CODE = #{rsvCode}
+   </select>
+
+   <select id="checkMemNickname" resultType="boolean">
+    SELECT
+        COUNT(*)
+    FROM
+        MEMBERS
+    WHERE
+        MEM_NICKNAME = #{memNickname}
+    </select>
+
+   <insert id="insertReservedTransfer">
+    INSERT INTO RSVDS (RSV_MEMNICKNAME, RSV_TIME, RSV_DATE, RSV_COUNT, RSV_HOLE, RSV_CADDY, RSV_CLOTHES, RSV_SHOES, RSV_STATUS, RSV_PRICE)
+    VALUES (#{memNickname}, #{rsvTime}, #{rsvDate}, #{rsvCount}, #{rsvHole}, #{rsvCaddy}, #{rsvClothes}, #{rsvShoes}, 'T', #{rsvPrice})
+    </insert>
+
+
 </mapper>
