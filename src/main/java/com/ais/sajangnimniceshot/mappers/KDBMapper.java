@@ -12,6 +12,6 @@ public interface KDBMapper {
     boolean authenticateMember(MemberBean memberBean);
     MemberBean getMemberInfo(String memNickname);
     List<ReservationBean> getRsvList(String memNickname);
-    
-
+    int deleteReservation(String memNickname, String rsvCode);
+   
 }
