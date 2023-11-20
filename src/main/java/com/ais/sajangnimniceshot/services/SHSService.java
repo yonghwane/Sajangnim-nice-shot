@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 public class SHSService implements ServiceRule {
 
     @Autowired
-    private SHSMapper mapper;
+    private SHSMapper shsMapper;
     @Autowired
     private Authentication auth;
     @Autowired
@@ -37,7 +37,8 @@ public class SHSService implements ServiceRule {
 			return;
 		}
 		switch (serviceCode) {
-		case "":
+		case "moveMyPageDetail":
+			this.moveMyPageDetail(mav);
 			break;
 		}
 	}
@@ -59,6 +60,13 @@ public class SHSService implements ServiceRule {
 			break;
 		}
 	}
+	private void moveMyPageDetail(ModelAndView mav) {
+		MemberBean accessInfo = this.auth.getAccessInfo();
+		String rsvCode = (String) mav.getModel().get("rsvCode");
+		mav.addObject("getRsvDetailList",this.gson.toJson(this.shsMapper.getReservationDetail(rsvCode)));
+    }
+	
+	
 
 	private String encode(String s) {
 		try {

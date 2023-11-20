@@ -18,4 +18,4 @@
     <br />
     <a href="/">SNPに戻る</a>
 </body>
-</html> 
+</html>

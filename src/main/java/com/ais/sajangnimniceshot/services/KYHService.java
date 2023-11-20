@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ais.sajangnimniceshot.beans.MemberBean;
+import com.ais.sajangnimniceshot.mappers.KDBMapper;
 import com.ais.sajangnimniceshot.mappers.KYHMapper;
 import com.google.gson.Gson;
 
@@ -15,7 +16,9 @@ import com.google.gson.Gson;
 public class KYHService implements ServiceRule {
 
 	@Autowired
-	private KYHMapper mapper;
+	private KYHMapper kyhmapper;
+	@Autowired
+	private KDBMapper kdbmapper;
 	@Autowired
 	private Authentication auth;
 	@Autowired
@@ -33,11 +36,15 @@ public class KYHService implements ServiceRule {
 		MemberBean accessInfo = this.auth.getAccessInfo();
 		if (accessInfo == null) {
 			mav.setViewName("redirect:/");
-			mav.addObject("message", "先にログインをしてください");
+			mav.addObject("message", "먼저 로그인해주세요");
 			return;
 		}
 		switch (serviceCode) {
-		case "":
+//		case "moveMyPageTransfer":
+//			this.moveMyPageTransfer(mav);
+//			break;
+		case "transferReservation":
+			this.transferReservation(mav);
 			break;
 		}
 	}
@@ -50,7 +57,7 @@ public class KYHService implements ServiceRule {
 		}
 		MemberBean accessInfo = this.auth.getAccessInfo();
 		if (accessInfo == null) {
-			model.addAttribute("message", this.encode("先にログインをしてください"));
+			model.addAttribute("message", this.encode("먼저 로그인해주세요"));
 			return;
 		}
 		// 로그인 필요
@@ -58,6 +65,35 @@ public class KYHService implements ServiceRule {
 		case "":
 			break;
 		}
+	}
+
+//	private void moveMyPageTransfer(ModelAndView mav) {
+//		MemberBean accessInfo = this.auth.getAccessInfo();
+//		String rsvCode = (String) mav.getModel().get("rsvCode");
+//		mav.addObject("");
+//	}
+	private void transferReservation(ModelAndView mav) {
+		MemberBean accessInfo = this.auth.getAccessInfo();
+		String memNickName = (String) mav.getModel().get("memNickName");
+		String rsvCode = (String) mav.getModel().get("rsvCode");
+		if (!kyhmapper.checkNickname(memNickName)) {
+			mav.addObject("message", "존재하지 않는 회원입니다.");
+			mav.setViewName("myPageTransfer");
+			return;
+		}
+//	if(memNickName == null) {
+//		mav.setViewName("redirect:/");
+//		mav.addObject("message", "값이 비어있습니다.");
+//		return;
+//	} 
+		if (memNickName.equals(accessInfo.getMemNickname())) {
+			mav.setViewName("myPageTransfer");
+			mav.addObject("message", "동일한 회원에게는 양도를 할 수 없습니다.");
+			return;
+		}
+		this.kyhmapper.transferReservation(rsvCode, memNickName);
+		mav.addObject("getRsvList", this.gson.toJson(this.kdbmapper.getRsvList(accessInfo.getMemNickname())));
+		mav.addObject("message", "양도가 완료되었습니다.");
 	}
 
 	private String encode(String s) {
