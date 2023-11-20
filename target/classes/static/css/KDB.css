@@ -23,7 +23,7 @@ header {
 }
 
 section, aside {
-	margin-top: 50px;
+	margin-top: 40px;
 }
 
 .login_wrap {
@@ -40,7 +40,7 @@ main {
 
 aside {
 	font-weight: bold;
-	border: 1px solid #464646;
+	border-right: 1px solid #464646;
 	flex-basis: 25%;
 }
 
