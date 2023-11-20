@@ -15,7 +15,7 @@ public interface KYHMapper {
 
 	ReservationBean getReservationDetail(String rsvCode);
 
-	int transferReservation(@Param("rsvCode") String rsvCode, @Param("memNickName") String memNickName);
+	int transferReservation(String rsvCode, String memNickName);
 
 	// List<ReservationBean> transferReservation(String rsvCode, String
 	// memNickName);
