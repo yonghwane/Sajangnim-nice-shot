@@ -20,11 +20,12 @@
             </div>
         </header>
         <main>
-            <aside>
-            <div onclick="location.href=''">예약</div>
-            <div onclick="location.href='/moveMyPage'">마이페이지</div>
-            <div onclick="location.href=''">이벤트</div>
-            </aside>
+        	<aside>
+        	<div id="aside-main" onclick="location.href='/'">메인페이지</div>
+        	<div onclick="location.href=''">예약</div>
+        	<div onclick="location.href='/moveMyPage'">마이페이지</div>
+        	<div onclick="location.href=''">이벤트</div>
+        	</aside>
             <section>
             </section>
         </main>

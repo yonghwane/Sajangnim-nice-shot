@@ -43,31 +43,31 @@
        RSV_CODE = #{rsvCode}
     </delete>
 
-   <resultMap id="ReservationBean" type="reservationBean">
-      <id property="rsvCode" column="rsv_Code" />
-      <result property="rsvMemNickname" column="rsv_MemNickname" />
-      <result property="rsvDate" column="RSVDATE" />
-      <result property="rsvTime" column="rsv_Time" />
-      <result property="rsvCount" column="rsv_Count" />
-      <result property="rsvHole" column="rsv_Hole" />
-      <result property="rsvCaddy" column="rsv_Caddy" />
-      <result property="rsvClothes" column="rsv_Clothes" />
-      <result property="rsvShoes" column="rsv_Shoes" />
-      <result property="rsvStatus" column="rsv_Status" />
-      <result property="rsvPrice" column="rsv_Price" />
-      <!-- <association property="pricesBean" resultMap="pricesBeanMap"/>-->
-      <collection property="pricesBean" resultMap="pricesBeanMap"></collection>
-   </resultMap>
-   <resultMap id="pricesBeanMap" type="PRICESBEAN">
-      <id property="priCode" column="pri_Code" />
-      <result property="priOption1" column="priOption1" />
-      <result property="priOption2" column="priOption2" />
-      <result property="priOption3" column="priOption3" />
-      <result property="priOption4" column="priOption4" />
-      <result property="priPrice" column="pri_Price" />
-   </resultMap>
+	<resultMap id="ReservationBean" type="reservationBean">
+		<id property="rsvCode" column="rsv_Code" />
+		<result property="rsvMemNickname" column="rsv_MemNickname" />
+		<result property="rsvDate" column="RSVDATE" />
+		<result property="rsvTime" column="rsv_Time" />
+		<result property="rsvCount" column="rsv_Count" />
+		<result property="rsvHole" column="rsv_Hole" />
+		<result property="rsvCaddy" column="rsv_Caddy" />
+		<result property="rsvClothes" column="rsv_Clothes" />
+		<result property="rsvShoes" column="rsv_Shoes" />
+		<result property="rsvStatus" column="rsv_Status" />
+		<result property="rsvPrice" column="rsv_Price" />
+		<!-- <association property="pricesBean" resultMap="pricesBeanMap"/>-->
+		<collection property="pricesBean" resultMap="pricesBeanMap"></collection>
+	</resultMap>
+	<resultMap id="pricesBeanMap" type="PRICESBEAN">
+		<id property="priCode" column="pri_Code" />
+		<result property="priOption1" column="priOption1" />
+		<result property="priOption2" column="priOption2" />
+		<result property="priOption3" column="priOption3" />
+		<result property="priOption4" column="priOption4" />
+		<result property="priPrice" column="pri_Price" />
+	</resultMap>
 
-   <select id="getReservationDetail" resultMap="ReservationBean"> 
+	<select id="getReservationDetail" resultMap="ReservationBean"> 
       select
          RSV_CODE,
          RSV_MEMNICKNAME,
@@ -98,7 +98,7 @@
          RSV_CODE = #{rsvCode}
    </select>
 
-   <select id="checkMemNickname" resultType="boolean">
+	<select id="checkMemNickname" resultType="boolean">
     SELECT
         COUNT(*)
     FROM
@@ -107,10 +107,13 @@
         MEM_NICKNAME = #{memNickname}
     </select>
 
-   <insert id="insertReservedTransfer">
-    INSERT INTO RSVDS (RSV_MEMNICKNAME, RSV_TIME, RSV_DATE, RSV_COUNT, RSV_HOLE, RSV_CADDY, RSV_CLOTHES, RSV_SHOES, RSV_STATUS, RSV_PRICE)
-    VALUES (#{memNickname}, #{rsvTime}, #{rsvDate}, #{rsvCount}, #{rsvHole}, #{rsvCaddy}, #{rsvClothes}, #{rsvShoes}, 'T', #{rsvPrice})
+	<insert id="insertReservedTransfer">
+    INSERT INTO RSVDS (RSV_CODE, RSV_MEMNICKNAME, RSV_TIME, RSV_DATE, RSV_COUNT, RSV_HOLE, RSV_CADDY, RSV_CLOTHES, RSV_SHOES, RSV_STATUS, RSV_PRICE)
+    VALUES (RSV_CODE.NEXTVAL ,#{memNickname}, #{rsvTime}, #{rsvDate}, #{rsvCount}, #{rsvHole}, #{rsvCaddy}, #{rsvClothes}, #{rsvShoes}, 'T', #{rsvPrice})
     </insert>
 
+	<update id="updateReservedTransfer">
+    UPDATE RSVDS SET RSV_MEMNICKNAME = #{memNickname} WHERE RSV_CODE = #{rsvCode}
+    </update>
 
 </mapper>
