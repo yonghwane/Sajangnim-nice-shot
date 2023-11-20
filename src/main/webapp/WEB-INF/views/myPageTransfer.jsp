@@ -6,6 +6,7 @@
     <title>양도 페이지</title>
     <link rel="stylesheet" href="/css/reset.css" />
     <link rel="stylesheet" href="/css/KDB.css" />
+    <link rel="stylesheet" href="/css/KYH.css" />
     <script src="/js/KDB.js"></script>
 </head>
 
@@ -24,17 +25,18 @@
         <div onclick="location.href=''">이벤트</div>
         </aside>
         <section>
-        <div onclick="location.href='/moveMyPage'">마이페이지로 돌아가기</div>
-            <h2>양도 페이지</h2>
-    <p>예약 코드: ${rsvCode}</p>
-    <input type = "hidden" value = "rsvCode"/>
-    <form action="/transferReservation" method="post">
+        
+        <div class="send-container">
+        <input type = "hidden" value = "rsvCode"/>
+        <form action="/transferReservation" method="post">
         <input type="hidden" name="rsvCode" value="${rsvCode}">
-        <label for="transferNickname">양도할 닉네임:</label>
-        <input type="text" id="transferNickname" name="memNickName" pattern="^[A-Za-z]+$" title="공백, 숫자, 특수 문자는 허용되지 않습니다." required>
+        <p>예약 코드: ${rsvCode}</p>
+        <input type="text" id="transferNickname" name="memNickName" placeholder="양도할 사람을 입력해주세요" pattern="^[A-Za-z]+$" title="공백, 숫자, 특수 문자는 허용되지 않습니다." required>
         <button type="submit">양도</button>
         <p id="error-message" style="color: red; font-size: 10px; margin-top: 7px;"></p>
+        <div onclick="location.href='/moveMyPage'">마이페이지로 돌아가기</div>
     </form>
+    </div>
         </section>
     </main>
     
