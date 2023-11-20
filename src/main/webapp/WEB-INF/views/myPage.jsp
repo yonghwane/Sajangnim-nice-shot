@@ -1,14 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="kr">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>myPage</title>
-<link rel="stylesheet" href="/css/reset.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/reset.css" />
 <link rel="stylesheet" href="/css/KDB.css" />
 <script src="/js/KDB.js"></script>
+<style>
+</style>
 </head>
 
 <body>
@@ -21,62 +25,60 @@
 	</header>
 	<main>
 		<aside>
+<<<<<<< HEAD
 			<div onclick="location.href='/reservation1'">예약</div>
+=======
+			<div id="aside-main" onclick="location.href='/'">메인페이지</div>
+			<div onclick="location.href=''">예약</div>
+>>>>>>> develop
 			<div onclick="location.href='/moveMyPage'">마이페이지</div>
 			<div onclick="location.href=''">이벤트</div>
 		</aside>
 
-		<section>
-			<ul class="list">
-				<div onclick="location.href='/moveMyPage'">마이페이지</div>
-				<div id="reservation"></div>
-			</ul>
-		</section>
-	</main>
+      <section>
+         <ul class="list">
+         	<div id="h3" onclick="location.href='/moveMyPage'">마이페이지</div>
+            <div id="reservation"></div>
+         </ul>
+      </section>
+   </main>
 </body>
 <script>
-    	if (`${message}` !== ``) {alert(`${message}`); window.location.href = "/";}
-        if (`${headerHTML}` !== ``) document.querySelector('.header').innerHTML = `${headerHTML}`;
-        
-        console.log(`${getRsvList}`);
-        const getRsvList = JSON.parse(`${getRsvList}`);
-        
-        function removeReservation(rsvCode) { // 프론트 서버로 요청 보내고, 서버에서 처리 후 json형식으로 반환, delete함수에 그 값을 전달
-            const isConfirmed = confirm("예약을 삭제하시겠습니까?");
-        	if(isConfirmed) {
-        	postAjaxJson('/removeReservation', '&rsvCode=' + rsvCode, 'deleteReservation')
-        	} else {
-        		alert("삭제 취소");
-        	}
+        if (`${message}` !== ``) {alert(`${message}`);
         }
-        
-        function deleteReservation(result) {
-            console.log(result) // 1 or 0
-            console.log(typeof (result)) // string (json은 string)
-            if (result === '1') {
-            	alert("삭제 성공");
-            	window.location.href = "/moveMyPage";
-                }
-            }
-        
-        const reservation = document.querySelector('#reservation');
-        getRsvList.forEach((list) => {
-            const li = document.createElement('li');
-            const detail = document.createElement('button');
-            const cancel = document.createElement('button');
-            const transfer = document.createElement('button');
-            li.textContent = list.rsvDate + " " + list.rsvTime;
-            detail.textContent = "상세";
-            cancel.textContent = "취소";
-            transfer.textContent = "양도";
-            li.addEventListener('click', () => (location.href = '/moveMyPage/' + list.rsvCode));
-            detail.addEventListener('click', () => (location.href = '/moveMyPage/' + list.rsvCode));
-            cancel.addEventListener('click', () => removeReservation(list.rsvCode));
-            transfer.addEventListener('click', () => (location.href = '/transferReservation/' + list.rsvCode));
-            reservation.appendChild(li);
-            reservation.appendChild(detail);
-            reservation.appendChild(cancel);
-            reservation.appendChild(transfer);
-        });
+        if (`${headerHTML}` !== ``) document.querySelector('.header').innerHTML = `${headerHTML}`;
+    
+        let reservation = document.querySelector('#reservation');
+        let getRsvList = JSON.parse(`${getRsvList}`);
+    
+        function createButton(text, clickHandler) {
+            let button = document.createElement('button');
+            button.textContent = text;
+            button.addEventListener('click', clickHandler);
+            return button;
+        }
+    
+        function updateRsvList() {
+            reservation.innerHTML = ""; 
+    
+            getRsvList.forEach((list) => {
+                let li = document.createElement('li');
+                let span = document.createElement('span');
+                li.textContent = "・ 예약일 : " + list.rsvDate + " | 예약시간 : " + list.rsvTime;
+                let detail = createButton("상세", () => (location.href = '/moveReservedDetail/' + list.rsvCode));
+                let cancel = createButton("취소", () => {
+                    removeReservation(list.rsvCode);
+                    li.classList.add('fade-out');
+                });
+                let transfer = createButton("양도", () => (location.href = '/moveMyPageTransfer/' + list.rsvCode));
+                li.appendChild(span);
+                span.appendChild(detail);
+                span.appendChild(cancel);
+                span.appendChild(transfer);
+                reservation.appendChild(li);
+            });
+        }
+    
+        updateRsvList();
     </script>
 </html>

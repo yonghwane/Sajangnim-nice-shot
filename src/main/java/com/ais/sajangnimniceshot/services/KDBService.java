@@ -1,6 +1,7 @@
 package com.ais.sajangnimniceshot.services;
 
 import java.net.URLEncoder;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ais.sajangnimniceshot.beans.MemberBean;
+import com.ais.sajangnimniceshot.beans.ReservationBean;
 import com.ais.sajangnimniceshot.mappers.KDBMapper;
 import com.google.gson.Gson;
 
@@ -38,6 +40,15 @@ public class KDBService implements ServiceRule {
 		case "moveMyPage":
 			this.moveMyPage(mav);
 			break;
+		case "moveReservedDetail":
+			this.moveReservedDetail(mav);
+			break;
+		case "moveReservedTransfer":
+			this.moveReservedTransfer(mav);
+			break;
+		case "reservedTransfer":
+			this.reservedTransfer(mav);
+			break;
 		}
 	}
 
@@ -61,6 +72,39 @@ public class KDBService implements ServiceRule {
 	}
 	
 
+	private void moveReservedTransfer(ModelAndView mav) {
+		String rsvCode = (String) mav.getModel().get("rsvCode");
+		mav.addObject("getReservationDetail", this.gson.toJson(this.kdbMapper.getReservationDetail(rsvCode)));
+	}
+
+	private void reservedTransfer(ModelAndView mav) {
+		MemberBean accessInfo = this.auth.getAccessInfo();
+		String memNickname = (String) mav.getModel().get("memNickname"); // 프론트에서 받아온 양도자
+		// db에 해당 멤버가 있는지 확인
+		if (!this.kdbMapper.checkMemNickname(memNickname)) {
+			mav.addObject("message", "존재하지 않는 회원입니다.");
+			mav.setViewName("reservedTransfer");
+			return;
+		}
+
+		if (memNickname.equals(accessInfo.getMemNickname())) {
+			mav.addObject("message", "본인에게 양도할 수 없습니다.");
+			mav.setViewName("reservedTransfer");
+			return;
+		}
+
+		String rsvCode = (String) mav.getModel().get("rsvCode"); // 기존 예약을 불러오기 위한 rsvCode
+		this.kdbMapper.updateReservedTransfer(rsvCode, memNickname);
+		mav.addObject("getRsvList", this.gson.toJson(this.kdbMapper.getRsvList(accessInfo.getMemNickname())));
+		mav.addObject("message", "양도 성공");
+	}
+
+	private void moveReservedDetail(ModelAndView mav) {
+		String rsvCode = (String) mav.getModel().get("rsvCode");
+		mav.addObject("getReservationDetail", this.gson.toJson(this.kdbMapper.getReservationDetail(rsvCode)));
+
+	}
+
 	private void removeReservation(Model model) {
 		MemberBean accessInfo = this.auth.getAccessInfo();
 		try {
@@ -74,10 +118,12 @@ public class KDBService implements ServiceRule {
 
 	private void moveMyPage(ModelAndView mav) {
 		MemberBean accessInfo = this.auth.getAccessInfo();
+		System.out.println("accessInfo : " + accessInfo);
 		if (accessInfo == null) {
 			mav.addObject("message", "먼저 로그인해주세요");
 			return;
 		}
+		System.out.println("mapper : " + this.kdbMapper.getRsvList(accessInfo.getMemNickname()));
 		mav.addObject("getRsvList", this.gson.toJson(this.kdbMapper.getRsvList(accessInfo.getMemNickname())));
 	}
 

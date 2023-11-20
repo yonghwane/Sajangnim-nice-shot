@@ -10,45 +10,45 @@ function makeFormData(keys, values) {
 
 /* AJAX :: POST */
 function postAjaxJson(jobCode, clientData, fn) {
-    const ajax = new XMLHttpRequest()
+	const ajax = new XMLHttpRequest()
 
-    ajax.onreadystatechange = function () {
-        if (ajax.readyState == 4 && ajax.status == 200) {
-            window[fn](ajax.responseText)
-        }
-    }
-    ajax.open('post', jobCode)
-    ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-    ajax.send(clientData)
+	ajax.onreadystatechange = function() {
+		if (ajax.readyState == 4 && ajax.status == 200) {
+			window[fn](ajax.responseText)
+		}
+	}
+	ajax.open('post', jobCode)
+	ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+	ajax.send(clientData)
 }
 function postAjaxMultipartFormData(jobCode, clientData, fn) {
-    const ajax = new XMLHttpRequest();
+	const ajax = new XMLHttpRequest();
 
-    ajax.onreadystatechange = function () {
-        if (ajax.readyState == 4 && ajax.status == 200) {
-            window[fn](ajax.responseText);
-        }
-    }
+	ajax.onreadystatechange = function() {
+		if (ajax.readyState == 4 && ajax.status == 200) {
+			window[fn](ajax.responseText);
+		}
+	}
 
-    const formData = new FormData();
-    for (const key in clientData) formData.append(key, clientData[key]);
-    
+	const formData = new FormData();
+	for (const key in clientData) formData.append(key, clientData[key]);
 
-    ajax.open('POST', jobCode);
-    // ajax.setRequestHeader('Content-Type', 'multipart/form-data');
-    ajax.send(formData);
+
+	ajax.open('POST', jobCode);
+	// ajax.setRequestHeader('Content-Type', 'multipart/form-data');
+	ajax.send(formData);
 }
 function getAjaxJson(jobCode, clientData, fn) {
-    const ajax = new XMLHttpRequest()
-    const action = clientData != '' ? jobCode + '?' + clientData : jobCode
+	const ajax = new XMLHttpRequest()
+	const action = clientData != '' ? jobCode + '?' + clientData : jobCode
 
-    ajax.onreadystatechange = function () {
-        if (ajax.readyState == 4 && ajax.status == 200) {
-            window[fn](ajax.responseText)
-        }
-    }
-    ajax.open('get', action)
-    ajax.send()
+	ajax.onreadystatechange = function() {
+		if (ajax.readyState == 4 && ajax.status == 200) {
+			window[fn](ajax.responseText)
+		}
+	}
+	ajax.open('get', action)
+	ajax.send()
 }
 
 /* AJAX :: POST */
@@ -80,3 +80,47 @@ function login() {
 	form.appendChild(memNickname)
 	form.submit()
 }
+
+//function removeReservation(rsvCode) { // 프론트 서버로 요청 보내고, 서버에서 처리 후 json형식으로 반환, delete함수에 그 값을 전달
+//	const isConfirmed = confirm("예약을 취소하시겠습니까?");
+//	if (isConfirmed) {
+//		postAjaxJson('/removeReservation', '&rsvCode=' + rsvCode, 'deleteReservation')
+//	} else {
+//		alert("삭제 취소");
+//	}
+//}
+//
+//function deleteReservation(result) {
+//	console.log(result) // 1 or 0
+//	console.log(typeof (result)) // string (json은 string)
+//	if (result === '1') {
+//		alert("삭제 성공");
+//		window.location.href = "/moveMyPage";
+//		const form = document.createElement('form')
+//		document.body.appendChild(form)
+//		form.method = 'post'
+//		form.action = '/login'
+//		const memNickname = document.querySelector('#memNickname')
+//		form.appendChild(memNickname)
+//		form.submit()
+//	}
+
+	function removeReservation(rsvCode) { // 프론트 서버로 요청 보내고, 서버에서 처리 후 json형식으로 반환, delete함수에 그 값을 전달
+		const isConfirmed = confirm("예약을 삭제하시겠습니까?");
+		if (isConfirmed) {
+			postAjaxJson('/removeReservation', '&rsvCode=' + rsvCode, 'deleteReservation')
+			getRsvList = getRsvList.filter(list => list.rsvCode !== rsvCode);
+			updateRsvList();
+		} else {
+			alert("삭제 취소");
+		}
+	}
+
+	function deleteReservation(result) {
+		console.log(result) // 1 or 0
+		console.log(typeof (result)) // string (json은 string)
+		if (result === '1') {
+			alert("삭제 성공");
+			console.log(getRsvList)
+		}
+	}
