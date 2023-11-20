@@ -19,7 +19,7 @@
                 <button onclick="login()">ログイン</button>
             </div>
         </header>
-        <form :form modelAttribute="reserveForm" method="post">
+        <form id="reserveForm" method="post">
            <fieldset>
               <label for = "selectDate">date</label>
               <input type = "date" path="rsvDate" name = "selectDate" required><br>

@@ -1,17 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ais.sajangnimniceshot.mappers.YSYMapper">
-	<select id="getReserveDate" >
+<!-- 	<select id="getReserveDate" > // 예약 테이블 안에 예약이 없는 시간을 조인시켜서 시간 테이블 안에 있는 날짜와 시간을 불러옴
+	// rsvds r join timeslots t on (r.ti_date = r.rsv_date)
 		select
-			t.ti_date,
-			t.ti_time
+			t.ti_date as tidate,
+			t.ti_time as titime
 		from
-			rsvds r join timeslots t on (r.ti_date = r.rsv_date)
+			timeslots
+		join
+			rsvds
 		on
-			rsv_time = null
+			ti_date = rsv_date
+		where
+			ti_date = #{ti_date},
+			ti_time = #{ti_time}
+	</select> 
+	<select id="checkDate" resultType="boolean">
+		select
+			count(*)
+		from
+			timeslots
 		where
 			ti_date = #{ti_date},
 			ti_time = #{ti_time}
 	</select>
+	<select id="selectAllDate">
+		select
+			ti_code,
+			ti_date,
+			ti_time
+		from
+			timeslots
+		where
+			ti_code = #{ti_code},
+			ti_date = #{ti_date},
+			ti_time = #{ti_time}
+	</select>
+	-->
+	<select id="getReserveDate">
+	SELECT
+        t.ti_date AS tidate,
+        t.ti_time AS titime
+    FROM
+        timeslots t
+    LEFT JOIN
+        rsvds r ON t.ti_date = r.rsv_date
+    WHERE
+        r.rsv_date IS NULL
+        AND t.ti_date = #{ti_date}
+        AND t.ti_time = #{ti_time}
+	</select>
+	
 
 </mapper>

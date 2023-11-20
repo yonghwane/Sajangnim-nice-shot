@@ -1,7 +1,6 @@
 package com.ais.sajangnimniceshot.services;
 
 import java.net.URLEncoder;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ais.sajangnimniceshot.beans.MemberBean;
 import com.ais.sajangnimniceshot.beans.ReservationBean;
-import com.ais.sajangnimniceshot.beans.ReserveForm;
 import com.ais.sajangnimniceshot.mappers.YSYMapper;
 import com.google.gson.Gson;
 
@@ -63,15 +61,9 @@ public class YSYService implements ServiceRule {
 		}
 	}
 	
-//	// 예약 불러오기
-//	public List<ReservationBean> getAllReservations() {
-//		return ysyMapper.getReserveInfo();
-//	}
-	
-//	// 예약창 불러오기 - 날짜, 시간
-//	public ReservationBean getReserveDate(String memNickname) {
-//		return ysyMapper.getReserveDate(memNickname);
-//	}
+	public ReservationBean findAvailableRsv(String memNickname) {
+        return ysyMapper.findAvailableRsv(memNickname);
+    }
 	
 
 	private String encode(String s) {

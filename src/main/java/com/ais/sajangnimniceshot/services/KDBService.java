@@ -59,6 +59,27 @@ public class KDBService implements ServiceRule {
 			break;
 		}
 	}
+	
+
+	private void removeReservation(Model model) {
+		MemberBean accessInfo = this.auth.getAccessInfo();
+		try {
+			int deleteReservation = this.kdbMapper.deleteReservation(accessInfo.getMemNickname(),
+					String.valueOf((int) model.getAttribute("rsvCode")));
+			model.addAttribute("deleteReservation", deleteReservation);
+		} catch (Exception e) {
+			model.addAttribute("deleteReservation", 0);
+		}
+	}
+
+	private void moveMyPage(ModelAndView mav) {
+		MemberBean accessInfo = this.auth.getAccessInfo();
+		if (accessInfo == null) {
+			mav.addObject("message", "먼저 로그인해주세요");
+			return;
+		}
+		mav.addObject("getRsvList", this.gson.toJson(this.kdbMapper.getRsvList(accessInfo.getMemNickname())));
+	}
 
 	private String encode(String s) {
 		try {
