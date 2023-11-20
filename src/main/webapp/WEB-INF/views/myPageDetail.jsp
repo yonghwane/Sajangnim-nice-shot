@@ -27,11 +27,8 @@
       </aside>
 
       <section>
-         <table class = "table_style">
-            <tr></tr>
+         <table class = "table_style" id="table1">
          </table>
-         <br/>
-         <br/>
       </section>
    </main>
 </body>
@@ -49,36 +46,55 @@
         createTable();
 
         function createTable() {
-            const table = document.querySelector('table');
-            table.innerHTML = `<th class = "th_style">예약자명</th>
+            const table = document.querySelector('#table1');
+            table.innerHTML = `<th class = "th_style">예약번호</th>
+            					<th class = "th_style">예약자명</th>
                                 <th class = "th_style">예약날짜</th>
                                 <th class = "th_style">예약시간</th>
-                                <th class = "th_style">인원수</th>
-                                <th class = "th_style">총가격</th>
-                                <th class = "th_style">HOLE</th>
-                                <th class = "th_style">CADDY</th>
-                                <th class = "th_style">CLOTHES</th>
-                                <th class = "th_style">SHOES</th>`;
+                                <th class = "th_style">인원수</th>`;
+//                                <th class = "th_style">HOLE</th>
+//                                <th class = "th_style">CADDY</th>
+//                                <th class = "th_style">CLOTHES</th>
+//                                <th class = "th_style">SHOES</th>`;
+                                
             postType.forEach((detail) => {
-                const tr = document.createElement('tr');
-                tr.innerHTML =
-                    `<td class = "td_style">` + detail.rsvMemNickname + `</td>
+                const tr1 = document.createElement('tr');
+                tr1.innerHTML =
+                    `<td class = "td_style">` + detail.rsvCode + `</td>
+                    <td class = "td_style">` + detail.rsvMemNickname + `</td>
                     <td class = "td_style">` + detail.rsvDate + `</td>
                     <td class = "td_style">` + detail.rsvTime + `</td>
-                    <td class = "td_style">` + detail.rsvCount + `</td>
-                    <td class = "td_style">` + detail.rsvPrice + `</td>`;
+                    <td class = "td_style">` + detail.rsvCount + `</td>`;
+                table.appendChild(tr1);
+            });
+//                const tr2 = document.createElement('tr');
+//	                `<th class = "th_style">` + HOLE + `</th>
+//	                <th class = "th_style">` + CADDY + + `</th>
+//	                <th class = "th_style">` + CLOTHES + `</th>
+//	                <th class = "th_style">` + SHOES + `</th>`;
+//                table.appendChild(tr2);
+                
+            table.innerHTML += `<th class = "th_style">HOLE</th>
+						          <th class = "th_style">CADDY</th>
+						          <th class = "th_style">CLOTHES</th>
+						          <th class = "th_style">SHOES</th>
+						          <th class = "th_style">총가격</th>`;
+            		
+            
+            postType.forEach((detail) => {    
+                const tr3 = document.createElement('tr');
                     if (detail.pricesBean && detail.pricesBean.length > 0) {
                         const pricesBean = detail.pricesBean[0];
-                        tr.innerHTML +=
+                        tr3.innerHTML +=
                             `<td class = "td_style">` + pricesBean.priOption1 + `</td>
                             <td class = "td_style">` + pricesBean.priOption2 + `</td>
                             <td class = "td_style">` + pricesBean.priOption3 + `</td>
-                            <td class = "td_style">` + pricesBean.priOption4 + `</td>`;
+                            <td class = "td_style">` + pricesBean.priOption4 + `</td>
+                            <td class = "td_style">` + detail.rsvPrice + `</td>`;
                     } 
-                table.appendChild(tr);
+                table.appendChild(tr3);
             });
         }
-        
 //        [{"rsvCode":"44","rsvMemNickname":"kwon","rsvTime":"1207","rsvCount":"8","rsvPrice":"15000","pricesBean":[{"priOption1":"18","priOption2":"CADDY〇","priOption3":"CLOTHES×","priOption4":"SHOES×"}]}]
     </script>
 </html>
