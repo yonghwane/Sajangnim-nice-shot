@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -11,6 +11,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/reset.css" />
 <link rel="stylesheet" href="/css/KDB.css" />
 <script src="/js/KDB.js"></script>
+<style>
+</style>
 </head>
 
 <body>
@@ -29,44 +31,50 @@
 			<div onclick="location.href=''">이벤트</div>
 		</aside>
 
-		<section>
-			<ul class="list">
-				<div id="h3" onclick="location.href='/moveMyPage'">마이페이지</div>
-				<div id="reservation"></div>
-			</ul>
-		</section>
-	</main>
+      <section>
+         <ul class="list">
+         	<div id="h3" onclick="location.href='/moveMyPage'">마이페이지</div>
+            <div id="reservation"></div>
+         </ul>
+      </section>
+   </main>
 </body>
 <script>
-    	if (`${message}` !== ``) {alert(`${message}`);
-//    	window.location.href = "/";
-    	}
+        if (`${message}` !== ``) {alert(`${message}`);
+        }
         if (`${headerHTML}` !== ``) document.querySelector('.header').innerHTML = `${headerHTML}`;
-        
-        console.log(`${getRsvList}`);
+    
         let reservation = document.querySelector('#reservation');
         let getRsvList = JSON.parse(`${getRsvList}`);
-        
-        getRsvList.forEach((list) => {
-            let li = document.createElement('li');
-            let span = document.createElement('span');
-            let detail = document.createElement('button');
-            let cancel = document.createElement('button');
-            let transfer = document.createElement('button');
-            
-            li.textContent = "・ 예약일 : " + list.rsvDate + " | 예약시간 : " + list.rsvTime;
-            detail.textContent = "상세";
-            cancel.textContent = "취소";
-            transfer.textContent = "양도";
-            
-            detail.addEventListener('click', () => (location.href = '/moveReservedDetail/' + list.rsvCode));
-            cancel.addEventListener('click', () => removeReservation(list.rsvCode));
-            transfer.addEventListener('click', () => (location.href = '/moveReservedTransfer/' + list.rsvCode));
-            li.appendChild(span);
-            span.appendChild(detail);
-            span.appendChild(cancel);
-            span.appendChild(transfer);
-            reservation.appendChild(li);
-        });
+    
+        function createButton(text, clickHandler) {
+            let button = document.createElement('button');
+            button.textContent = text;
+            button.addEventListener('click', clickHandler);
+            return button;
+        }
+    
+        function updateRsvList() {
+            reservation.innerHTML = ""; 
+    
+            getRsvList.forEach((list) => {
+                let li = document.createElement('li');
+                let span = document.createElement('span');
+                li.textContent = "・ 예약일 : " + list.rsvDate + " | 예약시간 : " + list.rsvTime;
+                let detail = createButton("상세", () => (location.href = '/moveReservedDetail/' + list.rsvCode));
+                let cancel = createButton("취소", () => {
+                    removeReservation(list.rsvCode);
+                    li.classList.add('fade-out');
+                });
+                let transfer = createButton("양도", () => (location.href = '/moveMyPageTransfer/' + list.rsvCode));
+                li.appendChild(span);
+                span.appendChild(detail);
+                span.appendChild(cancel);
+                span.appendChild(transfer);
+                reservation.appendChild(li);
+            });
+        }
+    
+        updateRsvList();
     </script>
 </html>

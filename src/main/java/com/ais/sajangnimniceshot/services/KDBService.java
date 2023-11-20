@@ -116,10 +116,12 @@ public class KDBService implements ServiceRule {
 
 	private void moveMyPage(ModelAndView mav) {
 		MemberBean accessInfo = this.auth.getAccessInfo();
+		System.out.println("accessInfo : " + accessInfo);
 		if (accessInfo == null) {
 			mav.addObject("message", "먼저 로그인해주세요");
 			return;
 		}
+		System.out.println("mapper : " + this.kdbMapper.getRsvList(accessInfo.getMemNickname()));
 		mav.addObject("getRsvList", this.gson.toJson(this.kdbMapper.getRsvList(accessInfo.getMemNickname())));
 	}
 

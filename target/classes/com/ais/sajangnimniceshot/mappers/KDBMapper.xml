@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ais.sajangnimniceshot.mappers.KDBMapper">
-	<select id="authenticateMember" resultType="boolean">
+   <select id="authenticateMember" resultType="boolean">
         SELECT 
             COUNT(*) 
         FROM 
@@ -9,7 +9,7 @@
         WHERE
             MEM_NICKNAME = #{memNickname}
     </select>
-	<select id="getMemberInfo" resultType="MemberBean">
+   <select id="getMemberInfo" resultType="MemberBean">
         SELECT
             MEM_NICKNAME AS MEMNICKNAME
         FROM
@@ -18,29 +18,29 @@
             MEM_NICKNAME = #{memNickname}
     </select>
 
-	<select id="getRsvList" resultType="ReservationBean">
-    	SELECT
-    		RSV_CODE AS RSVCODE,
-    		TO_CHAR(RSV_DATE, 'YYYY-MM-DD') AS RSVDATE,
-    		RSV_TIME AS RSVTIME,
-    		RSV_MEMNICKNAME AS RSVMEMNICKNAME
-		FROM
-    		RSVDS 
-		JOIN
-    		MEMBERS
-		ON
-    		RSV_MEMNICKNAME = MEM_NICKNAME
-		WHERE
-    		RSV_MEMNICKNAME = #{memNickname}
+   <select id="getRsvList" resultType="ReservationBean">
+       SELECT
+          RSV_CODE AS RSVCODE,
+          TO_CHAR(RSV_DATE, 'YYYY-MM-DD') AS RSVDATE,
+          RSV_TIME AS RSVTIME,
+          RSV_MEMNICKNAME AS MEMNICKNAME
+      FROM
+          RSVDS 
+      JOIN
+          MEMBERS
+      ON
+          RSV_MEMNICKNAME = MEM_NICKNAME
+      WHERE
+          RSV_MEMNICKNAME = #{memNickname}
     </select>
 
-	<delete id="deleteReservation">
+   <delete id="deleteReservation">
     DELETE FROM
-	    RSVDS
+       RSVDS
     WHERE
-	    RSV_MEMNICKNAME = #{memNickname}
+       RSV_MEMNICKNAME = #{memNickname}
     AND
-	    RSV_CODE = #{rsvCode}
+       RSV_CODE = #{rsvCode}
     </delete>
 
 	<resultMap id="ReservationBean" type="reservationBean">
@@ -115,6 +115,5 @@
 	<update id="updateReservedTransfer">
     UPDATE RSVDS SET RSV_MEMNICKNAME = #{memNickname} WHERE RSV_CODE = #{rsvCode}
     </update>
-
 
 </mapper>
