@@ -3,18 +3,17 @@
 .table_style {
 	margin: 10px;
 	padding: 10px;
-	border: 3px double #000;
 	text-align: center;
 }
 
 .th_style {
+	background-color: wheat;
 	margin: 10px;
 	padding: 10px;
-	border: 3px double #000
-
+	font-size: 15px;
 }
 .td_style {
 	margin: 10px;
 	padding: 10px;
-	border: 3px double #000
+
 }

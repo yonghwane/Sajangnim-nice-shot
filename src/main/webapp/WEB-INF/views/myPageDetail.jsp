@@ -69,7 +69,7 @@
                     <td class = "td_style">` + detail.rsvMemNickname + `</td>
                     <td class = "td_style">` + detail.rsvDate + `</td>
                     <td class = "td_style">` + detail.rsvTime + `</td>
-                    <td class = "td_style">` + detail.rsvCount + `</td>`;
+                    <td class = "td_style">` + detail.rsvCount+ `</td>`;
                 table.appendChild(tr1);
             });
 //                const tr2 = document.createElement('tr');
@@ -91,11 +91,11 @@
                     if (detail.pricesBean && detail.pricesBean.length > 0) {
                         const pricesBean = detail.pricesBean[0];
                         tr3.innerHTML +=
-                            `<td class = "td_style">` + pricesBean.priOption1 + `</td>
+                            `<td class = "td_style">` + pricesBean.priOption1 + "홀" + `</td>
                             <td class = "td_style">` + pricesBean.priOption2 + `</td>
                             <td class = "td_style">` + pricesBean.priOption3 + `</td>
                             <td class = "td_style">` + pricesBean.priOption4 + `</td>
-                            <td class = "td_style">` + detail.rsvPrice + `</td>`;
+                            <td class = "td_style">` + detail.rsvPrice + "원" + `</td>`;
                     } 
                 table.appendChild(tr3);
             });
