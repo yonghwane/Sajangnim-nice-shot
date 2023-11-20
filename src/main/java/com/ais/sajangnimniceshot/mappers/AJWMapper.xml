@@ -1,5 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ais.sajangnimniceshot.mappers.AJWMapper">
-	
+	<insert id="booking">
+INSERT INTO RSVDS (
+    RSV_CODE, RSV_MEMNICKNAME, RSV_DATE, RSV_TIME, RSV_COUNT, RSV_HOLE, RSV_CADDY, RSV_CLOTHES, RSV_SHOES, RSV_STATUS, RSV_PRICE
+)
+VALUES (
+    RSV_CODE.NEXTVAL, #{RSV_MEMNICKNAME}, #{RSV_DATE}, #{RSV_TIME}, #{RSV_COUNT}, #{RSV_HOLE},
+     #{RSV_CADDY}, #{RSV_CLOTHES}, #{RSV_SHOSE}, #{RSV_STATUS},
+    (
+        SELECT
+            COALESCE(PRI_PRICE, 0)
+        FROM
+            PRICES
+        WHERE
+            PRI_CODE = #{PRI_CODE}
+    ) +
+    (
+        SELECT
+            COALESCE(PRI_PRICE, 0)
+        FROM
+            PRICES
+        WHERE
+            PRI_CODE = #{PRI_CODE}
+    ) +
+    (
+        SELECT
+            COALESCE(PRI_PRICE, 0)
+        FROM
+            PRICES
+        WHERE
+            PRI_CODE = #{PRI_CODE}
+    ) +
+    (
+        SELECT
+            COALESCE(PRI_PRICE, 0)
+        FROM
+            PRICES
+        WHERE
+            PRI_CODE = #{PRI_CODE}
+    )
+); 
+ 
+    	
+ 
+    </insert>
 </mapper>
+
