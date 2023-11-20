@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ais.sajangnimniceshot.mappers.KYHMapper">
-	
+	<select id="authenticateMember" resultType="boolean">
+        SELECT 
+            COUNT(*) 
+        FROM 
+            MEMBERS
+        WHERE
+            MEM_NICKNAME = #{memNickname}
+    </select>
+	<select id="getMemberInfo" resultType="MemberBean">
+        SELECT
+            MEM_NICKNAME AS MEMNICKNAME
+        FROM
+            MEMBERS
+        WHERE
+            MEM_NICKNAME = #{memNickname}
+    </select>
+
+	<update id="transferReservation">
+    	UPDATE 
+    		RSVDS
+    	SET 
+    		RSV_MEMNICKNAME = #{memNickName}
+    	WHERE 
+    		RSV_CODE = #{rsvCode}
+	</update>
+
+	<select id="checkNickname" resultType="boolean">
+	SELECT
+		COUNT(*)
+	FROM
+		MEMBERS
+	WHERE
+		MEM_NICKNAME = #{memNickName}
+	</select>
 </mapper>
