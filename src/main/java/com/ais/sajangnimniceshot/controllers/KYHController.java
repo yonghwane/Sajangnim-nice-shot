@@ -21,7 +21,7 @@ public class KYHController {
 	private Authentication auth;
 
 	@GetMapping("/moveMyPageTransfer/{rsvCode}")
-	public ModelAndView moveMyPage(ModelAndView mav, @PathVariable String rsvCode) {
+	public ModelAndView moveMyPageTransfer(ModelAndView mav, @PathVariable String rsvCode) {
 		mav.setViewName("myPageTransfer");
 		mav.addObject("rsvCode", rsvCode);
 		System.out.println(mav);
@@ -35,12 +35,14 @@ public class KYHController {
 	@PostMapping("/transferReservation")
 	public ModelAndView transferReservation(ModelAndView mav, @RequestParam("rsvCode") String rsvCode,
 			@RequestParam("memNickName") String memNickName) {
-		mav.setViewName("myPageTransfer");
+//		mav.setViewName("redirect:/moveMyPage");
+		mav.setViewName("myPage");
 		mav.addObject("rsvCode", rsvCode);
 		mav.addObject("memNickName", memNickName);
 		System.out.println("rsvCode: "+rsvCode);
 		System.out.println("닉넴입력 :"+memNickName);
 		this.service.backController("transferReservation", mav);
+		this.auth.backController("changeHeader", mav);
 		return mav;
 	}
 

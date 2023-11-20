@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>myPage</title>
+<title>myPageDetail</title>
 <link rel="stylesheet" href="/css/reset.css" />
 <link rel="stylesheet" href="/css/KDB.css" />
 <link rel="stylesheet" href="/css/SHS.css" />
@@ -27,8 +27,13 @@
       </aside>
 
       <section>
+      <div onclick="location.href='/moveMyPage'">마이페이지로 돌아가기</div>
          <table class = "table_style" id="table1">
          </table>
+         <div id="reservation">
+         	<input type="button" value="양도" onclick="redirectToMoveMyPageTransfer('${rsvCode}')"/>
+         	<input type = "button" value = "삭제" onclick="removeandredirect('${rsvCode}')"/>
+         </div>
       </section>
    </main>
 </body>
@@ -43,7 +48,7 @@
         const getReservationDetail = JSON.parse(`${getRsvDetailList}`);
         
         let postType = getReservationDetail;
-        createTable();
+        createTable(); 
 
         function createTable() {
             const table = document.querySelector('#table1');
@@ -96,5 +101,21 @@
             });
         }
 //        [{"rsvCode":"44","rsvMemNickname":"kwon","rsvTime":"1207","rsvCount":"8","rsvPrice":"15000","pricesBean":[{"priOption1":"18","priOption2":"CADDY〇","priOption3":"CLOTHES×","priOption4":"SHOES×"}]}]
+    
+        
+        function redirectToMoveMyPageTransfer(rsvCode) {
+        	location.href = '../moveMyPageTransfer/' + rsvCode;
+        }
+        
+        function removeandredirect(rsvCode) { // 프론트 서버로 요청 보내고, 서버에서 처리 후 json형식으로 반환, delete함수에 그 값을 전달
+        	const isConfirmed = confirm("예약을 삭제하시겠습니까?");
+        	if (isConfirmed) {
+        		window.location.href = "/moveMyPage";
+        		postAjaxJson('/removeReservation', '&rsvCode=' + rsvCode, 'deleteReservation')
+        		getRsvList = getRsvList.filter(list => list.rsvCode !== rsvCode);
+        	} else {
+        		alert("삭제 취소");
+        	}
+        }
     </script>
 </html>

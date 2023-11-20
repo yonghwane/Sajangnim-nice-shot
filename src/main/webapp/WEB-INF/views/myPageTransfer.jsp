@@ -24,8 +24,8 @@
         <div onclick="location.href=''">이벤트</div>
         </aside>
         <section>
+        <div onclick="location.href='/moveMyPage'">마이페이지로 돌아가기</div>
             <h2>양도 페이지</h2>
-    <p>예약 정보: ${getRsvList}</p>
     <p>예약 코드: ${rsvCode}</p>
     <input type = "hidden" value = "rsvCode"/>
     <form action="/transferReservation" method="post">
@@ -46,6 +46,12 @@
     
 </body>
 <script>
+
+	if (`${message}` !== ``) {
+	    alert(`${message}`);
+	}
+	if (`${headerHTML}` !== ``) document.querySelector('.header').innerHTML = `${headerHTML}`;
+
     document.getElementById('transferNickname').addEventListener('input', function (e) {
         var message = '';
         if (!/^[A-Za-z]+$/.test(e.target.value)) {
