@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="/css/reset.css" />
 <link rel="stylesheet" href="/css/KDB.css" />
 <script src="/js/KDB.js"></script>
+<style>
+</style>
 </head>
 
 <body>
@@ -34,32 +36,42 @@
       </section>
    </main>
 </body>
-<script>
-       if (`${message}` !== ``) {alert(`${message}`); window.location.href = "/";}
+    <script>
+        if (`${message}` !== ``) {alert(`${message}`); window.location.href = "/";}
         if (`${headerHTML}` !== ``) document.querySelector('.header').innerHTML = `${headerHTML}`;
-        
-        console.log(`${getRsvList}`);
+    
         let reservation = document.querySelector('#reservation');
         let getRsvList = JSON.parse(`${getRsvList}`);
-//        let getRsvList = JSON.parse(`${getRsvList}`);
-        
-        getRsvList.forEach((list) => {
-            let li = document.createElement('li');
-            let detail = document.createElement('button');
-            let cancel = document.createElement('button');
-            let transfer = document.createElement('button');
-            li.textContent = list.rsvDate + " " + list.rsvTime;
-            detail.textContent = "상세";
-            cancel.textContent = "취소";
-            transfer.textContent = "양도";
-            li.addEventListener('click', () => (location.href = '/moveReservedDetail/' + list.rsvCode));
-            detail.addEventListener('click', () => (location.href = '/moveReservedDetail/' + list.rsvCode));
-            cancel.addEventListener('click', () => removeReservation(list.rsvCode));
-            transfer.addEventListener('click', () => (location.href = '/transferReservation/' + list.rsvCode));
-            reservation.appendChild(li);
-            reservation.appendChild(detail);
-            reservation.appendChild(cancel);
-            reservation.appendChild(transfer);
-        });
+    
+        function createButton(text, clickHandler) {
+            let button = document.createElement('button');
+            button.textContent = text;
+            button.addEventListener('click', clickHandler);
+            return button;
+        }
+    
+        function updateRsvList() {
+            reservation.innerHTML = ""; 
+    
+            getRsvList.forEach((list) => {
+                let li = document.createElement('li');
+                li.textContent = list.rsvDate + " " + list.rsvTime;
+                li.addEventListener('click', () => (location.href = '/moveReservedDetail/' + list.rsvCode));
+    
+                let detail = createButton("상세", () => (location.href = '/moveReservedDetail/' + list.rsvCode));
+                let cancel = createButton("취소", () => {
+                    removeReservation(list.rsvCode);
+                    li.classList.add('fade-out');
+                });
+                let transfer = createButton("양도", () => (location.href = '/moveMyPageTransfer/' + list.rsvCode));
+    
+                reservation.appendChild(li);
+                reservation.appendChild(detail);
+                reservation.appendChild(cancel);
+                reservation.appendChild(transfer);
+            });
+        }
+    
+        updateRsvList();
     </script>
 </html>
