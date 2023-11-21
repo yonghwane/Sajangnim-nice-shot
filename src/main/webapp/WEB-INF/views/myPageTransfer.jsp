@@ -48,7 +48,6 @@
     
 </body>
 <script>
-
 	if (`${message}` !== ``) {
 	    alert(`${message}`);
 	}
