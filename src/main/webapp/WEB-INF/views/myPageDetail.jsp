@@ -21,18 +21,31 @@
    </header>
    <main>
       <aside>
+      	 <div id="aside-main" onclick="location.href='/'">메인페이지</div>
          <div onclick="location.href=''">예약</div>
          <div onclick="location.href='/moveMyPage'">마이페이지</div>
          <div onclick="location.href=''">이벤트</div>
       </aside>
-
       <section>
-      <div onclick="location.href='/moveMyPage'">마이페이지로 돌아가기</div>
-         <table class = "table_style" id="table1">
+      <div id="h3">마이페이지</div>
+      <hr>
+         <table class = "table_style1" id="table1">
+            <tr></tr>
          </table>
+         <br/>
+         <table class = "table_style2" id="table2">
+         	<tr></tr>
+         </table>
+         	<h3 id ="price"></h3>
+      <br/>
+      <hr>
+      <br/>
          <div id="reservation">
          	<input type="button" value="양도" onclick="redirectToMoveMyPageTransfer('${rsvCode}')"/>
          	<input type = "button" value = "삭제" onclick="removeandredirect('${rsvCode}')"/>
+         	<br/>
+         	<br/>
+         	<div onclick="location.href='/moveMyPage'">마이페이지로 돌아가기</div>
          </div>
       </section>
    </main>
@@ -49,7 +62,6 @@
         
         let postType = getReservationDetail;
         createTable(); 
-
         function createTable() {
             const table = document.querySelector('#table1');
             table.innerHTML = `<th class = "th_style">예약번호</th>
@@ -57,10 +69,6 @@
                                 <th class = "th_style">예약날짜</th>
                                 <th class = "th_style">예약시간</th>
                                 <th class = "th_style">인원수</th>`;
-//                                <th class = "th_style">HOLE</th>
-//                                <th class = "th_style">CADDY</th>
-//                                <th class = "th_style">CLOTHES</th>
-//                                <th class = "th_style">SHOES</th>`;
                                 
             postType.forEach((detail) => {
                 const tr1 = document.createElement('tr');
@@ -72,12 +80,6 @@
                     <td class = "td_style">` + detail.rsvCount+ `</td>`;
                 table.appendChild(tr1);
             });
-//                const tr2 = document.createElement('tr');
-//	                `<th class = "th_style">` + HOLE + `</th>
-//	                <th class = "th_style">` + CADDY + + `</th>
-//	                <th class = "th_style">` + CLOTHES + `</th>
-//	                <th class = "th_style">` + SHOES + `</th>`;
-//                table.appendChild(tr2);
                 
             table.innerHTML += `<th class = "th_style">HOLE</th>
 						          <th class = "th_style">CADDY</th>
@@ -99,9 +101,57 @@
                     } 
                 table.appendChild(tr3);
             });
+            const price = document.querySelector('#price');
+            		postType.forEach((detail) => {
+	                price.innerHTML =
+	                    `<h3>` + "총 " + detail.rsvPrice + "원" + `</h3>` ;
+            });
+         createTable2();   
         }
-//        [{"rsvCode":"44","rsvMemNickname":"kwon","rsvTime":"1207","rsvCount":"8","rsvPrice":"15000","pricesBean":[{"priOption1":"18","priOption2":"CADDY〇","priOption3":"CLOTHES×","priOption4":"SHOES×"}]}]
-    
+        
+        //[{"rsvCode":"44","rsvMemNickname":"kwon","rsvTime":"1207","rsvCount":"8","rsvPrice":"15000","pricesBean":[{"priOption1":"18","priOption2":"CADDY〇","priOption3":"CLOTHES×","priOption4":"SHOES×"}]}]
+        
+        function createTable2() {
+        	const table = document.querySelector('#table2');
+            table.innerHTML = `<th class = "th_style2" colspan = "3">명세서</th>`;
+            postType.forEach((detail) => {    
+                const tr4 = document.createElement('tr');
+                    if (detail.pricesBean && detail.pricesBean.length > 0) {
+                        const pricesBean = detail.pricesBean[0];
+                        tr4.innerHTML +=
+                            `<th class = "th_style1">` + pricesBean.priOption1 + "홀"　+ `</th><td class = "td_style1">` + `</td>` +
+                            `<td class = "td_style">` + pricesBean.priPrice1 + "원" + `</td>`;
+                    } 
+                table.appendChild(tr4);
+                
+                const tr5 = document.createElement('tr');
+                if (detail.pricesBean && detail.pricesBean.length > 0) {
+                    const pricesBean = detail.pricesBean[0];
+                    tr5.innerHTML +=
+                        `<th class = "th_style1">` + "캐디 " + `</th><td class = "td_style1">` + pricesBean.priOption2 + `</td>` + 
+                        `<td class = "td_style">` + pricesBean.priPrice2 + "원" +  `</td>`;
+                } 
+                table.appendChild(tr5);
+            
+	            const tr6 = document.createElement('tr');
+	            if (detail.pricesBean && detail.pricesBean.length > 0) {
+	                const pricesBean = detail.pricesBean[0];
+	                tr6.innerHTML +=
+	                    `<th class = "th_style1">` + "골프웨어 " + `</th><td class = "td_style1">` + pricesBean.priOption3 + `</td>` 
+	                    + `<td class = "td_style">` + pricesBean.priPrice3 + "원" +  `</td>`;
+	            } 
+	            table.appendChild(tr6);
+	        
+		        const tr7 = document.createElement('tr');
+		        if (detail.pricesBean && detail.pricesBean.length > 0) {
+		            const pricesBean = detail.pricesBean[0];
+		            tr7.innerHTML +=
+		                `<th class = "th_style1">` + "골프신발 " + `</th><td class = "td_style1">` + pricesBean.priOption4 + `</td>` + 
+		                `<td class = "td_style">` + pricesBean.priPrice4 + "원" +  `</td>`;
+		        } 
+		        table.appendChild(tr7);
+	            });				
+        }       
         
         function redirectToMoveMyPageTransfer(rsvCode) {
         	location.href = '../moveMyPageTransfer/' + rsvCode;

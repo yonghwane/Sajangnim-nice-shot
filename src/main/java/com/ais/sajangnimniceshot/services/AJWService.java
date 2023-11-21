@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ais.sajangnimniceshot.beans.MemberBean;
+import com.ais.sajangnimniceshot.beans.ReservationBean;
 import com.ais.sajangnimniceshot.mappers.AJWMapper;
 import com.google.gson.Gson;
 
@@ -20,6 +21,7 @@ public class AJWService implements ServiceRule {
     private Authentication auth;
     @Autowired
     private Gson gson;
+	private ReservationBean ReservationBean;
 
     public void backController(String serviceCode, ModelAndView mav) { // 동기식
 		// 로그인 불필요
@@ -59,7 +61,6 @@ public class AJWService implements ServiceRule {
 			break;
 		}
 	}
-
 	private String encode(String s) {
 		try {
 			s = URLEncoder.encode(s, "UTF-8");
