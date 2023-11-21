@@ -1,31 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ais.sajangnimniceshot.mappers.YSYMapper">
-<!-- 	<select id="getReserveDate" > // 예약 테이블 안에 예약이 없는 시간을 조인시켜서 시간 테이블 안에 있는 날짜와 시간을 불러옴
-	// rsvds r join timeslots t on (r.ti_date = r.rsv_date)
-		select
-			t.ti_date as tidate,
-			t.ti_time as titime
-		from
-			timeslots
-		join
-			rsvds
-		on
-			ti_date = rsv_date
-		where
-			ti_date = #{ti_date},
-			ti_time = #{ti_time}
-	</select> 
+
+	<insert id="insertReservation">
+		insert into rsvds
+			RSV_CODE, RSV_MEMNICKNAME, RSV_TIME, RSV_DATE, RSV_COUNT, RSV_HOLE, RSV_CADDY, RSV_CLOTHES, RSV_SHOES, RSV_STATUS, RSV_PRICE)
+		values
+			(RSV_CODE.NEXTVAL ,'name', '0000', '20230101', '8', '18', '3', '5', '8', 'T', '0')
+	</insert>
+	
+	<update id="updateReservation">
+    	UPDATE RSVDS
+    	SET 
+    		rsv_nickname = #{memNickname},
+    		rsv_time = #{rsvTime},
+    		rsv_date = #{rsvDate},
+    		rsv_count = #{rsvCount},
+    		rsv_hole = #{rsvHole},
+    		rsv_caddy = #{rsvCaddy},
+    		rsv_clothes = #{rsvClothes},
+    		rsv_shoes = #{rsvShoes},
+    		rsv_price = #{rsvPrice}
+    	WHERE
+    		RSV_CODE = #{rsvCode}
+    </update>
+<!-- 
+	<resultMap id="timeslotsMap" type="timeslotsBean">
+		<id property="tiCode" column="ti_Code"/>
+		<result property="tiDate" column="ti_date" />
+		<result property="tiTime" column="ti_time" />
+		
+		<collection property="reservationBean" resultMap="reservationBeanMap">
+		</collection>
+	</resultMap>
+	<resultMap id="ReservationBean" type="reservationBean">
+      <id property="rsvCode" column="rsv_Code"/>
+      <result property="rsvMemNickname" column="rsv_MemNickname"/>
+      <result property="rsvDate" column="RSVDATE"/>
+      <result property="rsvTime" column="rsv_Time"/>
+      <result property="rsvCount" column="rsv_Count"/>
+      <result property="rsvHole" column="rsv_Hole"/>
+      <result property="rsvCaddy" column="rsv_Caddy"/>
+      <result property="rsvClothes" column="rsv_Clothes"/>
+      <result property="rsvShoes" column="rsv_Shoes"/>
+      <result property="rsvStatus" column="rsv_Status"/>
+      <result property="rsvPrice" column="rsv_Price"/>
+
+	</resultMap>
+
 	<select id="checkDate" resultType="boolean">
 		select
 			count(*)
 		from
 			timeslots
 		where
-			ti_date = #{ti_date},
+			ti_date = #{ti_date}
+		and
 			ti_time = #{ti_time}
 	</select>
-	<select id="selectAllDate">
+	<select id="selectAllDate" resultType="ReservationBean">
 		select
 			ti_code,
 			ti_date,
@@ -37,20 +70,19 @@
 			ti_date = #{ti_date},
 			ti_time = #{ti_time}
 	</select>
-	-->
-	<select id="getReserveDate">
-	SELECT
-        t.ti_date AS tidate,
-        t.ti_time AS titime
-    FROM
-        timeslots t
-    LEFT JOIN
-        rsvds r ON t.ti_date = r.rsv_date
-    WHERE
-        r.rsv_date IS NULL
-        AND t.ti_date = #{ti_date}
-        AND t.ti_time = #{ti_time}
+	<select id="getReserveDate" resultType="ReservationBean">
+		SELECT
+        	t.ti_date AS tidate,
+	        t.ti_time AS titime
+	    FROM
+	        timeslots t
+	    LEFT JOIN
+	        rsvds r ON t.ti_date = r.rsv_date
+	    WHERE
+	        r.rsv_date IS NULL
+	        AND t.ti_date = #{ti_date}
+	        AND t.ti_time = #{ti_time}
 	</select>
-	
+	-->
 
 </mapper>

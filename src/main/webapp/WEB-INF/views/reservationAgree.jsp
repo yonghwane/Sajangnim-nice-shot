@@ -19,6 +19,10 @@
                 <button onclick="login()">ログイン</button>
             </div>
         </header>
+        <br>
+        <br>
+        <br>
+        <br>
         <form id="reserveForm" method="post">
            <fieldset>
               <label for = "selectDate">date</label>

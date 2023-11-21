@@ -42,6 +42,23 @@ public class YSYController {
         return "redirect:/";
     }
     
-
+    // 예약화면 이동
+    @GetMapping("reservationDate")
+    public ModelAndView moveReservation(ModelAndView mav) {
+    	mav.setViewName("reservationDate");
+    	this.service.backController("moveReservation", mav);
+    	this.auth.backController("changeHeader", mav);
+    	return mav;
+    }
+    
+    // 예약 동의화면
+    @PostMapping("/reservationAgree/{memNickname}")
+    public ModelAndView updateReservation(ModelAndView mav) {
+    	mav.setViewName("reservationAgree");
+    	this.service.backController("agreeReservation", mav);
+    	this.auth.backController("changeHeader", mav);
+    	return mav;
+    }
+   
     
 }

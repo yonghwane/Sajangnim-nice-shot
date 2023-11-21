@@ -16,7 +16,14 @@ public interface YSYMapper {
     MemberBean getMemberInfo(String memNickname);
     
     // 예약 가능 날짜
-    ReservationBean findAvailableRsv(String memNickname);
+//    ReservationBean findAvailableRsv(String memNickname);
     
+    List<ReservationBean> getReservation(String rsvCode);
+    // 
+    boolean checkDate(String rsvDate, String rsvTime);
     
+    int insertReservation(String memNickname, String rsvTime, String rsvDate, String rsvCount, String rsvHole,
+			String rsvCaddy, String rsvClothes, String rsvShoes, String rsvStatus, String rsvPrice);
+    
+    int updateReservation(String rsvCode, String memNickname);
 }

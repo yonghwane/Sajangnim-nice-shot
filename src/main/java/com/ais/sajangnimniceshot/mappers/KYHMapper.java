@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-package com.ais.sajangnimniceshot.mappers;
-
-import org.apache.ibatis.annotations.Mapper;
-
-@Mapper
-public interface KYHMapper {
-
-}
-=======
 package com.ais.sajangnimniceshot.mappers;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -31,4 +21,3 @@ public interface KYHMapper {
 	// memNickName);
 	boolean checkNickname(String memNickname);
 }
->>>>>>> develop

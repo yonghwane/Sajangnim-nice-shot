@@ -26,4 +26,3 @@ public interface KDBMapper {
 
 	int updateReservedTransfer(String rsvCode, String memNickname);
 }
->>>>>>> develop
