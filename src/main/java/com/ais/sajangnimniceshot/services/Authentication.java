@@ -68,7 +68,7 @@ public class Authentication implements ServiceRule {
 	private String makeHeaderHTML(MemberBean accessInfo) { // 로그인 성공 시 헤더 생성
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("<h1 onclick=\"location.href='/';\">SNP</h1>\n");
+		sb.append("<img id=\"logo\" onclick=\"location.href='/'\" src=\"/img/SNP_LOGO4.png\" />\n");
 		sb.append("<div>\n");
 		sb.append("<div class=\"login_wrap\">\n");
 		sb.append("    <p>환영합니다 " + accessInfo.getMemNickname() + "님！</p>\n");

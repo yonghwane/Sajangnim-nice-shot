@@ -17,7 +17,7 @@
 
 <body>
 	<header class="header">
-		<h1 onclick="location.href='/'">SNP</h1>
+	<img id="logo" onclick="location.href='/'" src="/img/SNP_LOGO4.png" />
 		<div>
 			<input id="memNickname" name="memNickname" placeholder="닉네임" />
 			<button onclick="login()">로그인</button>
@@ -26,7 +26,7 @@
 	<main>
 		<aside>
 			<div id="aside-main" onclick="location.href='/'">메인페이지</div>
-			<div onclick="location.href='reservationDate'">예약</div>
+			<div onclick="location.href='/moveReservationDate'">예약</div>
 			<div onclick="location.href='/moveMyPage'">마이페이지</div>
 			<div onclick="location.href='/moveCrawledData'">이벤트</div>
 		</aside>

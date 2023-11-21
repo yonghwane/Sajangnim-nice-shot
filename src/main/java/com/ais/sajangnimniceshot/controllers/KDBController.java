@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ais.sajangnimniceshot.beans.ReservationBean;
 import com.ais.sajangnimniceshot.services.Authentication;
 import com.ais.sajangnimniceshot.services.KDBService;
 
@@ -23,6 +24,39 @@ public class KDBController {
 	public ModelAndView moveMyPage(ModelAndView mav) {
 		mav.setViewName("myPage");
 		this.service.backController("moveMyPage", mav);
+		this.auth.backController("changeHeader", mav);
+		return mav;
+	}
+
+	// 날짜예약화면 이동
+	@GetMapping("moveReservationDate")
+	public ModelAndView moveReservationDate(ModelAndView mav) {
+		mav.setViewName("reservationDate");
+		this.service.backController("moveReservationDate", mav);
+		this.auth.backController("changeHeader", mav);
+		return mav;
+	}
+
+	// 날짜예약
+	@PostMapping("reservationDate")
+	public ModelAndView reservationDate(ModelAndView mav, ReservationBean reservationBean) {
+		mav.setViewName("reservation");
+		mav.addObject("reservationBean", reservationBean);
+		this.service.backController("reservationDate", mav);
+		this.auth.backController("changeHeader", mav);
+		return mav;
+	}
+
+	// 예약이동
+	@PostMapping("/reservation/{rsvCode}")
+	public ModelAndView reservation(ModelAndView mav, @PathVariable("rsvCode") String rsvCode,
+			ReservationBean reservationBean) {
+
+		mav.setViewName("reservationResult");
+		mav.addObject("rsvCode", rsvCode);
+		mav.addObject("reservationBean", reservationBean);
+
+		this.service.backController("reservation", mav);
 		this.auth.backController("changeHeader", mav);
 		return mav;
 	}

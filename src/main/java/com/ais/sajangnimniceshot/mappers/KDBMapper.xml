@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ais.sajangnimniceshot.mappers.KDBMapper">
-   <select id="authenticateMember" resultType="boolean">
+	<select id="authenticateMember" resultType="boolean">
         SELECT 
             COUNT(*) 
         FROM 
@@ -9,7 +9,7 @@
         WHERE
             MEM_NICKNAME = #{memNickname}
     </select>
-   <select id="getMemberInfo" resultType="MemberBean">
+	<select id="getMemberInfo" resultType="MemberBean">
         SELECT
             MEM_NICKNAME AS MEMNICKNAME
         FROM
@@ -18,7 +18,7 @@
             MEM_NICKNAME = #{memNickname}
     </select>
 
-   <select id="getRsvList" resultType="ReservationBean">
+	<select id="getRsvList" resultType="ReservationBean">
        SELECT
           RSV_CODE AS RSVCODE,
           TO_CHAR(RSV_DATE, 'YYYY-MM-DD') AS RSVDATE,
@@ -34,7 +34,7 @@
           RSV_MEMNICKNAME = #{memNickname}
     </select>
 
-   <delete id="deleteReservation">
+	<delete id="deleteReservation">
     DELETE FROM
        RSVDS
     WHERE
@@ -114,6 +114,43 @@
 
 	<update id="updateReservedTransfer">
     UPDATE RSVDS SET RSV_MEMNICKNAME = #{memNickname} WHERE RSV_CODE = #{rsvCode}
+    </update>
+
+	<select id="checkDate" resultType="boolean">
+		SELECT
+			COUNT(*)
+		FROM
+			TIMESLOTS
+		WHERE
+			TI_DATE = #{tiDate}
+		AND
+			TI_TIME = #{tiTime}
+	</select>
+
+	<insert id="insertDateAndTime">
+	 INSERT INTO RSVDS (RSV_CODE, RSV_MEMNICKNAME, RSV_TIME, RSV_DATE, RSV_COUNT, RSV_HOLE, RSV_CADDY, RSV_CLOTHES, RSV_SHOES, RSV_STATUS, RSV_PRICE)
+    VALUES (RSV_CODE.NEXTVAL ,#{memNickname}, #{rsvTime}, #{rsvDate}, '0', '1', '3', '5', '7', 'F', '0')
+	</insert>
+
+	<select id="getRsvCode" resultType="String">
+	SELECT
+		RSV_CODE.CURRVAL
+	FROM
+		DUAL
+	</select>
+
+
+	<update id="updateReservation">
+    UPDATE
+    	RSVDS
+    SET
+    	RSV_COUNT = #{rsvCount},
+    	RSV_HOLE = #{rsvHole},
+    	RSV_CADDY = #{rsvCaddy},
+    	RSV_CLOTHES = #{rsvClothes},
+    	RSV_SHOES = #{rsvShoes}
+    WHERE
+    	RSV_CODE = #{rsvCode}
     </update>
 
 </mapper>
