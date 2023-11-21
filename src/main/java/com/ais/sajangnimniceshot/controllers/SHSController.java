@@ -2,8 +2,8 @@ package com.ais.sajangnimniceshot.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ais.sajangnimniceshot.services.Authentication;
@@ -16,7 +16,7 @@ public class SHSController {
 	@Autowired
 	private Authentication auth;
 	
-	@GetMapping("/moveReservedDetail/{rsvCode}")
+	@RequestMapping("/moveReservedDetail/{rsvCode}")
     public ModelAndView moveMyPageDetail(ModelAndView mav, @PathVariable String rsvCode) {
 		mav.setViewName("myPageDetail");
 		mav.addObject("rsvCode", rsvCode);

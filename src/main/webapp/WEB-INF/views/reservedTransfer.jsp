@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="/css/reset.css" />
 <link rel="stylesheet" href="/css/KDB.css" />
 <script src="/js/KDB.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body>
@@ -28,7 +29,7 @@
 
 		<section>
 	    <ul class="list">
-	        <div onclick="location.href='/moveMyPage'">마이페이지로 돌아가기</div>
+
 	        <form action="/reservedTransfer/${rsvCode}" method="post" >
 	            <input id="memNickname" name="memNickname" placeholder="양도자를 입력해주세요" />
 	            <button type="submit">양도</button>
