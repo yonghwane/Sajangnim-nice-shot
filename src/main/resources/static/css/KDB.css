@@ -11,6 +11,17 @@ h1 {
 	cursor: pointer;
 }
 
+p {
+	font-style: bold;
+	color:#464646;
+}
+
+#logo {
+	cursor: pointer;
+	width: 30px;
+	height: 30px;	
+}
+
 header {
 	background-color: white;
 	position: fixed;
@@ -23,7 +34,7 @@ header {
 }
 
 section, aside {
-	margin-top: 40px;
+	margin-top: 48px;
 }
 
 .login_wrap {
@@ -61,6 +72,11 @@ aside>div {
 	cursor: pointer;
 }
 
+#aside-main:hover, aside>div:hover {
+	background-color: #464646;
+	color:white;
+}
+
 section {
 	flex-basis: 75%;
 	border: 1px 1px 0px 0px solid #464646;
@@ -72,11 +88,14 @@ section {
 }
 
 #h3 {
-    padding: 10px;
-    display: inline-flex; 
-    cursor: pointer; 
+    padding: 30px;
+    padding-left: 10px;
+    margin-bottom: 30px;
+    display: block;
+    cursor: pointer;
     font-weight: bold;
-    font-size:30px;
+    font-size: 30px;
+    border-bottom: 1px solid rgb(234, 234, 234);
  }
  
 li {
@@ -87,8 +106,8 @@ li {
     padding-left: 10px;
     padding-right: 10px;
     margin:5px;
-    background-color: rgb(246, 246, 246);
     border-radius: 10px;
+    box-shadow: 5px 5px 5px rgb(234, 234, 234);
 }
 
 
