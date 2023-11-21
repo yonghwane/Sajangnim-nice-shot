@@ -33,34 +33,12 @@ public class Authentication implements ServiceRule {
 		default:
 			break;
 		}
-
-		// 로그인 필요
-		MemberBean accessInfo = this.getAccessInfo();
-		if (accessInfo == null) {
-			mav.setViewName("redirect:/");
-			mav.addObject("message", "먼저 로그인해주세요");
-			return;
-		}
 		switch (serviceCode) {
 		}
 	}
 
-	public void backController(String serviceCode, Model model) { // 비동기식
-		// 로그인 불필요
-		switch (serviceCode) {
-		default:
-			break;
-		}
-		MemberBean accessInfo = this.getAccessInfo();
-		if (accessInfo == null) {
-			model.addAttribute("message", this.encode("먼저 로그인해주세요"));
-			return;
-		}
-		// 로그인 필요
-		switch (serviceCode) {
-		case "":
-			break;
-		}
+	public void backController(String serviceCode, Model model) {
+
 	}
 
 	private void login(ModelAndView mav) {

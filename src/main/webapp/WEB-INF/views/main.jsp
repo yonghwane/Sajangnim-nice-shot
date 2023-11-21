@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <!DOCTYPE html>
     <html lang="kr">
@@ -24,7 +23,7 @@
         	<div id="aside-main" onclick="location.href='/'">메인페이지</div>
         	<div onclick="location.href='/moveReservationDate'">예약</div>
         	<div onclick="location.href='/moveMyPage'">마이페이지</div>
-        	<div onclick="location.href=''">이벤트</div>
+        	<div onclick="location.href='/moveCrawledData'">이벤트</div>
         	</aside>
             <section>
             </section>
@@ -35,4 +34,3 @@
         if (`${message}` !== ``) {alert(`${message}`); window.location.href = "/";}
         if (`${headerHTML}` !== ``) document.querySelector('.header').innerHTML = `${headerHTML}`;
     </script>
-    </html>

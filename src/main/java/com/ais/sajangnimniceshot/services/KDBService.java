@@ -35,7 +35,8 @@ public class KDBService implements ServiceRule {
 		// 로그인 필요
 		MemberBean accessInfo = this.auth.getAccessInfo();
 		if (accessInfo == null) {
-			mav.addObject("message", "먼저 로그인해주세요");
+			mav.setViewName("redirect:/");
+			mav.addObject("message", "先にログインをしてください");
 			return;
 		}
 		switch (serviceCode) {
@@ -81,6 +82,7 @@ public class KDBService implements ServiceRule {
 			break;
 		}
 	}
+	
 
 	private void reservation(ModelAndView mav) {
 		MemberBean accessInfo = this.auth.getAccessInfo();

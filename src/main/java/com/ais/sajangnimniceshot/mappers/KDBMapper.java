@@ -22,7 +22,7 @@ public interface KDBMapper {
 	boolean checkMemNickname(String memNickname);
 
 	int updateReservedTransfer(String rsvCode, String memNickname);
-
+	
 	boolean checkDate(String tiDate, String tiTime);
 
     int insertDateAndTime(String memNickname, String rsvDate, String rsvTime);

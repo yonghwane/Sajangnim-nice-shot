@@ -1,20 +1,87 @@
+/* reset */
+*, *::before, *::after {
+	font-family: inherit;
+	font-size: 15px;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
 /* my_page_Detail */
 
-.table_style {
+#h3 {
+    padding: 10px;
+    display: inline-flex; 
+    cursor: pointer; 
+    font-weight: bold;
+    font-size:30px;
+ }
+
+.table_style1 {
+	border-radius: 30px;
+	width: 90%;
+	padding: 20px;
 	margin: 10px;
+	margin-left: auto;
+	margin-right: auto;
 	padding: 10px;
-	border: 3px double #000;
 	text-align: center;
+}
+.table_style2 {
+	width: 90%;
+	padding: 20px;
+	margin: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+	text-align: center;
+	border-bottom: 1px solid #000;
 }
 
 .th_style {
+	background-color: #EAEAEA;
 	margin: 10px;
 	padding: 10px;
-	border: 3px double #000
+	font-size: 15px;
+}
 
+.th_style2 {
+	background-color: #464646;
+	margin: 10px;
+	padding: 10px;
+	font-size: 15px;
+	color: #fff;
+}
+
+.th_style1 {
+	width : 80%; 
+	font-size: 15px;
+	text-align:right;
 }
 .td_style {
 	margin: 10px;
 	padding: 10px;
-	border: 3px double #000
+
+}
+.td_style1 {
+	text-align: center;
+}
+tr, th, td {
+	border: none;
+	text-align: center;
+}
+
+th {
+	font-weight: bold;
+}
+
+section{
+	margin-top: 40px;
+}
+
+h3{
+	color: red;
+	padding-right: 35px;
+	text-align: right;
+
 }
