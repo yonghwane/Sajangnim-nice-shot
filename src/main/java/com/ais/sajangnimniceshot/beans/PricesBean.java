@@ -14,5 +14,4 @@ public class PricesBean {
     private String priPrice2;
     private String priPrice3;
     private String priPrice4;
-    
 }
