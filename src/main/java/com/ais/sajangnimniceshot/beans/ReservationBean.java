@@ -2,8 +2,6 @@ package com.ais.sajangnimniceshot.beans;
 
 import java.util.List;
 
-import java.util.List;
-
 import lombok.Data;
 
 @Data // getter, setter 자동지정해줌.

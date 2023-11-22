@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ais.sajangnimniceshot.beans.MemberBean;
+import com.ais.sajangnimniceshot.beans.ReservationBean;
 import com.ais.sajangnimniceshot.mappers.YSYMapper;
 import com.google.gson.Gson;
 
@@ -15,7 +16,7 @@ import com.google.gson.Gson;
 public class YSYService implements ServiceRule {
 
     @Autowired
-    private YSYMapper mapper;
+    private YSYMapper ysyMapper;
     @Autowired
     private Authentication auth;
     @Autowired
@@ -59,6 +60,17 @@ public class YSYService implements ServiceRule {
 			break;
 		}
 	}
+	
+	private void moveReservation(ModelAndView mav) {
+		String rsvCode = (String) mav.getModel().get("rsvCode");
+		mav.addObject("insertReservation", this.gson.toJson(this.ysyMapper.getReservation(rsvCode)));
+		
+	}
+	
+//	private void updateReservation(ModelAndView mav) {
+//		String rsvCode = (String) mav.getModel().get("rsvCode");
+//		this.ysyMapper.updateReservation(rsvCode, memNickname);
+//	}
 
 	private String encode(String s) {
 		try {
@@ -68,4 +80,7 @@ public class YSYService implements ServiceRule {
 			return s;
 		}
 	}
+	
+	
+
 }

@@ -9,12 +9,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ais.sajangnimniceshot.beans.MemberBean;
 import com.ais.sajangnimniceshot.beans.ReservationBean;
+import com.ais.sajangnimniceshot.beans.ReservationBean;
 import com.ais.sajangnimniceshot.mappers.AJWMapper;
 import com.google.gson.Gson;
 
 @Service
 public class AJWService implements ServiceRule {
 
+    @Autowired
+    private AJWMapper mapper;
+    @Autowired
+    private Authentication auth;
+    @Autowired
+    private Gson gson;
+	private ReservationBean ReservationBean;
 	@Autowired
 	private AJWMapper mapper;
 	@Autowired

@@ -21,7 +21,7 @@
 	</header>
 	<main>
 		<aside>
-			<div onclick="location.href=''">예약</div>
+			<div onclick="location.href='reservationDate'">예약</div>
 			<div onclick="location.href='/moveMyPage'">마이페이지</div>
 			<div onclick="location.href=''">이벤트</div>
 		</aside>
@@ -46,8 +46,8 @@
         
         let postType = getReservationDetail;
         createTable();
-//      [{"rsvCode":"44","rsvMemNickname":"kwon","rsvTime":"1207","rsvCount":"8","rsvPrice":"15000",
-//       "pricesBean":[{"priOption1":"18","priOption2":"CADDY〇","priOption3":"CLOTHES×","priOption4":"SHOES×"}]}]
+//     [{"rsvCode":"2","rsvMemNickname":"kwon","rsvDate":"2023-11-10","rsvTime":"1207","rsvCount":"8","rsvHole":"1 ","rsvCaddy":"3","rsvClothes":"5","rsvShoes":"7","rsvStatus":"F","rsvPrice":"15000",
+//     "pricesBean":[{"priOption1":"9","priOption2":"〇","priOption3":"〇","priOption4":"〇","priPrice1":"5000","priPrice2":"5000","priPrice3":"3000","priPrice4":"2000"}]}]
         function createTable() {
             const table = document.querySelector('table');
             table.innerHTML = `<th>예약자명</th>

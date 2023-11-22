@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ais.sajangnimniceshot.beans.MemberBean;
 import com.ais.sajangnimniceshot.beans.ReservationBean;
 import com.ais.sajangnimniceshot.mappers.KDBMapper;
+import com.ais.sajangnimniceshot.mappers.SHSMapper;
 import com.google.gson.Gson;
 
 @Service
@@ -18,6 +19,8 @@ public class KDBService implements ServiceRule {
 
 	@Autowired
 	private KDBMapper kdbMapper;
+	@Autowired
+	private SHSMapper shsMapper;
 	@Autowired
 	private Authentication auth;
 	@Autowired
@@ -32,7 +35,8 @@ public class KDBService implements ServiceRule {
 		// 로그인 필요
 		MemberBean accessInfo = this.auth.getAccessInfo();
 		if (accessInfo == null) {
-			mav.addObject("message", "먼저 로그인해주세요");
+			mav.setViewName("redirect:/");
+			mav.addObject("message", "先にログインをしてください");
 			return;
 		}
 		switch (serviceCode) {
@@ -47,6 +51,15 @@ public class KDBService implements ServiceRule {
 			break;
 		case "reservedTransfer":
 			this.reservedTransfer(mav);
+			break;
+		case "moveReservationDate":
+			this.moveReservationDate(mav);
+			break;
+		case "reservationDate":
+			this.reservationDate(mav);
+			break;
+		case "reservation":
+			this.reservation(mav);
 			break;
 		}
 	}
@@ -68,6 +81,89 @@ public class KDBService implements ServiceRule {
 			this.removeReservation(model);
 			break;
 		}
+	}
+	
+
+	private void reservation(ModelAndView mav) {
+		MemberBean accessInfo = this.auth.getAccessInfo();
+		ReservationBean reservationBean = (ReservationBean) mav.getModel().get("reservationBean");
+
+		String rsvCode = reservationBean.getRsvCode();
+		String rsvMemNickname = accessInfo.getMemNickname();
+		String rsvTime = reservationBean.getRsvTime();
+		String rsvDate = reservationBean.getRsvDate();
+		String rsvCount = reservationBean.getRsvCount();
+		String rsvHole = reservationBean.getRsvHole();
+		String rsvCaddy = reservationBean.getRsvCaddy();
+		String rsvClothes = reservationBean.getRsvClothes();
+		String rsvShoes = reservationBean.getRsvShoes();
+
+		System.out.print("rsvCode: " + rsvCode + "rsvMemNickname: " + rsvMemNickname + "rsvTime: " + rsvTime
+				+ "rsvDate: " + rsvDate + "rsvCount: " + rsvCount + "rsvHole: " + rsvHole + "rsvCaddy: " + rsvCaddy
+				+ "rsvClothes: " + rsvClothes + "rsvShoes: " + rsvShoes);
+//		rsvCount=null, rsvHole=null, rsvCaddy=null, rsvClothes=null, rsvShoes=null, rsvStatus=null, rsvPrice=null, pricesBean=null)
+
+		this.kdbMapper.updateReservation(rsvCode, rsvCount, rsvHole, rsvCaddy, rsvClothes, rsvShoes);
+
+	}
+
+	private void reservationDate(ModelAndView mav) {
+		MemberBean accessInfo = this.auth.getAccessInfo();
+		ReservationBean reservationBean = (ReservationBean) mav.getModel().get("reservationBean");
+
+		if (this.kdbMapper.checkDate(reservationBean.getRsvDate(), reservationBean.getRsvTime())) {
+			// TimeSlots에 동일한 날짜, 시간 있을 경우
+			mav.addObject("message", "예약할 수 없습니다.");
+			mav.setViewName("reservationDate");
+			return;
+		}
+
+		this.kdbMapper.insertDateAndTime(accessInfo.getMemNickname(), reservationBean.getRsvDate(),
+				reservationBean.getRsvTime());
+
+		System.out.println("getRsvCode : " + this.kdbMapper.getRsvCode());
+
+//		mav.addObject("getRsvDetailList",
+//				this.gson.toJson(this.shsMapper.getReservationDetail(this.kdbMapper.getRsvCode())));
+		mav.addObject("rsvDetail", this.gson.toJson(this.shsMapper.getReservationDetail(this.kdbMapper.getRsvCode())));
+
+		// jsp로 이동
+//		List<ReservationBean> rsvDetail = this.shsMapper.getReservationDetail(this.kdbMapper.getRsvCode());
+//		String rsvCode = "";
+//		String rsvMemNickname = "";
+//		String rsvTime = "";
+//		String rsvDate = "";
+//		String rsvCount = "";
+//		String rsvHole = "";
+//		String rsvCaddy = "";
+//		String rsvClothes = "";
+//		String rsvShoes = "";
+//		String rsvStatus = "";
+//		String rsvPrice = "";
+//		for (ReservationBean list : rsvDetail) { // 불러온 예약을 각 변수에 저장
+//			rsvCode = list.getRsvCode(); // 22
+//			rsvMemNickname = list.getRsvMemNickname(); // kwon
+//			rsvTime = list.getRsvTime(); // 0700
+//			rsvDate = list.getRsvDate(); // 20231108
+//			rsvCount = list.getRsvCount();
+//			rsvHole = list.getRsvHole();
+//			rsvCaddy = list.getRsvCaddy();
+//			rsvClothes = list.getRsvClothes();
+//			rsvShoes = list.getRsvShoes();
+//			rsvStatus = list.getRsvStatus();
+//			rsvPrice = list.getRsvPrice();
+//		}
+//
+//		System.out.print("rsvCode: " + rsvCode + "rsvMemNickname: " + rsvMemNickname + "rsvTime: " + rsvTime
+//				+ "rsvDate: " + rsvDate + "rsvCount: " + rsvCount + "rsvHole: " + rsvHole + "rsvCaddy: " + rsvCaddy
+//				+ "rsvClothes: " + rsvClothes + "rsvShoes: " + rsvShoes + "rsvStatus: " + rsvStatus + "rsvPrice: "
+//				+ rsvPrice);
+//		rsvCount=null, rsvHole=null, rsvCaddy=null, rsvClothes=null, rsvShoes=null, rsvStatus=null, rsvPrice=null, pricesBean=null)
+
+	}
+
+	private void moveReservationDate(ModelAndView mav) {
+
 	}
 
 	private void moveReservedTransfer(ModelAndView mav) {
