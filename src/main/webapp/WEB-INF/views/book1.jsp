@@ -8,9 +8,9 @@
     <title>결제정보</title>
 </head>
 <body>
-   <b>금액</b>  ${}
+   <b>금액</b>  //${}
     <br>
-    <b>예약자</b> ${}
+    <b>예약자</b> ${memNickname}
     <br>
     <b>결제수단</b>   현장결제
 </body>

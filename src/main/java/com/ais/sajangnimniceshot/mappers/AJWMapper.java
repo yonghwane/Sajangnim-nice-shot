@@ -9,18 +9,11 @@ import com.ais.sajangnimniceshot.beans.ReservationBean;
 @Mapper
 
 public interface AJWMapper {
+
+	String booking(String memNickname, String rsvCount, String rsvHole,
+			String rsvCaddy, String rsvClothes, String rsvShoes);
 	
-	/*
-	 * String booking(String memNickname, String rsvCount, String hole, String
-	 * caddy, String clothes, String shose, String price, String tiCode, String
-	 * date, String status, String rsvCode);
-	 */
-	
-	String booking(ReservationBean reservationBean);
+	// String booking(ReservationBean reservationBean); Service단에서 맞춰야해서 이거 못씀..ㅠㅠ이거
+	// 쓰면 에러.
 }
 
-/* xml부분
- * SELECT RSV_CODE AS RSVCODE, TO_CHAR(RSV_DATE, 'YYYY-MM-DD') AS RSVDATE,
- * RSV_TIME AS RSVTIME, RSV_MEMNICKNAME AS RSVMEMNICKNAME FROM RSVDS JOIN RS
- * ONMEMBE RSV_MEMNICKNAME = MEM_NICKNAME WHERE RSV_MEMNICKNAME = #{memNickname}
- */

@@ -38,6 +38,9 @@ public class AJWService implements ServiceRule {
 			return;
 		}
 		switch (serviceCode) {
+		case "moveBook":
+			this.moveBook(mav);
+			break;
 		case "bookPage":
 			this.bookPage(mav);
 			break;
@@ -62,33 +65,44 @@ public class AJWService implements ServiceRule {
 		}
 	}
 
+	private void moveBook(ModelAndView mav) {
+
+	}
+
 	private void bookPage(ModelAndView mav) {
 		MemberBean accessInfo = this.auth.getAccessInfo();
 		ReservationBean reservationBean = (ReservationBean) mav.getModel().get("reservationBean");
 
 		String memNickname = accessInfo.getMemNickname(); // 닉네임
+		System.out.println("memNickname: " + memNickname);
+
 		String rsvCount = reservationBean.getRsvCount(); // 인수
+		System.out.println("rsvCount: " + rsvCount);
+
 		String rsvHole = reservationBean.getRsvHole(); // 홀
+		System.out.println("rsvHole: " + rsvHole);
+
 		String rsvCaddy = reservationBean.getRsvCaddy(); // 캐디
+		System.out.println("rsvCaddy: " + rsvCaddy);
+
 		String rsvClothes = reservationBean.getRsvClothes(); // 옷
+		System.out.println("rsvClothes: " + rsvClothes);
+
 		String rsvShoes = reservationBean.getRsvShoes(); // 신발
-		String rsvPrice = reservationBean.getRsvPrice(); // 가격
+		System.out.println("rsvShoes: " + rsvShoes);
 
-		String rsvStatus = reservationBean.getRsvStatus(); // 양도.필요한지는 일단 미정.
-		String rsvDate = reservationBean.getRsvDate(); // 날짜.필요한지는 일단 미정.
-		String rsvTime = reservationBean.getRsvTime();// 시간.필요한지는 일단 미정.
-		String rsvCode = reservationBean.getRsvCode();// 예약번호.필요한지는 일단 미정.
+//		String rsvPrice = "0"; // 가격
+//		System.out.println("rsvPrice: " + rsvPrice);
 
+//		String rsvStatus = reservationBean.getRsvStatus(); // 양도.필요한지는 일단 미정.
+//		String rsvDate = "23/11/10"; // 날짜.필요한지는 일단 미정.
+//		String rsvTime = "0700";// 시간.필요한지는 일단 미정.
+		// String rsvCode = reservationBean.getRsvCode();// 예약번호.필요한지는 일단 미정.
+		System.out.println("서비스 탔지롱1~~~~");
 		mav.addObject("book",
-				/*
-				 * this.gson.toJson(this.mapper.booking(accessInfo.getMemNickname(),
-				 * reservationBean.getRsvCount(), reservationBean.getRsvHole(),
-				 * reservationBean.getRsvCaddy(), reservationBean.getRsvClothes(),
-				 * reservationBean.getRsvShoes(), reservationBean.getRsvPrice(),
-				 * reservationBean.getRsvTime(), reservationBean.getRsvDate(),
-				 * reservationBean.getRsvStatus(), reservationBean.getRsvCode())));
-				 */
-				this.gson.toJson(this.mapper.booking(accessInfo.getMemNickname(), reservationBean.getRsvCode())));
+				this.gson.toJson(this.mapper.booking(memNickname, rsvCount, rsvHole, rsvCaddy, rsvClothes, rsvShoes)));
+		System.out.println("서비스 탔지롱2~~~~");
+
 	}
 
 	private String encode(String s) {

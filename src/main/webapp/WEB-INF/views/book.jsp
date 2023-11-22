@@ -11,31 +11,31 @@
 </head>
 <body>
 
-   <h1>예약</h1>
+<h1>예약</h1>
 
-<form action ="/bookPage" method="post">
-  인원        <input type="radio" name="member" value="4인" checked="checked" />4인   
-              <input type="radio" name="member" value="8인" />8인   
-   
-  <br>
-   코스       <input type="radio" name="course" value="1" checked="checked" />9홀  
-              <input type="radio" name="course" value="2" />18홀  
-   
- <br>
-   캐디       <input type="radio" name="caddy" value="3" checked="checked" /> 유
-              <input type="radio" name="caddy" value="4" /> 무
-
-<h1>옵션</h1>
-  골프세트  <input type="radio" name="clothes" value="5" checked="checked" /> 선택
-            <input type="radio" name="clothes" value="6"/> 선택안함
+<form action ="/bookPage" method="get">
+인원        <input type="radio" name="rsvCount" value="4" checked="checked" />4인   
+           <input type="radio" name="rsvCount" value="8" />8인   
 
 <br>
- 골프슈즈 <input type="radio" name="shoes" value="7" checked="checked"/> 선택
-          <input type="radio" name="shoes" value="8"/> 선택안함
+코스       <input type="radio" name="rsvHole" value="1" checked="checked" />9홀  
+           <input type="radio" name="rsvHole" value="2" />18홀  
 
-          <br>
-          <br>
-          <br>
-          <input type="submit" value="예약확정">
-        </body>
+<br>
+캐디       <input type="radio" name="rsvCaddy" value="3" checked="checked" /> 유
+           <input type="radio" name="rsvCaddy" value="4" /> 무
+
+<h1>옵션</h1>
+골프세트  <input type="radio" name="rsvClothes" value="5" checked="checked" /> 선택
+         <input type="radio" name="rsvClothes" value="6"/> 선택안함
+
+<br>
+골프슈즈 <input type="radio" name="rsvShoes" value="7" checked="checked"/> 선택
+       <input type="radio" name="rsvShoes" value="8"/> 선택안함
+
+       <br>
+       <br>
+       <br>
+       <input type="submit" value="예약확정">
+     </body>
 </html> 
