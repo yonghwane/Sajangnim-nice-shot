@@ -29,6 +29,6 @@ public interface KDBMapper {
 
 	String getRsvCode();
 	
-	int updateReservation(String rsvCode, String rsvCount, String rsvHole, String rsvCaddy, String rsvClothes, String rsvShoes);
-
+	int insertReservation(String memNickname, String rsvDate, String rsvTime, String rsvCount, String rsvHole, String rsvCaddy, String rsvClothes, String rsvShoes);
+	//이게 새로만든거
 }

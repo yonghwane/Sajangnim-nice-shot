@@ -31,7 +31,7 @@ public class KDBController {
 	// 날짜예약화면 이동
 	@GetMapping("moveReservationDate")
 	public ModelAndView moveReservationDate(ModelAndView mav) {
-		mav.setViewName("reservationDate");
+		mav.setViewName("reservationDate2");
 		this.service.backController("moveReservationDate", mav);
 		this.auth.backController("changeHeader", mav);
 		return mav;
@@ -40,7 +40,7 @@ public class KDBController {
 	// 날짜예약
 	@PostMapping("reservationDate")
 	public ModelAndView reservationDate(ModelAndView mav, ReservationBean reservationBean) {
-		mav.setViewName("reservation");
+		mav.setViewName("reservationResult");
 		mav.addObject("reservationBean", reservationBean);
 		this.service.backController("reservationDate", mav);
 		this.auth.backController("changeHeader", mav);
