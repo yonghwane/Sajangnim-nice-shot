@@ -140,17 +140,9 @@
 	</select>
 
 
-	<update id="updateReservation">
-    UPDATE
-    	RSVDS
-    SET
-    	RSV_COUNT = #{rsvCount},
-    	RSV_HOLE = #{rsvHole},
-    	RSV_CADDY = #{rsvCaddy},
-    	RSV_CLOTHES = #{rsvClothes},
-    	RSV_SHOES = #{rsvShoes}
-    WHERE
-    	RSV_CODE = #{rsvCode}
-    </update>
+	<insert id="insertReservation">
+    INSERT INTO RSVDS (RSV_CODE, RSV_MEMNICKNAME, RSV_TIME, RSV_DATE, RSV_COUNT, RSV_HOLE, RSV_CADDY, RSV_CLOTHES, RSV_SHOES, RSV_STATUS, RSV_PRICE)
+    VALUES (RSV_CODE.NEXTVAL ,#{memNickname}, #{rsvTime}, #{rsvDate}, #{rsvCount}, #{rsvHole}, #{rsvCaddy}, #{rsvClothes}, #{rsvShoes},'F','0')
+    </insert>
 
 </mapper>
