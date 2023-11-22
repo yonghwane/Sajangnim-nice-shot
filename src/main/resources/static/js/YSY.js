@@ -9,15 +9,15 @@ function main1() {
 }
 
 function selectTime() {
-		const timeSelect = document.getElementById("timeStr"); 
+		const timeSelect = document.getElementById("selectTime"); 
 		for (let hour = 7; hour < 21; hour++) {  // 오전 7시부터 오후 8시까지
 			for (let minute = 0; minute < 60; minute += 7) {  // 7의 배수로 분 계산
 	            // 시간과 분을 두 자리 숫자로 표현하고 조건에 맞게 출력 형식을 설정
-	            const timeStr = (hour !== 7 || minute >= 21) ? `${hour.toString().padStart(2, '0')}${minute.toString().padStart(2, '0')}` : `0${hour}${minute.toString().padStart(2, '0')}`;
+	            const selectTime = (hour !== 7 || minute >= 21) ? `${hour.toString().padStart(2, '0')}${minute.toString().padStart(2, '0')}` : `0${hour}${minute.toString().padStart(2, '0')}`;
 	            
 	         // 새로운 option 요소를 생성하여 select에 추가
                 const option = document.createElement("option");
-                option.value = timeStr;
+                option.value = selectTime;
                 option.text = `${hour}:${minute.toString().padStart(2, '0')}`;
                 timeSelect.add(option);
 	    }

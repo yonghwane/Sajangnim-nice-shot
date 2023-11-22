@@ -148,9 +148,66 @@
     	RSV_HOLE = #{rsvHole},
     	RSV_CADDY = #{rsvCaddy},
     	RSV_CLOTHES = #{rsvClothes},
-    	RSV_SHOES = #{rsvShoes}
+    	RSV_SHOES = #{rsvShoes},
+    	RSV_PRICE = #{rsvPrice}
     WHERE
     	RSV_CODE = #{rsvCode}
     </update>
+
+	<select id="getHolePrice" resultType="PricesBean">
+	SELECT
+    	PRI_CODE AS PRICODE,
+    	PRI_OPTION AS PRIOPTION,
+    	PRI_PRICE AS PRIPRICE
+	FROM
+    	PRICES
+	WHERE 
+    	PRI_CODE = #{rsvHole}
+    </select>
+
+	<select id="getCaddyPrice" resultType="PricesBean">
+	SELECT
+    	PRI_CODE AS PRICODE,
+    	PRI_OPTION AS PRIOPTION,
+    	PRI_PRICE AS PRIPRICE
+	FROM
+    	PRICES
+	WHERE 
+    	PRI_CODE = #{rsvCaddy}
+    </select>
+
+	<select id="getClothesPrice" resultType="PricesBean">
+	SELECT
+    	PRI_CODE AS PRICODE,
+    	PRI_OPTION AS PRIOPTION,
+    	PRI_PRICE AS PRIPRICE
+	FROM
+    	PRICES
+	WHERE 
+    	PRI_CODE = #{rsvClothes}
+    </select>
+
+	<select id="getShoesPrice" resultType="PricesBean">
+	SELECT
+    	PRI_CODE AS PRICODE,
+    	PRI_OPTION AS PRIOPTION,
+    	PRI_PRICE AS PRIPRICE
+	FROM
+    	PRICES
+	WHERE 
+    	PRI_CODE = #{rsvShoes}
+    </select>
+
+
+	<select id="getPriceaaaaaaa" resultType="PricesBean">
+	SELECT
+    	PRI_CODE AS PRICODE,
+    	PRI_OPTION AS PRIOPTION,
+    	PRI_PRICE AS PRIPRICE
+	FROM
+    	PRICES
+	WHERE 
+    	PRI_CODE IN (#{rsvHole}, #{rsvCaddy}, #{rsvClothes}, #{rsvShoes})
+    </select>
 
 </mapper>

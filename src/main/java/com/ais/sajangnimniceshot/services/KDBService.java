@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ais.sajangnimniceshot.beans.MemberBean;
+import com.ais.sajangnimniceshot.beans.PricesBean;
 import com.ais.sajangnimniceshot.beans.ReservationBean;
 import com.ais.sajangnimniceshot.mappers.KDBMapper;
 import com.ais.sajangnimniceshot.mappers.SHSMapper;
@@ -82,7 +83,6 @@ public class KDBService implements ServiceRule {
 			break;
 		}
 	}
-	
 
 	private void reservation(ModelAndView mav) {
 		MemberBean accessInfo = this.auth.getAccessInfo();
@@ -97,14 +97,30 @@ public class KDBService implements ServiceRule {
 		String rsvCaddy = reservationBean.getRsvCaddy();
 		String rsvClothes = reservationBean.getRsvClothes();
 		String rsvShoes = reservationBean.getRsvShoes();
+		String rsvPrice = reservationBean.getRsvPrice();
 
-		System.out.print("rsvCode: " + rsvCode + "rsvMemNickname: " + rsvMemNickname + "rsvTime: " + rsvTime
-				+ "rsvDate: " + rsvDate + "rsvCount: " + rsvCount + "rsvHole: " + rsvHole + "rsvCaddy: " + rsvCaddy
-				+ "rsvClothes: " + rsvClothes + "rsvShoes: " + rsvShoes);
-//		rsvCount=null, rsvHole=null, rsvCaddy=null, rsvClothes=null, rsvShoes=null, rsvStatus=null, rsvPrice=null, pricesBean=null)
+		System.out.println("rsvCode:" + rsvCode + " " + "rsvMemNickname:" + rsvMemNickname + " " + "rsvTime:" + rsvTime
+				+ " " + "rsvDate:" + rsvDate + " " + "rsvCount:" + rsvCount + " " + "rsvHole:" + rsvHole + " "
+				+ "rsvCaddy: " + rsvCaddy + " " + "rsvClothes: " + rsvClothes + " " + "rsvShoes: " + rsvShoes + " "
+				+ "rsvPrice: " + rsvPrice);
 
-		this.kdbMapper.updateReservation(rsvCode, rsvCount, rsvHole, rsvCaddy, rsvClothes, rsvShoes);
+		PricesBean getHolePrice = this.kdbMapper.getHolePrice(rsvHole);
+		PricesBean getCaddyPrice = this.kdbMapper.getCaddyPrice(rsvCaddy);
+		PricesBean getClothesPrice = this.kdbMapper.getClothesPrice(rsvClothes);
+		PricesBean getShoesPrice = this.kdbMapper.getShoesPrice(rsvShoes);
 
+		Integer totalPrice = Integer.parseInt(getHolePrice.getPriPrice())
+				+ Integer.parseInt(getCaddyPrice.getPriPrice()) + Integer.parseInt(getClothesPrice.getPriPrice())
+				+ Integer.parseInt(getShoesPrice.getPriPrice());
+
+		System.out.print("totalPrice:" + totalPrice);
+
+//				+ " " + "getCaddyPrice:" + getCaddyPrice + " "
+//				+ "getClothesPrice:" + getClothesPrice + " " + "getShoesPrice:" + getShoesPrice);
+
+		this.kdbMapper.updateReservation(rsvCode, rsvCount, rsvHole, rsvCaddy, rsvClothes, rsvShoes,
+				String.valueOf(totalPrice));
+		mav.addObject("getReservationDetail", this.gson.toJson(this.shsMapper.getReservationDetail(rsvCode)));
 	}
 
 	private void reservationDate(ModelAndView mav) {
