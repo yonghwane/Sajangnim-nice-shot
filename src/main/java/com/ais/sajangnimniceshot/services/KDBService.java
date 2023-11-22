@@ -98,13 +98,13 @@ public class KDBService implements ServiceRule {
 		String rsvClothes = reservationBean.getRsvClothes();
 		String rsvShoes = reservationBean.getRsvShoes();
 
-		System.out.print("rsvCode: " + rsvCode + "rsvMemNickname: " + rsvMemNickname + "rsvTime: " + rsvTime
-				+ "rsvDate: " + rsvDate + "rsvCount: " + rsvCount + "rsvHole: " + rsvHole + "rsvCaddy: " + rsvCaddy
-				+ "rsvClothes: " + rsvClothes + "rsvShoes: " + rsvShoes);
+//		System.out.print("rsvCode: " + rsvCode + "rsvMemNickname: " + rsvMemNickname + "rsvTime: " + rsvTime
+//				+ "rsvDate: " + rsvDate + "rsvCount: " + rsvCount + "rsvHole: " + rsvHole + "rsvCaddy: " + rsvCaddy
+//				+ "rsvClothes: " + rsvClothes + "rsvShoes: " + rsvShoes);
 //		rsvCount=null, rsvHole=null, rsvCaddy=null, rsvClothes=null, rsvShoes=null, rsvStatus=null, rsvPrice=null, pricesBean=null)
 
-		this.kdbMapper.updateReservation(rsvCode, rsvCount, rsvHole, rsvCaddy, rsvClothes, rsvShoes);
-
+//		this.kdbMapper.updateReservation(rsvCode, rsvCount, rsvHole, rsvCaddy, rsvClothes, rsvShoes);
+		mav.addObject("getRsvDetailList",this.gson.toJson(this.shsMapper.getReservationDetail(rsvCode)));
 	}
 
 	private void reservationDate(ModelAndView mav) {
@@ -117,16 +117,20 @@ public class KDBService implements ServiceRule {
 			mav.setViewName("reservationDate");
 			return;
 		}
-
-		this.kdbMapper.insertDateAndTime(accessInfo.getMemNickname(), reservationBean.getRsvDate(),
-				reservationBean.getRsvTime());
-
+		System.out.println("asdasd:" +reservationBean.getRsvCode());
+		String rsvMemNickname = accessInfo.getMemNickname();
+		String rsvTime = reservationBean.getRsvTime();
+		String rsvDate = reservationBean.getRsvDate();
+		String rsvCount = reservationBean.getRsvCount();
+		String rsvHole = reservationBean.getRsvHole();
+		String rsvCaddy = reservationBean.getRsvCaddy();
+		String rsvClothes = reservationBean.getRsvClothes();
+		String rsvShoes = reservationBean.getRsvShoes();
+		this.kdbMapper.insertReservation(rsvMemNickname, rsvDate,
+				rsvTime, rsvCount, rsvHole, rsvCaddy, rsvClothes, rsvShoes);
 		System.out.println("getRsvCode : " + this.kdbMapper.getRsvCode());
-
-//		mav.addObject("getRsvDetailList",
-//				this.gson.toJson(this.shsMapper.getReservationDetail(this.kdbMapper.getRsvCode())));
 		mav.addObject("rsvDetail", this.gson.toJson(this.shsMapper.getReservationDetail(this.kdbMapper.getRsvCode())));
-
+		
 		// jsp로 이동
 //		List<ReservationBean> rsvDetail = this.shsMapper.getReservationDetail(this.kdbMapper.getRsvCode());
 //		String rsvCode = "";

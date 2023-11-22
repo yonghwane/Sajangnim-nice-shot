@@ -41,7 +41,7 @@
             window.location.href = '/';
         }
         if (`${headerHTML}` !== ``) document.querySelector('.header').innerHTML = `${headerHTML}`;
-
+        
         console.log(`${getReservationDetail}`);
         const getReservationDetail = JSON.parse(`${getReservationDetail}`);
         
