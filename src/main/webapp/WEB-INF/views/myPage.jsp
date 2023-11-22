@@ -32,8 +32,9 @@
 		</aside>
 
       <section>
+      	<div id="h3" onclick="location.href='/moveMyPage'">마이페이지</div>
+      	<hr>
          <ul class="list">
-         	<div id="h3" onclick="location.href='/moveMyPage'">마이페이지</div>
             <div id="reservation"></div>
          </ul>
       </section>
