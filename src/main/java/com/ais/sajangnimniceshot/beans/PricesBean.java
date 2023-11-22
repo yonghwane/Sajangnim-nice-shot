@@ -10,5 +10,8 @@ public class PricesBean {
     private String priOption2;
     private String priOption3;
     private String priOption4;
-    private String priPrice;
+    private String priPrice1;
+    private String priPrice2;
+    private String priPrice3;
+    private String priPrice4;
 }
