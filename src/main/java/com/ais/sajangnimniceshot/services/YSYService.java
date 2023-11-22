@@ -61,16 +61,17 @@ public class YSYService implements ServiceRule {
 		}
 	}
 	
-	private void moveReservation(ModelAndView mav) {
-		String rsvCode = (String) mav.getModel().get("rsvCode");
-		mav.addObject("insertReservation", this.gson.toJson(this.ysyMapper.getReservation(rsvCode)));
-		
-	}
+//	private void moveReservation(ModelAndView mav) {
+//		String rsvCode = (String) mav.getModel().get("rsvCode");
+//		mav.addObject("insertReservation", this.gson.toJson(this.ysyMapper.getReservation(rsvCode)));
+//		
+//	}
 	
 //	private void updateReservation(ModelAndView mav) {
 //		String rsvCode = (String) mav.getModel().get("rsvCode");
 //		this.ysyMapper.updateReservation(rsvCode, memNickname);
 //	}
+	
 
 	private String encode(String s) {
 		try {

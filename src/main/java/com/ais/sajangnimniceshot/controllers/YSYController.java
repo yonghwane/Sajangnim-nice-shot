@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -51,14 +52,31 @@ public class YSYController {
     	return mav;
     }
     
+//    @PostMapping("/reservationDate")
+//    public String createReservation(@RequestParam("rsvDate") String rsvDate,
+//                                    @RequestParam("rsvTime") String rsvTime,
+//                                    @RequestParam("rsvMember") String rsvMember,
+//                                    Model model) {
+//
+//        // 예약 날짜와 시간을 검증
+//        if (!ReservationCheck(rsvDate, rsvTime, rsvMember)) {
+//            model.addAttribute("error", "이미 예약된 시간입니다.");
+//            return "/"; // 홈으로 이동
+//        }
+//
+//        return "/"; // 어떤 다른 화면으로
+//    }
+    
+    
+    
     // 예약 동의화면
-    @PostMapping("/reservationAgree/{memNickname}")
-    public ModelAndView updateReservation(ModelAndView mav) {
-    	mav.setViewName("reservationAgree");
-    	this.service.backController("agreeReservation", mav);
-    	this.auth.backController("changeHeader", mav);
-    	return mav;
-    }
+//    @PostMapping("/reservationAgree/{memNickname}")
+//    public ModelAndView updateReservation(ModelAndView mav) {
+//    	mav.setViewName("reservationAgree");
+//    	this.service.backController("agreeReservation", mav);
+//    	this.auth.backController("changeHeader", mav);
+//    	return mav;
+//    }
    
     
 }

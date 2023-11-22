@@ -12,10 +12,6 @@
         <script src="/js/YSY.js"></script>
     </head>
 
-    <script>
-	
-
-</script>
 <body>
     <header class="header">
         <h1 onclick="location.href='/'">SNP</h1>
@@ -41,7 +37,6 @@
           	<input type = "submit">
        </fieldset>
     </form:form>
-    
     
     <script>
         if (`${message}` !== ``) alert(`${message}`);

@@ -8,6 +8,42 @@ function main1() {
     //form.submit()
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('reserveForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var selectedDate = document.getElementById('selectDate').value;
+        var selectedTime = document.getElementById('selectTime').value;
+
+        var requestData = {
+            rsvDate: selectedDate,
+            rsvTime: selectedTime
+        };
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/reservationDate', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    if (data.available) {
+                        document.getElementById('reserveForm').submit();
+                    } else {
+                        alert('이미 예약된 시간입니다. 다른 시간을 선택해주세요.');
+                    }
+                } else {
+                    console.error('Error:', xhr.statusText);
+                }
+            }
+        };
+
+        xhr.send(JSON.stringify(requestData));
+    });
+});
+
+
 function selectTime() {
 		const timeSelect = document.getElementById("selectTime"); 
 		for (let hour = 7; hour < 21; hour++) {  // 오전 7시부터 오후 8시까지
@@ -50,4 +86,6 @@ function checkDate() {
         const selectDate = document.getElementById("selectDate");
         selectDate.addEventListener("input", checkDate);
     });
+    
+
     
