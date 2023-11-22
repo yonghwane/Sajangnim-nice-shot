@@ -21,8 +21,14 @@ public interface KDBMapper {
 
 	boolean checkMemNickname(String memNickname);
 
-//	int insertReservedTransfer(String memNickname, String rsvTime, String rsvDate, String rsvCount, String rsvHole,
-//			String rsvCaddy, String rsvClothes, String rsvShoes, String rsvStatus, String rsvPrice);
-
 	int updateReservedTransfer(String rsvCode, String memNickname);
+	
+	boolean checkDate(String tiDate, String tiTime);
+
+    int insertDateAndTime(String memNickname, String rsvDate, String rsvTime);
+
+	String getRsvCode();
+	
+	int updateReservation(String rsvCode, String rsvCount, String rsvHole, String rsvCaddy, String rsvClothes, String rsvShoes);
+
 }

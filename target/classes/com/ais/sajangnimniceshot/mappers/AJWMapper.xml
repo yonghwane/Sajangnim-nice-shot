@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ais.sajangnimniceshot.mappers.AJWMapper">
-	
+
+	<insert id="booking1">
+INSERT INTO RSVDS (
+   RSV_CODE, RSV_MEMNICKNAME, RSV_DATE, RSV_TIME, RSV_COUNT, RSV_HOLE, RSV_CADDY, RSV_CLOTHES, RSV_SHOES, RSV_STATUS, RSV_PRICE
+)
+VALUES (
+    RSV_CODE.NEXTVAL, #{memNickname},"23-11-10", "0700", #{rsvCount}, #{rsvHole},
+     #{rsvCaddy},#{rsvClothes}, #{rsvShoes}, "F", 0)
+</insert>
+
+
+	<insert id="booking">
+    INSERT INTO RSVDS (RSV_CODE, RSV_MEMNICKNAME, RSV_TIME, RSV_DATE, RSV_COUNT, RSV_HOLE, RSV_CADDY, RSV_CLOTHES, RSV_SHOES, RSV_STATUS, RSV_PRICE)
+    VALUES (RSV_CODE.NEXTVAL ,#{memNickname}, '1207', '231121', #{rsvCount}, #{rsvHole}, #{rsvCaddy}, #{rsvClothes}, #{rsvShoes}, 'T', '0')
+    </insert>
+
 </mapper>

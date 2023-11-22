@@ -4,7 +4,7 @@ import java.util.List;
 
 import lombok.Data;
 
-@Data
+@Data // getter, setter 자동지정해줌.
 public class ReservationBean {
     private String rsvCode;
     private String rsvMemNickname;
