@@ -1,7 +1,6 @@
 package com.ais.sajangnimniceshot.services;
 
 import java.net.URLEncoder;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ais.sajangnimniceshot.beans.MemberBean;
+import com.ais.sajangnimniceshot.beans.PricesBean;
 import com.ais.sajangnimniceshot.beans.ReservationBean;
 import com.ais.sajangnimniceshot.mappers.KDBMapper;
 import com.ais.sajangnimniceshot.mappers.SHSMapper;
@@ -52,15 +52,15 @@ public class KDBService implements ServiceRule {
 		case "reservedTransfer":
 			this.reservedTransfer(mav);
 			break;
-		case "moveReservationDate":
-			this.moveReservationDate(mav);
-			break;
-		case "reservationDate":
-			this.reservationDate(mav);
+		case "moveReservation":
+			this.moveReservation(mav);
 			break;
 		case "reservation":
 			this.reservation(mav);
 			break;
+//		case "reservation":
+//			this.reservation(mav);
+//			break;
 		}
 	}
 
@@ -82,32 +82,42 @@ public class KDBService implements ServiceRule {
 			break;
 		}
 	}
-	
+
+//	private void reservation(ModelAndView mav) {
+//		MemberBean accessInfo = this.auth.getAccessInfo();
+//		ReservationBean reservationBean = (ReservationBean) mav.getModel().get("reservationBean");
+//
+//		String rsvCode = reservationBean.getRsvCode();
+//		String rsvMemNickname = accessInfo.getMemNickname();
+//		String rsvTime = reservationBean.getRsvTime();
+//		String rsvDate = reservationBean.getRsvDate();
+//		String rsvCount = reservationBean.getRsvCount();
+//		String rsvHole = reservationBean.getRsvHole();
+//		String rsvCaddy = reservationBean.getRsvCaddy();
+//		String rsvClothes = reservationBean.getRsvClothes();
+//		String rsvShoes = reservationBean.getRsvShoes();
+//		String rsvPrice = reservationBean.getRsvPrice();
+//
+//		PricesBean getHolePrice = this.kdbMapper.getHolePrice(rsvHole);
+//		PricesBean getCaddyPrice = this.kdbMapper.getCaddyPrice(rsvCaddy);
+//		PricesBean getClothesPrice = this.kdbMapper.getClothesPrice(rsvClothes);
+//		PricesBean getShoesPrice = this.kdbMapper.getShoesPrice(rsvShoes);
+//
+//		Integer totalPrice = Integer.parseInt(getHolePrice.getPriPrice())
+//				+ Integer.parseInt(getCaddyPrice.getPriPrice()) + Integer.parseInt(getClothesPrice.getPriPrice())
+//				+ Integer.parseInt(getShoesPrice.getPriPrice());
+//
+//		System.out.print("totalPrice:" + totalPrice);
+//
+////				+ " " + "getCaddyPrice:" + getCaddyPrice + " "
+////				+ "getClothesPrice:" + getClothesPrice + " " + "getShoesPrice:" + getShoesPrice);
+//
+//		mav.addObject("getReservationDetail", this.gson.toJson(this.shsMapper.getReservationDetail(rsvCode)));
+////		this.kdbMapper.updateReservation(rsvCode, rsvCount, rsvHole, rsvCaddy, rsvClothes, rsvShoes);
+//		mav.addObject("getRsvDetailList", this.gson.toJson(this.shsMapper.getReservationDetail(rsvCode)));
+//	}
 
 	private void reservation(ModelAndView mav) {
-		MemberBean accessInfo = this.auth.getAccessInfo();
-		ReservationBean reservationBean = (ReservationBean) mav.getModel().get("reservationBean");
-
-		String rsvCode = reservationBean.getRsvCode();
-		String rsvMemNickname = accessInfo.getMemNickname();
-		String rsvTime = reservationBean.getRsvTime();
-		String rsvDate = reservationBean.getRsvDate();
-		String rsvCount = reservationBean.getRsvCount();
-		String rsvHole = reservationBean.getRsvHole();
-		String rsvCaddy = reservationBean.getRsvCaddy();
-		String rsvClothes = reservationBean.getRsvClothes();
-		String rsvShoes = reservationBean.getRsvShoes();
-
-//		System.out.print("rsvCode: " + rsvCode + "rsvMemNickname: " + rsvMemNickname + "rsvTime: " + rsvTime
-//				+ "rsvDate: " + rsvDate + "rsvCount: " + rsvCount + "rsvHole: " + rsvHole + "rsvCaddy: " + rsvCaddy
-//				+ "rsvClothes: " + rsvClothes + "rsvShoes: " + rsvShoes);
-//		rsvCount=null, rsvHole=null, rsvCaddy=null, rsvClothes=null, rsvShoes=null, rsvStatus=null, rsvPrice=null, pricesBean=null)
-
-//		this.kdbMapper.updateReservation(rsvCode, rsvCount, rsvHole, rsvCaddy, rsvClothes, rsvShoes);
-		mav.addObject("getRsvDetailList",this.gson.toJson(this.shsMapper.getReservationDetail(rsvCode)));
-	}
-
-	private void reservationDate(ModelAndView mav) {
 		MemberBean accessInfo = this.auth.getAccessInfo();
 		ReservationBean reservationBean = (ReservationBean) mav.getModel().get("reservationBean");
 
@@ -117,7 +127,7 @@ public class KDBService implements ServiceRule {
 			mav.setViewName("reservationDate");
 			return;
 		}
-		System.out.println("asdasd:" +reservationBean.getRsvCode());
+		System.out.println("asdasd:" + reservationBean.getRsvCode());
 		String rsvMemNickname = accessInfo.getMemNickname();
 		String rsvTime = reservationBean.getRsvTime();
 		String rsvDate = reservationBean.getRsvDate();
@@ -126,47 +136,25 @@ public class KDBService implements ServiceRule {
 		String rsvCaddy = reservationBean.getRsvCaddy();
 		String rsvClothes = reservationBean.getRsvClothes();
 		String rsvShoes = reservationBean.getRsvShoes();
-		this.kdbMapper.insertReservation(rsvMemNickname, rsvDate,
-				rsvTime, rsvCount, rsvHole, rsvCaddy, rsvClothes, rsvShoes);
+		PricesBean getHolePrice = this.kdbMapper.getHolePrice(rsvHole);
+		PricesBean getCaddyPrice = this.kdbMapper.getCaddyPrice(rsvCaddy);
+		PricesBean getClothesPrice = this.kdbMapper.getClothesPrice(rsvClothes);
+		PricesBean getShoesPrice = this.kdbMapper.getShoesPrice(rsvShoes);
+
+		Integer totalPrice = Integer.parseInt(getHolePrice.getPriPrice())
+				+ Integer.parseInt(getCaddyPrice.getPriPrice()) + Integer.parseInt(getClothesPrice.getPriPrice())
+				+ Integer.parseInt(getShoesPrice.getPriPrice());
+
+		System.out.print("totalPrice:" + totalPrice);
+		
+		this.kdbMapper.insertReservation(rsvMemNickname, rsvDate, rsvTime, rsvCount, rsvHole, rsvCaddy, rsvClothes,
+				rsvShoes, String.valueOf(totalPrice));
+		
 		System.out.println("getRsvCode : " + this.kdbMapper.getRsvCode());
 		mav.addObject("rsvDetail", this.gson.toJson(this.shsMapper.getReservationDetail(this.kdbMapper.getRsvCode())));
-		
-		// jsp로 이동
-//		List<ReservationBean> rsvDetail = this.shsMapper.getReservationDetail(this.kdbMapper.getRsvCode());
-//		String rsvCode = "";
-//		String rsvMemNickname = "";
-//		String rsvTime = "";
-//		String rsvDate = "";
-//		String rsvCount = "";
-//		String rsvHole = "";
-//		String rsvCaddy = "";
-//		String rsvClothes = "";
-//		String rsvShoes = "";
-//		String rsvStatus = "";
-//		String rsvPrice = "";
-//		for (ReservationBean list : rsvDetail) { // 불러온 예약을 각 변수에 저장
-//			rsvCode = list.getRsvCode(); // 22
-//			rsvMemNickname = list.getRsvMemNickname(); // kwon
-//			rsvTime = list.getRsvTime(); // 0700
-//			rsvDate = list.getRsvDate(); // 20231108
-//			rsvCount = list.getRsvCount();
-//			rsvHole = list.getRsvHole();
-//			rsvCaddy = list.getRsvCaddy();
-//			rsvClothes = list.getRsvClothes();
-//			rsvShoes = list.getRsvShoes();
-//			rsvStatus = list.getRsvStatus();
-//			rsvPrice = list.getRsvPrice();
-//		}
-//
-//		System.out.print("rsvCode: " + rsvCode + "rsvMemNickname: " + rsvMemNickname + "rsvTime: " + rsvTime
-//				+ "rsvDate: " + rsvDate + "rsvCount: " + rsvCount + "rsvHole: " + rsvHole + "rsvCaddy: " + rsvCaddy
-//				+ "rsvClothes: " + rsvClothes + "rsvShoes: " + rsvShoes + "rsvStatus: " + rsvStatus + "rsvPrice: "
-//				+ rsvPrice);
-//		rsvCount=null, rsvHole=null, rsvCaddy=null, rsvClothes=null, rsvShoes=null, rsvStatus=null, rsvPrice=null, pricesBean=null)
-
 	}
 
-	private void moveReservationDate(ModelAndView mav) {
+	private void moveReservation(ModelAndView mav) {
 
 	}
 
