@@ -39,8 +39,8 @@
 		       <input type="radio" id="rsvCount4" name="rsvCount" value="4" checked />4인
 		       <input type="radio" id="rsvCount8" name="rsvCount" value="8" />8인
 	       <div>홀</div>
-		       <input type="radio" id="rsvHole9" name="rsvHole" value="1" checked />〇
-		       <input type="radio" id="rsvHole18" name="rsvHole" value="2" />×
+		       <input type="radio" id="rsvHole9" name="rsvHole" value="1" checked />9홀
+		       <input type="radio" id="rsvHole18" name="rsvHole" value="2" />18홀
 	       <div>캐디</div>
 		       <input type="radio" id="rsvCaddyo" name="rsvCaddy" value="3" checked />〇
 		       <input type="radio" id="rsvCaddyx" name="rsvCaddy" value="4" />×
