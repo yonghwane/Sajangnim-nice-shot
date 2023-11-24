@@ -128,10 +128,18 @@
 	</select>
 
 	<insert id="insertDateAndTime">
+	
 	 INSERT INTO RSVDS (RSV_CODE, RSV_MEMNICKNAME, RSV_TIME, RSV_DATE, RSV_COUNT, RSV_HOLE, RSV_CADDY, RSV_CLOTHES, RSV_SHOES, RSV_STATUS, RSV_PRICE)
     VALUES (RSV_CODE.NEXTVAL ,#{memNickname}, #{rsvTime}, #{rsvDate}, '0', '1', '3', '5', '7', 'F', '0')
+	
 	</insert>
+	
+<insert id="insertTimeslots">
 
+    INSERT INTO TIMESLOTS (TI_CODE, TI_DATE, TI_TIME)
+    VALUES (TI_CODE.NEXTVAL, TO_CHAR(TO_DATE(#{rsvDate}, 'YYYY/MM/DD'), 'YY/MM/DD'), #{rsvTime})
+
+</insert>
 	<select id="getRsvCode" resultType="String">
 	SELECT
 		RSV_CODE.CURRVAL
@@ -139,10 +147,53 @@
 		DUAL
 	</select>
 
-
 	<insert id="insertReservation">
     INSERT INTO RSVDS (RSV_CODE, RSV_MEMNICKNAME, RSV_TIME, RSV_DATE, RSV_COUNT, RSV_HOLE, RSV_CADDY, RSV_CLOTHES, RSV_SHOES, RSV_STATUS, RSV_PRICE)
-    VALUES (RSV_CODE.NEXTVAL ,#{memNickname}, #{rsvTime}, #{rsvDate}, #{rsvCount}, #{rsvHole}, #{rsvCaddy}, #{rsvClothes}, #{rsvShoes},'F','0')
+    VALUES (RSV_CODE.NEXTVAL ,#{memNickname}, #{rsvTime}, #{rsvDate}, #{rsvCount}, #{rsvHole}, #{rsvCaddy}, #{rsvClothes}, #{rsvShoes},'F', #{rsvPrice})
     </insert>
+
+	<select id="getHolePrice" resultType="PricesBean">
+	SELECT
+    	PRI_CODE AS PRICODE,
+    	PRI_OPTION AS PRIOPTION,
+    	PRI_PRICE AS PRIPRICE
+	FROM
+    	PRICES
+	WHERE 
+    	PRI_CODE = #{rsvHole}
+    </select>
+
+	<select id="getCaddyPrice" resultType="PricesBean">
+	SELECT
+    	PRI_CODE AS PRICODE,
+    	PRI_OPTION AS PRIOPTION,
+    	PRI_PRICE AS PRIPRICE
+	FROM
+    	PRICES
+	WHERE 
+    	PRI_CODE = #{rsvCaddy}
+    </select>
+
+	<select id="getClothesPrice" resultType="PricesBean">
+	SELECT
+    	PRI_CODE AS PRICODE,
+    	PRI_OPTION AS PRIOPTION,
+    	PRI_PRICE AS PRIPRICE
+	FROM
+    	PRICES
+	WHERE 
+    	PRI_CODE = #{rsvClothes}
+    </select>
+
+	<select id="getShoesPrice" resultType="PricesBean">
+	SELECT
+    	PRI_CODE AS PRICODE,
+    	PRI_OPTION AS PRIOPTION,
+    	PRI_PRICE AS PRIPRICE
+	FROM
+    	PRICES
+	WHERE 
+    	PRI_CODE = #{rsvShoes}
+    </select>
 
 </mapper>
