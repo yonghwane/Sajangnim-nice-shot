@@ -3,6 +3,7 @@ package com.ais.sajangnimniceshot.mappers;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.ais.sajangnimniceshot.beans.MemberBean;
 import com.ais.sajangnimniceshot.beans.ReservationBean;
@@ -25,5 +26,7 @@ public interface YSYMapper {
     int insertReservation(String memNickname, String rsvTime, String rsvDate, String rsvCount, String rsvHole,
 			String rsvCaddy, String rsvClothes, String rsvShoes, String rsvStatus, String rsvPrice);
     
-    int updateReservation(String rsvCode, String memNickname);
+//    int updateReservation(String rsvCode, String memNickname);
+    
+    boolean checkDateOverlap(@Param("rsvDate") String rsvDate, @Param("rsvTime") String rsvTime);
 }

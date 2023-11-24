@@ -8,6 +8,7 @@ function main1() {
     //form.submit()
 }
 
+
 function selectTime() {
 		const timeSelect = document.getElementById("selectTime"); 
 		for (let hour = 7; hour < 21; hour++) {  // 오전 7시부터 오후 8시까지
@@ -50,4 +51,6 @@ function checkDate() {
         const selectDate = document.getElementById("selectDate");
         selectDate.addEventListener("input", checkDate);
     });
+    
+
     
