@@ -139,20 +139,10 @@
 		DUAL
 	</select>
 
-
-	<update id="updateReservation">
-    UPDATE
-    	RSVDS
-    SET
-    	RSV_COUNT = #{rsvCount},
-    	RSV_HOLE = #{rsvHole},
-    	RSV_CADDY = #{rsvCaddy},
-    	RSV_CLOTHES = #{rsvClothes},
-    	RSV_SHOES = #{rsvShoes},
-    	RSV_PRICE = #{rsvPrice}
-    WHERE
-    	RSV_CODE = #{rsvCode}
-    </update>
+	<insert id="insertReservation">
+    INSERT INTO RSVDS (RSV_CODE, RSV_MEMNICKNAME, RSV_TIME, RSV_DATE, RSV_COUNT, RSV_HOLE, RSV_CADDY, RSV_CLOTHES, RSV_SHOES, RSV_STATUS, RSV_PRICE)
+    VALUES (RSV_CODE.NEXTVAL ,#{memNickname}, #{rsvTime}, #{rsvDate}, #{rsvCount}, #{rsvHole}, #{rsvCaddy}, #{rsvClothes}, #{rsvShoes},'F', #{rsvPrice})
+    </insert>
 
 	<select id="getHolePrice" resultType="PricesBean">
 	SELECT
@@ -196,18 +186,6 @@
     	PRICES
 	WHERE 
     	PRI_CODE = #{rsvShoes}
-    </select>
-
-
-	<select id="getPriceaaaaaaa" resultType="PricesBean">
-	SELECT
-    	PRI_CODE AS PRICODE,
-    	PRI_OPTION AS PRIOPTION,
-    	PRI_PRICE AS PRIPRICE
-	FROM
-    	PRICES
-	WHERE 
-    	PRI_CODE IN (#{rsvHole}, #{rsvCaddy}, #{rsvClothes}, #{rsvShoes})
     </select>
 
 </mapper>

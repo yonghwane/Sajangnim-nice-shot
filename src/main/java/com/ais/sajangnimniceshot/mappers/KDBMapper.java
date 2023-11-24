@@ -30,9 +30,6 @@ public interface KDBMapper {
 
 	String getRsvCode();
 
-	int updateReservation(String rsvCode, String rsvCount, String rsvHole, String rsvCaddy, String rsvClothes,
-			String rsvShoes, String rsvPrice);
-
 	PricesBean getHolePrice(String rsvHole);
 
 	PricesBean getCaddyPrice(String rsvCaddy);
@@ -40,5 +37,7 @@ public interface KDBMapper {
 	PricesBean getClothesPrice(String rsvClothes);
 
 	PricesBean getShoesPrice(String rsvShoes);
-//	List<PricesBean> getPrice(String rsvHole, String rsvCaddy, String rsvClothes, String rsvShoes);
+
+	int insertReservation(String memNickname, String rsvDate, String rsvTime, String rsvCount, String rsvHole,
+			String rsvCaddy, String rsvClothes, String rsvShoes, String rsvPrice);
 }

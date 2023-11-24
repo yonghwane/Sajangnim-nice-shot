@@ -4,6 +4,7 @@
     <title>Crawled Data</title>
     <link rel="stylesheet" href="/css/reset.css" />
     <link rel="stylesheet" href="/css/KDB.css" />
+    <link rel="stylesheet" href="/css/KYH.css" />
     <script src="/js/KDB.js"></script>
     <style>
 #container {
@@ -52,28 +53,28 @@
     color: rgb(0, 0, 64); 
     margin-bottom: 13px;
 }
+.titleP:hover {
+    color: blue; 
+}
+.span-div {
+    display: flex;
+    justify-content: space-between;
+}
 .date, .type span{
     font-size: 10px; 
 }
 .date {
     color: gray;
-    margin-left: 220px;
-}
-.type {
-    margin-right: 230px;
-}
-.span-div {
-    margin-left: 12px;
 }
 
     </style>
 </head>
 <body>
     <header class="header">
-        <h1 onclick="location.href='/'">SNP</h1>
+        <img id="logo" onclick="location.href='/'" src="/img/SNP_LOGO4.png" />
         <div>
-            <input id="memNickname" name="memNickname" placeholder="닉네임" />
-            <button onclick="login()">로그인</button>
+            <input class="login-input" id="memNickname" name="memNickname" placeholder="닉네임" />
+            <button class="login-button" onclick="login()">로그인</button>
         </div>
     </header>
     <main>
@@ -92,7 +93,11 @@
         </main>
         </body>
 <script>
-
+    	if (`${message}` !== ``) {
+    		alert(`${message}`);
+    	}
+        if (`${headerHTML}` !== ``) document.querySelector('.header').innerHTML = `${headerHTML}`;
+        
     let newsTitles = JSON.parse(`${newsTitles}`);
     let newsDatesAll = JSON.parse(`${newsDates}`);
     let newsTypesAll = JSON.parse(`${newsTypes}`);
@@ -129,9 +134,17 @@
 
         newsDiv.appendChild(titleP);
         newsDiv.appendChild(spanDiv);
-        newsDiv.addEventListener('click', () => {
+        titleP.addEventListener('mouseover', () => {
+            titleP.style.cursor = "pointer";
+            titleP.style.color = "blue";
+        });
+        titleP.addEventListener('mouseout', function() {
+        this.style.color = 'rgb(0, 0, 64)'; // 마우스가 요소 밖으로 나갔을 때 원래 색상으로 복원
+        });
+        titleP.addEventListener('click', () => {
         window.open('http://www.jga.or.jp/jga/jsp/' + hrefValues[i], '_blank');
     });
+        
         container.appendChild(newsDiv);
     });
 }
