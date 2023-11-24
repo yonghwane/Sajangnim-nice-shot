@@ -124,7 +124,7 @@ public class KDBService implements ServiceRule {
 		if (this.kdbMapper.checkDate(reservationBean.getRsvDate(), reservationBean.getRsvTime())) {
 			// TimeSlots에 동일한 날짜, 시간 있을 경우
 			mav.addObject("message", "예약할 수 없습니다.");
-			mav.setViewName("reservationDate");
+			mav.setViewName("reservation");
 			return;
 		}
 		System.out.println("date:" +reservationBean.getRsvDate()+ "time: "+ reservationBean.getRsvTime());
@@ -149,6 +149,7 @@ public class KDBService implements ServiceRule {
 		
 		this.kdbMapper.insertReservation(rsvMemNickname, rsvDate, rsvTime, rsvCount, rsvHole, rsvCaddy, rsvClothes,
 				rsvShoes, String.valueOf(totalPrice));
+		this.kdbMapper.insertTimeslots(rsvDate, rsvTime);
 		
 		System.out.println("getRsvCode : " + this.kdbMapper.getRsvCode());
 
