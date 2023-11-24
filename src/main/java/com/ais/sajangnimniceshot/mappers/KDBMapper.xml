@@ -122,7 +122,7 @@
 		FROM
 			TIMESLOTS
 		WHERE
-			TI_DATE = #{tiDate}
+			TI_DATE = TO_CHAR(TO_DATE(#{tiDate}, 'YYYY/MM/DD'), 'YY/MM/DD')
 		AND
 			TI_TIME = #{tiTime}
 	</select>
