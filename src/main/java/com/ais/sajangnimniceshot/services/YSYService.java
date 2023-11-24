@@ -71,7 +71,19 @@ public class YSYService implements ServiceRule {
 //		String rsvCode = (String) mav.getModel().get("rsvCode");
 //		this.ysyMapper.updateReservation(rsvCode, memNickname);
 //	}
-	
+
+	private void reservationDate(ModelAndView mav) {
+		MemberBean accessInfo = this.auth.getAccessInfo();
+		ReservationBean reservationBean = (ReservationBean) mav.getModel().get("reservationBean");
+
+		// 날짜 중복 체크
+		if (this.ysyMapper.checkDateOverlap(reservationBean.getRsvDate(), reservationBean.getRsvTime())) {
+            mav.addObject("message2", "해당 날짜와 시간에 이미 예약이 있습니다.");
+            mav.setViewName("reservationDate");
+            return;
+        }
+		mav.setViewName("redirect:/");
+	}
 
 	private String encode(String s) {
 		try {

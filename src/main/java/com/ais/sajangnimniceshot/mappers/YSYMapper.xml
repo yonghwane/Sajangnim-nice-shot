@@ -24,7 +24,7 @@
     	WHERE
     		RSV_CODE = #{rsvCode}
     </update>
-<!-- 
+
 	<resultMap id="timeslotsMap" type="timeslotsBean">
 		<id property="tiCode" column="ti_Code"/>
 		<result property="tiDate" column="ti_date" />
@@ -83,6 +83,6 @@
 	        AND t.ti_date = #{ti_date}
 	        AND t.ti_time = #{ti_time}
 	</select>
-	-->
+	
 
 </mapper>
