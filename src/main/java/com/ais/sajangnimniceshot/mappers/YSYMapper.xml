@@ -47,6 +47,7 @@
       <result property="rsvPrice" column="rsv_Price"/>
 
 	</resultMap>
+	<select id=""></select>
 
 	<select id="checkDate" resultType="boolean">
 		select

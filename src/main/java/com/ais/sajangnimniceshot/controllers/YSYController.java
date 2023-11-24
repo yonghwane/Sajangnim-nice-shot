@@ -52,6 +52,15 @@ public class YSYController {
     	return mav;
     }
     
+//	@PostMapping("reservation")
+//	public ModelAndView reservation(ModelAndView mav, ReservationBean reservationBean) {
+//		mav.setViewName("reservationResult");
+//		mav.addObject("reservationBean", reservationBean);
+//		this.service.backController("reservation", mav);
+//		this.auth.backController("changeHeader", mav);
+//		return mav;
+//	}
+    
 //    @PostMapping("/reservationDate")
 //    public String createReservation(@RequestParam("rsvDate") String rsvDate,
 //                                    @RequestParam("rsvTime") String rsvTime,
@@ -65,6 +74,17 @@ public class YSYController {
 //        }
 //
 //        return "/"; // 어떤 다른 화면으로
+//    }
+//    
+//    private boolean reservationCheck(String rsvDate, String rsvTime, String rsvMember) {
+//        MemberBean accessInfo = this.auth.getAccessInfo();
+//        ReservationBean reservationBean = new ReservationBean();
+//        reservationBean.setRsvDate(rsvDate);
+//        reservationBean.setRsvTime(rsvTime);
+//        reservationBean.setRsvMemNickname(rsvMember);
+//
+//        // 날짜 중복 체크
+//        return !this.ysyMapper.checkDateOverlap(reservationBean.getRsvDate(), reservationBean.getRsvTime());
 //    }
     
     
