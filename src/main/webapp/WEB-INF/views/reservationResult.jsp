@@ -32,9 +32,9 @@
 		</aside>
 
       <section>
-
    		<div id="h3" onclick="location.href='/moveMyPage'">마이페이지로 돌아가기</div>
 	   		<table class = "table_style1" id="table1">
+	   		<div id="h5">예약이 완료되었습니다.</div>
 	   			<tr></tr>
 	        </table>
 	  </ul>
