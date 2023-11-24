@@ -25,7 +25,7 @@
     		RSV_CODE = #{rsvCode}
     </update>
 
-	<resultMap id="timeslotsMap" type="timeslotsBean">
+	<resultMap id="timeslotsMap" type="timeslots">
 		<id property="tiCode" column="ti_Code"/>
 		<result property="tiDate" column="ti_date" />
 		<result property="tiTime" column="ti_time" />
