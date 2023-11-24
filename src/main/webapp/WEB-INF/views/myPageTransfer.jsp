@@ -12,10 +12,10 @@
 
 <body>
     <header class="header">
-        <h1 onclick="location.href='/'">SNP</h1>
+        <img id="logo" onclick="location.href='/'" src="/img/SNP_LOGO4.png" />
         <div>
-            <input id="memNickname" name="memNickname" placeholder="닉네임" />
-            <button onclick="login()">로그인</button>
+            <input class="login-input" id="memNickname" name="memNickname" placeholder="닉네임" />
+            <button class="login-button" onclick="login()">로그인</button>
         </div>
     </header>
     <main>

@@ -34,14 +34,11 @@
       <section>
 
    		<div id="h3" onclick="location.href='/moveMyPage'">마이페이지로 돌아가기</div>
-   		<table class = "table_style1" id="table1">
-   			<tr></tr>
-        </table>	
-     
-   	  </section>
-      
-      
-      
+	   		<table class = "table_style1" id="table1">
+	   			<tr></tr>
+	        </table>
+	  </ul>
+      </section>
    </main>
    
    
@@ -58,46 +55,14 @@
         let rsvDetail = JSON.parse(`${getRsvDetailList}`);
         console.log(rsvDetail);
         
-        let postType = rsvDetail;
-        createTable(); 
-        function createTable() {
-            const table = document.querySelector('#table1');
-            table.innerHTML = `<th class = "th_style">예약번호</th>
-            					<th class = "th_style">예약자명</th>
-                                <th class = "th_style">예약날짜</th>
-                                <th class = "th_style">예약시간</th>
-                                <th class = "th_style">인원수</th>`;
-                                
-            postType.forEach((detail) => {
-                const tr1 = document.createElement('tr');
-                tr1.innerHTML =
-                    `<td class = "td_style">` + detail.rsvCode + `</td>
-                    <td class = "td_style">` + detail.rsvMemNickname + `</td>
-                    <td class = "td_style">` + detail.rsvDate + `</td>
-                    <td class = "td_style">` + detail.rsvTime + `</td>
-                    <td class = "td_style">` + detail.rsvCount+ `</td>`;
-                table.appendChild(tr1);
-            });
-            table.innerHTML += `<th class = "th_style">HOLE</th>
-	          <th class = "th_style">CADDY</th>
-	          <th class = "th_style">CLOTHES</th>
-	          <th class = "th_style">SHOES</th>
-	          <th class = "th_style">총가격</th>`;
-
-
-			postType.forEach((detail) => {    
-			const tr3 = document.createElement('tr');
-			if (detail.pricesBean && detail.pricesBean.length > 0) {
-			  const pricesBean = detail.pricesBean[0];
-			  tr3.innerHTML +=
-			      `<td class = "td_style">` + pricesBean.priOption1 + "홀" + `</td>
-			      <td class = "td_style">` + pricesBean.priOption2 + `</td>
-			      <td class = "td_style">` + pricesBean.priOption3 + `</td>
-			      <td class = "td_style">` + pricesBean.priOption4 + `</td>
-			      <td class = "td_style">` + detail.rsvPrice + "원" + `</td>`;
-			} 
-			table.appendChild(tr3);
-			});
-        }
+        rsvDetail.forEach((list) => {
+            let li = document.createElement('li');
+            
+                                                                                                                                                             
+            li.textContent = list.rsvMemNickname;
+            reservation.appendChild(li);
+        });
+        
+        
     </script>
 </html>
