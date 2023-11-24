@@ -26,7 +26,9 @@ public interface KDBMapper {
 	boolean checkDate(String tiDate, String tiTime);
 
     int insertDateAndTime(String memNickname, String rsvDate, String rsvTime);
-
+    
+    int insertTimeslots(String rsvDate, String rsvTime);
+    
 	String getRsvCode();
 	
 	int updateReservation(String rsvCode, String rsvCount, String rsvHole, String rsvCaddy, String rsvClothes, String rsvShoes);

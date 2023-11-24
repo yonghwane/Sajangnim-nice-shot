@@ -1,7 +1,6 @@
 package com.ais.sajangnimniceshot.services;
 
 import java.net.URLEncoder;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -97,14 +96,16 @@ public class KDBService implements ServiceRule {
 		String rsvCaddy = reservationBean.getRsvCaddy();
 		String rsvClothes = reservationBean.getRsvClothes();
 		String rsvShoes = reservationBean.getRsvShoes();
+//		String rsvPrice = reservationBean.getRsvPrice();
 
 		System.out.print("rsvCode: " + rsvCode + "rsvMemNickname: " + rsvMemNickname + "rsvTime: " + rsvTime
 				+ "rsvDate: " + rsvDate + "rsvCount: " + rsvCount + "rsvHole: " + rsvHole + "rsvCaddy: " + rsvCaddy
 				+ "rsvClothes: " + rsvClothes + "rsvShoes: " + rsvShoes);
 //		rsvCount=null, rsvHole=null, rsvCaddy=null, rsvClothes=null, rsvShoes=null, rsvStatus=null, rsvPrice=null, pricesBean=null)
-
 		this.kdbMapper.updateReservation(rsvCode, rsvCount, rsvHole, rsvCaddy, rsvClothes, rsvShoes);
-
+		System.out.println();
+		mav.addObject("getRsvDetailList",this.gson.toJson(this.shsMapper.getReservationDetail(rsvCode)));
+	
 	}
 
 	private void reservationDate(ModelAndView mav) {
@@ -117,12 +118,13 @@ public class KDBService implements ServiceRule {
 			mav.setViewName("reservationDate");
 			return;
 		}
-
+		
+		this.kdbMapper.insertTimeslots(reservationBean.getRsvDate(), reservationBean.getRsvTime());
 		this.kdbMapper.insertDateAndTime(accessInfo.getMemNickname(), reservationBean.getRsvDate(),
 				reservationBean.getRsvTime());
-
+		
 		System.out.println("getRsvCode : " + this.kdbMapper.getRsvCode());
-
+		
 //		mav.addObject("getRsvDetailList",
 //				this.gson.toJson(this.shsMapper.getReservationDetail(this.kdbMapper.getRsvCode())));
 		mav.addObject("rsvDetail", this.gson.toJson(this.shsMapper.getReservationDetail(this.kdbMapper.getRsvCode())));

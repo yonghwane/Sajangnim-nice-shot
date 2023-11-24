@@ -128,10 +128,18 @@
 	</select>
 
 	<insert id="insertDateAndTime">
+	
 	 INSERT INTO RSVDS (RSV_CODE, RSV_MEMNICKNAME, RSV_TIME, RSV_DATE, RSV_COUNT, RSV_HOLE, RSV_CADDY, RSV_CLOTHES, RSV_SHOES, RSV_STATUS, RSV_PRICE)
     VALUES (RSV_CODE.NEXTVAL ,#{memNickname}, #{rsvTime}, #{rsvDate}, '0', '1', '3', '5', '7', 'F', '0')
+	
 	</insert>
+	
+<insert id="insertTimeslots">
 
+    INSERT INTO TIMESLOTS (TI_CODE, TI_DATE, TI_TIME)
+    VALUES (TI_CODE.NEXTVAL, TO_CHAR(TO_DATE(#{rsvDate}, 'YYYY/MM/DD'), 'YY/MM/DD'), #{rsvTime})
+
+</insert>
 	<select id="getRsvCode" resultType="String">
 	SELECT
 		RSV_CODE.CURRVAL
@@ -143,12 +151,14 @@
 	<update id="updateReservation">
     UPDATE
     	RSVDS
+    
     SET
     	RSV_COUNT = #{rsvCount},
     	RSV_HOLE = #{rsvHole},
     	RSV_CADDY = #{rsvCaddy},
     	RSV_CLOTHES = #{rsvClothes},
     	RSV_SHOES = #{rsvShoes}
+    	
     WHERE
     	RSV_CODE = #{rsvCode}
     </update>
