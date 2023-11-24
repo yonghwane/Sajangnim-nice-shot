@@ -117,7 +117,7 @@ public class KDBService implements ServiceRule {
 			mav.setViewName("reservationDate");
 			return;
 		}
-		System.out.println("asdasd:" +reservationBean.getRsvCode());
+		System.out.println("date:" +reservationBean.getRsvDate()+ "time: "+ reservationBean.getRsvTime());
 		String rsvMemNickname = accessInfo.getMemNickname();
 		String rsvTime = reservationBean.getRsvTime();
 		String rsvDate = reservationBean.getRsvDate();
