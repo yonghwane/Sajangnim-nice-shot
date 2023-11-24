@@ -26,8 +26,10 @@ public interface KDBMapper {
 
 	boolean checkDate(String tiDate, String tiTime);
 
-	int insertDateAndTime(String memNickname, String rsvDate, String rsvTime);
-
+    int insertDateAndTime(String memNickname, String rsvDate, String rsvTime);
+    
+    int insertTimeslots(String rsvDate, String rsvTime);
+    
 	String getRsvCode();
 
 	PricesBean getHolePrice(String rsvHole);

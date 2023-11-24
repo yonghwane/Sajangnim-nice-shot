@@ -151,6 +151,9 @@ public class KDBService implements ServiceRule {
 				rsvShoes, String.valueOf(totalPrice));
 		
 		System.out.println("getRsvCode : " + this.kdbMapper.getRsvCode());
+
+//		mav.addObject("getRsvDetailList",
+//				this.gson.toJson(this.shsMapper.getReservationDetail(this.kdbMapper.getRsvCode())));
 		mav.addObject("rsvDetail", this.gson.toJson(this.shsMapper.getReservationDetail(this.kdbMapper.getRsvCode())));
 	}
 
