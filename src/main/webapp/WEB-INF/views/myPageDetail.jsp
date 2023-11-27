@@ -7,7 +7,6 @@
 <title>myPageDetail</title>
 <link rel="stylesheet" href="/css/reset.css" />
 <link rel="stylesheet" href="/css/KDB.css" />
-<link rel="stylesheet" href="/css/SHS.css" />
 <link rel="stylesheet" href="/css/KYH.css" />
 <script src="/js/KDB.js"></script>
 </head>
@@ -30,9 +29,8 @@
       <section>
       <div id="h3">마이페이지</div>
       <hr>
-         <table class = "table_style1" id="table1">
-            <tr></tr>
-         </table>
+         <div id="table1">
+         </div>
          <br/>
          <table class = "table_style2" id="table2">
          	<tr></tr>
@@ -65,43 +63,53 @@
         createTable(); 
         function createTable() {
             const table = document.querySelector('#table1');
-            table.innerHTML = `<th class = "th_style">예약번호</th>
-            					<th class = "th_style">예약자명</th>
-                                <th class = "th_style">예약날짜</th>
-                                <th class = "th_style">예약시간</th>
-                                <th class = "th_style">인원수</th>`;
+            table.innerHTML = `
+        <div class="row header">
+            <div class="cell">예약번호</div>
+            <div class="cell">예약자명</div>
+            <div class="cell">예약날짜</div>
+            <div class="cell">예약시간</div>
+            <div class="cell">인원수</div>
+        </div>`;
                                 
             postType.forEach((detail) => {
-                const tr1 = document.createElement('tr');
+                const tr1 = document.createElement('div');
                 tr1.innerHTML =
-                    `<td class = "td_style">` + detail.rsvCode + `</td>
-                    <td class = "td_style">` + detail.rsvMemNickname + `</td>
-                    <td class = "td_style">` + detail.rsvDate + `</td>
-                    <td class = "td_style">` + detail.rsvTime + `</td>
-                    <td class = "td_style">` + detail.rsvCount+ `</td>`;
+                    `<div class="row body">
+                    <div class="cell">` + detail.rsvCode + `</div>
+                    <div class="cell">` + detail.rsvMemNickname + `</div>
+                    <div class="cell">` + detail.rsvDate + `</div>
+                    <div class="cell">` + detail.rsvTime + `</div>
+                    <div class="cell">` + detail.rsvCount+ `</div>
+                    </div>`;
                 table.appendChild(tr1);
             });
                 
-            table.innerHTML += `<th class = "th_style">HOLE</th>
-						          <th class = "th_style">CADDY</th>
-						          <th class = "th_style">CLOTHES</th>
-						          <th class = "th_style">SHOES</th>
-						          <th class = "th_style">총가격</th>`;
+            table.innerHTML += `<div class="row header">
+            <div class="cell">HOLE</div>
+            <div class="cell">CADDY</div>
+            <div class="cell">CLOTHES</div>
+            <div class="cell">SHOES</div>
+            <div class="cell">총가격</div>
+        </div>`;
             		
             
-            postType.forEach((detail) => {    
-                const tr3 = document.createElement('tr');
-                    if (detail.pricesBean && detail.pricesBean.length > 0) {
-                        const pricesBean = detail.pricesBean[0];
-                        tr3.innerHTML +=
-                            `<td class = "td_style">` + pricesBean.priOption1 + "홀" + `</td>
-                            <td class = "td_style">` + pricesBean.priOption2 + `</td>
-                            <td class = "td_style">` + pricesBean.priOption3 + `</td>
-                            <td class = "td_style">` + pricesBean.priOption4 + `</td>
-                            <td class = "td_style">` + detail.rsvPrice + "원" + `</td>`;
-                    } 
-                table.appendChild(tr3);
-            });
+        postType.forEach((detail) => {    
+    const tr3 = document.createElement('div');
+    tr3.className = 'row';
+    if (detail.pricesBean && detail.pricesBean.length > 0) {
+        const pricesBean = detail.pricesBean[0];
+        tr3.innerHTML +=
+            `<div class="row body">
+            <div class="cell">` + pricesBean.priOption1 + "홀" + `</div>
+            <div class="cell">` + pricesBean.priOption2 + `</div>
+            <div class="cell">` + pricesBean.priOption3 + `</div>
+            <div class="cell">` + pricesBean.priOption4 + `</div>
+            <div class="cell">` + detail.rsvPrice + "원" + `</div>
+            </div>`;
+    } 
+    table.appendChild(tr3);
+});
             const price = document.querySelector('#price');
             		postType.forEach((detail) => {
 	                price.innerHTML =
