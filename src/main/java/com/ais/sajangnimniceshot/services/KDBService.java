@@ -151,8 +151,6 @@ public class KDBService implements ServiceRule {
 				rsvShoes, String.valueOf(totalPrice));
 		this.kdbMapper.insertTimeslots(rsvDate, rsvTime);
 		
-		this.kdbMapper.insertTimeslots (rsvDate, rsvTime);
-		
 		
 		System.out.println("getRsvCode : " + this.kdbMapper.getRsvCode());
 
