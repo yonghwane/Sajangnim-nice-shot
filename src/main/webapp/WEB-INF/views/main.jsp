@@ -27,6 +27,7 @@
         	<div class="aside-list" onclick="location.href='/moveCrawledData'">이벤트</div>
         	</aside>
             <section>
+            	<h2>hello SnpWorld</h2>
             </section>
         </main>
         

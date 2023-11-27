@@ -149,10 +149,7 @@ public class KDBService implements ServiceRule {
 		
 		this.kdbMapper.insertReservation(rsvMemNickname, rsvDate, rsvTime, rsvCount, rsvHole, rsvCaddy, rsvClothes,
 				rsvShoes, String.valueOf(totalPrice));
-		this.kdbMapper.insertTimeslots(rsvDate, rsvTime);
-		
-		this.kdbMapper.insertTimeslots (rsvDate, rsvTime);
-		
+		this.kdbMapper.insertTimeslots(rsvDate, rsvTime);		
 		
 		System.out.println("getRsvCode : " + this.kdbMapper.getRsvCode());
 
