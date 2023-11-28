@@ -72,13 +72,19 @@ function sendAjaxPost(serviceCode, formData, callBackFunction) {
 }
 
 function login() {
-	const form = document.createElement('form')
-	document.body.appendChild(form)
-	form.method = 'post'
-	form.action = '/login'
-	const memNickname = document.querySelector('#memNickname')
-	form.appendChild(memNickname)
-	form.submit()
+    const form = document.createElement('form');
+    form.method = 'post';
+    form.action = '/login';
+
+    const memNickname = document.querySelector('#memNickname');
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'memNickname';
+    input.value = memNickname.value;
+
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
 }
 async function login2() {
     const memNickname = document.querySelector('#memNickname').value;
