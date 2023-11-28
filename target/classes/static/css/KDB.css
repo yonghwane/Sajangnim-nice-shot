@@ -3,7 +3,7 @@
 	font-family: 'Nanum Gothic', sans-serif;
 	font-size: 15px;
 	box-sizing: border-box;
-	margin: 0;
+	margin: 1px;
 	padding: 0;
 }
 /* header */
@@ -52,6 +52,8 @@ main {
 	border: 1px solid;
 	display: flex;
 	justify-content: center;
+	height: 669px;
+
 }
 
 aside {
@@ -143,16 +145,18 @@ tr, th, td {
 /* footer */
 
 footer {
+    position: fixed;
+    bottom: 0;
     text-align: right;
     line-height: 40px;
     color: white;
     background-color: #464646;
-	width: 100%;
-	height:60px;
+    width: 100%;
+    height:60px;
     padding: 10px;
     justify-content: space-between;
-	align-items: center;
-	display: flex;
+    align-items: center;
+    display: flex;
 }
 
 
