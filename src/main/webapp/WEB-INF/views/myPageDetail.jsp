@@ -50,6 +50,11 @@
          </div>
       </section>
    </main>
+   <footer>
+   <span id="company">Sajangnim Nice Shot</span>
+   <span id="git" onclick="redirectToGitHub()">contact-us</span>
+   <span id="contact" onclick="location.href='/moveContact'">문의하기</span>
+   </footer>
 </body>
 <script>
         if (`${message}` !== ``) {
@@ -64,6 +69,7 @@
         let postType = getReservationDetail;
         createTable(); 
         function createTable() {
+        	  
             const table = document.querySelector('#table1');
             table.innerHTML = `<th class = "th_style">예약번호</th>
             					<th class = "th_style">예약자명</th>
@@ -72,20 +78,22 @@
                                 <th class = "th_style">인원수</th>`;
                                 
             postType.forEach((detail) => {
+            	const convertedTime = convertTimeFormat(detail.rsvTime);
+            	console.log(convertedTime);
                 const tr1 = document.createElement('tr');
                 tr1.innerHTML =
                     `<td class = "td_style">` + detail.rsvCode + `</td>
                     <td class = "td_style">` + detail.rsvMemNickname + `</td>
                     <td class = "td_style">` + detail.rsvDate + `</td>
-                    <td class = "td_style">` + detail.rsvTime + `</td>
-                    <td class = "td_style">` + detail.rsvCount+ `</td>`;
+                    <td class = "td_style">` + convertedTime + `</td>
+                    <td class = "td_style">` + detail.rsvCount+ "명" +`</td>`;
                 table.appendChild(tr1);
             });
                 
-            table.innerHTML += `<th class = "th_style">HOLE</th>
-						          <th class = "th_style">CADDY</th>
-						          <th class = "th_style">CLOTHES</th>
-						          <th class = "th_style">SHOES</th>
+            table.innerHTML += `<th class = "th_style">홀</th>
+						          <th class = "th_style">캐디</th>
+						          <th class = "th_style">골프웨어</th>
+						          <th class = "th_style">골프슈즈</th>
 						          <th class = "th_style">총가격</th>`;
             		
             
@@ -121,7 +129,7 @@
                         const pricesBean = detail.pricesBean[0];
                         tr4.innerHTML +=
                             `<th class = "th_style1">` + pricesBean.priOption1 + "홀"　+ `</th><td class = "td_style1">` + `</td>` +
-                            `<td class = "td_style">` + pricesBean.priPrice1 + "원" + `</td>`;
+                            `<td class = "td_style2">` + pricesBean.priPrice1 + "원" + `</td>`;
                     } 
                 table.appendChild(tr4);
                 
@@ -130,7 +138,7 @@
                     const pricesBean = detail.pricesBean[0];
                     tr5.innerHTML +=
                         `<th class = "th_style1">` + "캐디 " + `</th><td class = "td_style1">` + pricesBean.priOption2 + `</td>` + 
-                        `<td class = "td_style">` + pricesBean.priPrice2 + "원" +  `</td>`;
+                        `<td class = "td_style2">` + pricesBean.priPrice2 + "원" +  `</td>`;
                 } 
                 table.appendChild(tr5);
             
@@ -139,7 +147,7 @@
 	                const pricesBean = detail.pricesBean[0];
 	                tr6.innerHTML +=
 	                    `<th class = "th_style1">` + "골프웨어 " + `</th><td class = "td_style1">` + pricesBean.priOption3 + `</td>` 
-	                    + `<td class = "td_style">` + pricesBean.priPrice3 + "원" +  `</td>`;
+	                    + `<td class = "td_style2">` + pricesBean.priPrice3 + "원" +  `</td>`;
 	            } 
 	            table.appendChild(tr6);
 	        
@@ -147,8 +155,8 @@
 		        if (detail.pricesBean && detail.pricesBean.length > 0) {
 		            const pricesBean = detail.pricesBean[0];
 		            tr7.innerHTML +=
-		                `<th class = "th_style1">` + "골프신발 " + `</th><td class = "td_style1">` + pricesBean.priOption4 + `</td>` + 
-		                `<td class = "td_style">` + pricesBean.priPrice4 + "원" +  `</td>`;
+		                `<th class = "th_style1">` + "골프슈즈 " + `</th><td class = "td_style1">` + pricesBean.priOption4 + `</td>` + 
+		                `<td class = "td_style2">` + pricesBean.priPrice4 + "원" +  `</td>`;
 		        } 
 		        table.appendChild(tr7);
 	            });				
@@ -168,5 +176,16 @@
         		alert("삭제 취소");
         	}
         }
+        
+        function convertTimeFormat(inputTime) {
+        	  // 입력된 시간 문자열을 'HHmm' 형식에서 'HH:mm' 형식으로 변환
+        	  const formattedTime = inputTime.replace(/(\d{2})(\d{2})/, '$1:$2');
+        	  // 변환된 시간 문자열에서 시와 분을 추출
+        	  const hours = formattedTime.substr(0, 2);
+        	  const minutes = formattedTime.substr(3, 2);
+        	  // 'HH시 mm분' 형식으로 반환
+        	  const result = hours + '시 ' + minutes + '분';
+        	  return result;
+        	}
     </script>
 </html>

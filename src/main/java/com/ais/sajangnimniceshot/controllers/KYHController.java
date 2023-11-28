@@ -57,7 +57,6 @@ public class KYHController {
 //        System.out.println("crawledData" + crawledData);
         this.service.backController("WebCrawlerApplication", mav);
         this.auth.backController("changeHeader", mav);
-         System.out.println("mav");
         return mav;
     }
 }

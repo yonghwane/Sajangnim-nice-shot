@@ -40,12 +40,11 @@
 	  </ul>
       </section>
    </main>
-   
-   
-   <section1>
-
-   
-   </section1>
+   <footer>
+   <span id="company">Sajangnim Nice Shot</span>
+   <span id="git" onclick="redirectToGitHub()">contact-us</span>
+   <span id="contact" onclick="location.href='/moveContact'">문의하기</span>
+   </footer>
 </body>
 <script>
         if (`${message}` !== ``) {alert(`${message}`);

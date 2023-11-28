@@ -34,6 +34,11 @@
 			</table>
 		</section>
 	</main>
+	<footer>
+	<span id="company">Sajangnim Nice Shot</span>
+    <span id="git" onclick="redirectToGitHub()">contact-us</span>
+    <span id="contact" onclick="location.href='/moveContact'">문의하기</span>
+    </footer>
 </body>
 <script>
         if (`${message}` !== ``) {

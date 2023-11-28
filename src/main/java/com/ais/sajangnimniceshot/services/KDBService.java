@@ -29,6 +29,9 @@ public class KDBService implements ServiceRule {
 	public void backController(String serviceCode, ModelAndView mav) { // 동기식
 		// 로그인 불필요
 		switch (serviceCode) {
+		case "moveContact":
+			this.moveContact(mav);
+			return;
 		default:
 			break;
 		}
@@ -83,11 +86,14 @@ public class KDBService implements ServiceRule {
 		}
 	}
 
+	private void moveContact(ModelAndView mav) {
+	}
+
 	private void reservation(ModelAndView mav) {
 		MemberBean accessInfo = this.auth.getAccessInfo();
 		ReservationBean reservationBean = (ReservationBean) mav.getModel().get("reservationBean");
 
-		if(accessInfo == null) {
+		if (accessInfo == null) {
 			mav.addObject("message", "먼저 로그인해주세요");
 			mav.setViewName("main");
 			return;
@@ -98,7 +104,7 @@ public class KDBService implements ServiceRule {
 			mav.setViewName("reservation");
 			return;
 		}
-		System.out.println("date:" +reservationBean.getRsvDate()+ "time: "+ reservationBean.getRsvTime());
+		System.out.println("date:" + reservationBean.getRsvDate() + "time: " + reservationBean.getRsvTime());
 		String rsvMemNickname = accessInfo.getMemNickname();
 		String rsvTime = reservationBean.getRsvTime();
 		String rsvDate = reservationBean.getRsvDate();
@@ -117,11 +123,12 @@ public class KDBService implements ServiceRule {
 				+ Integer.parseInt(getShoesPrice.getPriPrice());
 
 		System.out.print("totalPrice:" + totalPrice);
-		
+
 		this.kdbMapper.insertReservation(rsvMemNickname, rsvDate, rsvTime, rsvCount, rsvHole, rsvCaddy, rsvClothes,
 				rsvShoes, String.valueOf(totalPrice));
+
 		this.kdbMapper.insertTimeslots(rsvDate, rsvTime);
-		
+    
 		System.out.println("getRsvCode : " + this.kdbMapper.getRsvCode());
 
 //		mav.addObject("getRsvDetailList",
@@ -183,7 +190,7 @@ public class KDBService implements ServiceRule {
 		if (accessInfo == null) {
 			mav.addObject("message", "먼저 로그인해주세요");
 			return;
-		}	
+		}
 		System.out.println("mapper : " + this.kdbMapper.getRsvList(accessInfo.getMemNickname()));
 		mav.addObject("getRsvList", this.gson.toJson(this.kdbMapper.getRsvList(accessInfo.getMemNickname())));
 	}

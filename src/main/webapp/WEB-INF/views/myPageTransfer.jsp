@@ -19,11 +19,12 @@
         </div>
     </header>
     <main>
-        <aside>
-        <div onclick="location.href=''">예약</div>
-        <div onclick="location.href='/moveMyPage'">마이페이지</div>
-        <div onclick="location.href=''">이벤트</div>
-        </aside>
+	    <aside>
+		 	<div id="aside-main" onclick="location.href='/'">메인페이지</div>
+		    <div onclick="location.href='/moveReservation'">예약</div>
+		    <div onclick="location.href='/moveMyPage'">마이페이지</div>
+		    <div onclick="location.href='/moveCrawledData'">이벤트</div>
+	    </aside>
         <section>
         
         <div class="send-container">
@@ -39,6 +40,11 @@
     </div>
         </section>
     </main>
+    <footer>
+    <span id="company">Sajangnim Nice Shot</span>
+    <span id="git" onclick="redirectToGitHub()">contact-us</span>
+    <span id="contact" onclick="location.href='/moveContact'">문의하기</span>
+    </footer>
     
 </body>
 

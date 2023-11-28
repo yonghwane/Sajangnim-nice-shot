@@ -8,7 +8,8 @@
 <title>myPage</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/reset.css" />
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/reset.css" />
 <link rel="stylesheet" href="/css/KDB.css" />
 <link rel="stylesheet" href="/css/KYH.css" />
 <script src="/js/KDB.js"></script>
@@ -40,6 +41,11 @@
          </ul>
       </section>
    </main>
+   <footer>
+   <span id="company">Sajangnim Nice Shot</span>
+   <span id="git" onclick="redirectToGitHub()">contact-us</span>
+   <span id="contact" onclick="location.href='/moveContact'">문의하기</span>
+   </footer>
 </body>
 <script>
         if (`${message}` !== ``) {alert(`${message}`); window.location.href = "/"; }

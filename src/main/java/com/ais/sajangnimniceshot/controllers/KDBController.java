@@ -48,4 +48,14 @@ public class KDBController {
 	}
 
 
+	// 문의
+	@GetMapping("/moveContact")
+	public ModelAndView moveContact(ModelAndView mav) {
+		mav.setViewName("contact");
+		this.service.backController("moveContact", mav);
+		this.auth.backController("changeHeader", mav);
+		return mav;
+	}
+
+
 }
