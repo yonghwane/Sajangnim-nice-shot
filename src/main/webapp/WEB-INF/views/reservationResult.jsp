@@ -72,7 +72,7 @@
             postType.forEach((detail) => {
                 const tr1 = document.createElement('tr');
                 tr1.innerHTML =
-                    `<td class = "td_style">` + detail.rsvCode + `</td>
+                    `<td class = "td_style">` + detail.rsvCode + "홀" +`</td>
                     <td class = "td_style">` + detail.rsvMemNickname + `</td>
                     <td class = "td_style">` + detail.rsvDate + `</td>
                     <td class = "td_style">` + detail.rsvTime + `</td>
@@ -81,9 +81,9 @@
             });
                 
             table.innerHTML += `<th class = "th_style">HOLE</th>
-						          <th class = "th_style">CADDY</th>
-						          <th class = "th_style">CLOTHES</th>
-						          <th class = "th_style">SHOES</th>
+						          <th class = "th_style">캐디</th>
+						          <th class = "th_style">골프웨어</th>
+						          <th class = "th_style">골프화</th>
 						          <th class = "th_style">총가격</th>`;
             		
             
