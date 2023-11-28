@@ -10,6 +10,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/reset.css" />
 <link rel="stylesheet" href="/css/AJW.css" />
+<link rel="stylesheet" href="/css/KDB.css" />
+<link rel="stylesheet" href="/css/SHS.css" />
 <script src="/js/KDB.js"></script>
 <style>
 </style>
@@ -34,9 +36,12 @@
       <section>
    		<div id="h3" onclick="location.href='/moveMyPage'">마이페이지로 돌아가기</div>
 	   		<table class = "table_style1" id="table1">
-	   		<div id="h5">예약이 완료되었습니다.</div>
 	   			<tr></tr>
 	        </table>
+	        <br/>
+	        <div id="h5">예약이 완료되었습니다.</div>
+	        <br/>
+	        <br/>
 	  </ul>
       </section>
    </main>
