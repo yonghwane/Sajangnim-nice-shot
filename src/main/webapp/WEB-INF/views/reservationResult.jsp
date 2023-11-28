@@ -81,7 +81,7 @@
                 table.appendChild(tr1);
             });
                 
-            table.innerHTML += `<th class = "th_style">HOLE</th>
+            table.innerHTML += `<th class = "th_style">홀</th>
 						          <th class = "th_style">캐디</th>
 						          <th class = "th_style">골프웨어</th>
 						          <th class = "th_style">골프화</th>
