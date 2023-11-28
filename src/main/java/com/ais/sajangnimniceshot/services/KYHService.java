@@ -111,23 +111,17 @@ public class KYHService implements ServiceRule {
 
 		try {
 			Document document = Jsoup.connect(url).get();
-
-			Elements titles = document.select(".toplink");
-			Elements types = document.select(".type");
-			Elements dates = document.select(".date");
-			Elements links = document.select("a.toplink");
+			
+			Elements articles = document.select("article.news");
 			List<String> newsTitles = new ArrayList<>();
 			List<String> newsDates = new ArrayList<>();
 			List<String> newsTypes = new ArrayList<>();
 			List<String> hrefValues = new ArrayList<>();
-			for (Element title : titles) {
-				String hrefValue = links.attr("href");
-				String newsTitle = title.text();
-				String newsType = types.text();
-				String newsDate = dates.text();
-				System.out.println("뉴스제목: " + newsTitle);
-				System.out.println("뉴스게시자: " + newsType);
-				System.out.println("뉴스날짜: " + newsDate);
+			for (Element article : articles) {
+				String hrefValue = article.select("a").attr("href");
+				String newsTitle = article.select("a.toplink").text();
+				String newsType = article.select("div.type-date span.type").text();
+				String newsDate = article.select("div.type-date span.date").text();
 				newsTitles.add(newsTitle);
 				newsDates.add(newsDate);
 				newsTypes.add(newsType);

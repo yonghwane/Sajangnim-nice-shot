@@ -122,3 +122,7 @@ function deleteReservation(result) {
 		console.log(getRsvList)
 	}
 }
+
+function redirectToGitHub() {
+	window.location.href = 'https://github.com/yonghwane/Sajangnim-nice-shot';
+}
