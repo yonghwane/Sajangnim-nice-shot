@@ -172,7 +172,6 @@
         	}
         }
         
-        
         function convertTimeFormat(inputTime) {
         	  // 입력된 시간 문자열을 'HHmm' 형식에서 'HH:mm' 형식으로 변환
         	  const formattedTime = inputTime.replace(/(\d{2})(\d{2})/, '$1:$2');
