@@ -28,7 +28,7 @@
          <div onclick="location.href='/moveCrawledData'">이벤트</div>
       </aside>
       <section>
-      <div id="h3">마이페이지</div>
+      <div id="h3h3">마이페이지</div>
       <hr>
          <table class = "table_style1" id="table1">
             <tr></tr>

@@ -72,7 +72,7 @@ public class Authentication implements ServiceRule {
 		sb.append("<div>\n");
 		sb.append("<div class=\"login_wrap\">\n");
 		sb.append("    <p>환영합니다 " + accessInfo.getMemNickname() + "님！</p>\n");
-		sb.append("    <button onclick=\"location.href='/logout'\">로그아웃</button>\n");
+		sb.append("    <button class=\"login-button\" onclick=\"location.href='/logout'\">로그아웃</button>\n");
 		sb.append("</div>\n");
 		return sb.toString();
 	}

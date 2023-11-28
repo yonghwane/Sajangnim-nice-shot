@@ -8,8 +8,10 @@
         <title>board</title>
         <link rel="stylesheet" href="/css/reset.css" />
         <link rel="stylesheet" href="/css/KDB.css" />
+        <link rel="stylesheet" href="/css/KYH.css" />
         <script src="/js/KDB.js"></script>
         <script src="/js/YSY.js"></script>
+        
     </head>
 
     <script>
