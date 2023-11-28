@@ -27,6 +27,7 @@ header {
 	position: fixed;
 	height: 60px;
 	width: 100%;
+	height:65px;
 	border: 1px solid;
 	padding: 10px;
 	display: flex;
@@ -34,8 +35,11 @@ header {
 	align-items: center;
 }
 
-section, aside {
-	margin-top: 48px;
+section {
+	margin-top: 63px;
+}
+aside {
+	margin-top: 59px;
 }
 
 .login_wrap {
@@ -155,3 +159,4 @@ footer {
 #git,#contact:hover {
 	cursor: pointer;
 }
+

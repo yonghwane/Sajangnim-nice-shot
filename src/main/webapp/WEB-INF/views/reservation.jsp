@@ -14,6 +14,10 @@
         <link rel="stylesheet" href="/css/KYH.css" />
         <script src="/js/KDB.js"></script>
         <script src="/js/YSY.js"></script>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
     </head>
 
     <script>
@@ -40,29 +44,79 @@
                 <form action="/reservation" id="reserveForm" method="post">
                 	<div id="h3" onclick="location.href='/moveMyPage'">예약</div>
                     <fieldset>
-                    
-                        <label for="selectDate">date</label>
-                        <input type="date" name="rsvDate" path="selectDate" id="selectDate" required><br>
-                        <label for="selectTime" id="tiTime">시간 선택 : </label>
-                        <select path="timeStr" id="selectTime" name="rsvTime" required></select>
-                            <br />
-                            <div>인원</div>
-                            <input type="radio" id="rsvCount4" name="rsvCount" value="4" checked />4인
-                            <input type="radio" id="rsvCount8" name="rsvCount" value="8" />8인
-                            <div>홀</div>
-                            <input type="radio" id="rsvHole9" name="rsvHole" value="1" checked />〇
-                            <input type="radio" id="rsvHole18" name="rsvHole" value="2" />×
-                            <div>캐디</div>
-                            <input type="radio" id="rsvCaddyo" name="rsvCaddy" value="3" checked />〇
-                            <input type="radio" id="rsvCaddyx" name="rsvCaddy" value="4" />×
-                            <div>골프웨어</div>
-                            <input type="radio" id="rsvClotheso" name="rsvClothes" value="5" checked />〇
-                            <input type="radio" id="rsvClothesx" name="rsvClothes" value="6" />×
-                            <div>골프화</div>
-                            <input type="radio" id="rsvShoeso" name="rsvShoes" value="7" checked />〇
-                            <input type="radio" id="rsvShoesx" name="rsvShoes" value="8" />×
-                            <br />
-                            <button type="submit">예약</button>
+                            <table class = "table">
+                            	<thead>
+                            	<tr style="width: 20%">
+	                              <th style="width: 20%">날짜 선택</th>
+	                              <td style="width: 20%">
+	                              	<label for="selectDate"></label>
+	                              	<input type="date" name="rsvDate" path="selectDate" id="selectDate" required><br>
+	                              </td>
+	                              <td></td>
+	                            </tr>
+	                            <tr>
+	                            	<th style="width: 10%">시간 선택</th>
+	                              <td style="width: 20%">
+	                              	<label for="selectTime" id="tiTime"></label>
+	                              	<select path="timeStr" id="selectTime" name="rsvTime" required></select>
+	                              </td> 
+	                              <td></td>
+	                            </tr>
+                            	</thead>
+	                            <tbody>
+		                            <tr>
+		                              <th style="width: 10%">인원</th>
+		                              <td style="width: 5%">4인
+		                              	<input type="radio" id="rsvCount4" name="rsvCount" value="4" checked />
+		                              </td> 
+		                              <td style="width: 20%">8인
+		                              <input type="radio" id="rsvCount8" name="rsvCount" value="8" />
+		                              </td> 
+		                            </tr>
+		                            
+		                            <tr>
+		                            <th scope="row">홀</th>
+		                            <td>9홀
+		                            	<input type="radio" id="rsvHole9" name="rsvHole" value="1" checked />
+		                            </td> 
+		                            <td>18홀
+		                            	<input type="radio" id="rsvHole18" name="rsvHole" value="2" />
+		                            </td> 
+		                            </tr>
+
+		                            <tr>
+		                              <th scope="row">캐디</th>
+		                              <td>유
+		                              	<input type="radio" id="rsvCaddyo" name="rsvCaddy" value="3" checked />
+		                              </td> 
+		                              <td>무
+		                              	<input type="radio" id="rsvCaddyx" name="rsvCaddy" value="4" />
+		                              </td> 
+		                            </tr>
+
+		                            <tr>
+		                              <th scope="row">골프웨어</th>
+		                              <td>유
+		                              	<input type="radio" id="rsvClotheso" name="rsvClothes" value="5" checked />
+		                              </td> 
+		                              <td>무
+		                              <input type="radio" id="rsvClothesx" name="rsvClothes" value="6" />
+		                              </td> 
+		                            </tr>
+
+		                            <tr>
+		                              <th scope="row">골프화</th>
+		                              <td>유
+		                              	<input type="radio" id="rsvShoeso" name="rsvShoes" value="7" checked />
+		                              </td> 
+		                              <td>무
+		                              <input type="radio" id="rsvShoesx" name="rsvShoes" value="8" />
+		                              </td> 
+		                            </tr>
+                            
+                            </table>
+                            <br>
+                            <button type="submit" class="btn btn-outline-primary">예약</button>
                     </fieldset>
                     </form:form>
             </section>

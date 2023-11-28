@@ -113,13 +113,7 @@
     let newsDatesAll = JSON.parse(`${newsDates}`);
     let newsTypesAll = JSON.parse(`${newsTypes}`);
     let hrefValues = JSON.parse(`${hrefValues}`);
-    console.log(hrefValues);
-    let newsDates = [newsDatesAll[0]];
-    let newsDatesSlice = newsDates[0].split(" ");
-    let newsTypes = [newsTypesAll[0]];
-    let newsTypesSlice = newsTypes[0].split(" ");
-    console.log(newsDatesSlice[0]);
-    console.log(newsTypesSlice[0]);
+
     let printevent = () => {
     let container = document.getElementById('container');
 
@@ -136,8 +130,8 @@
         dateP.className = "date";
         
         titleP.textContent = newsTitles[i];
-        typeP.textContent = newsTypesSlice[i];
-        dateP.textContent = newsDatesSlice[i];
+        typeP.textContent = newsTypesAll[i];
+        dateP.textContent = newsDatesAll[i];
 
         spanDiv.appendChild(typeP); 
         spanDiv.appendChild(dateP); 
