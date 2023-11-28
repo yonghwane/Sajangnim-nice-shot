@@ -152,13 +152,11 @@ footer {
     padding: 10px;
     justify-content: space-between;
 	align-items: center;
+	display: flex;
 }
 
-#contatc {
-	border-inline: 10px;
-}
 
-#contact:hover {
+#git,#contact:hover {
 	cursor: pointer;
 }
 
