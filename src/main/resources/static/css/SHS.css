@@ -9,10 +9,10 @@
 
 /* my_page_Detail */
 
+
 #h3h3 {
     padding: 10px;
-    display: inline-flex; 
-    cursor: pointer; 
+    display: inline-flex;  
     font-weight: bold;
     font-size:30px;
     margin-bottom: 0px;
@@ -68,6 +68,14 @@
 .td_style1 {
 	text-align: center;
 }
+
+.td_style2 {
+	margin: 10px;
+	padding: 10px;
+	text-align: right;
+}
+
+
 tr, th, td {
 	border: none;
 	text-align: center;

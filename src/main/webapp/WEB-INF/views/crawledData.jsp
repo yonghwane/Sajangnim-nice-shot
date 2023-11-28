@@ -17,6 +17,7 @@
     text-align: left;
     display: flex;
     flex-direction: column;  
+    
 }
 .banner-box {
     display: flex; 
