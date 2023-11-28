@@ -35,8 +35,8 @@ public class KDBService implements ServiceRule {
 		// 로그인 필요
 		MemberBean accessInfo = this.auth.getAccessInfo();
 		if (accessInfo == null) {
-			mav.setViewName("redirect:/");
-			mav.addObject("message", "先にログインをしてください");
+			mav.addObject("message", "먼저 로그인해주세요");
+			mav.setViewName("main");
 			return;
 		}
 		switch (serviceCode) {
@@ -83,44 +83,15 @@ public class KDBService implements ServiceRule {
 		}
 	}
 
-//	private void reservation(ModelAndView mav) {
-//		MemberBean accessInfo = this.auth.getAccessInfo();
-//		ReservationBean reservationBean = (ReservationBean) mav.getModel().get("reservationBean");
-//
-//		String rsvCode = reservationBean.getRsvCode();
-//		String rsvMemNickname = accessInfo.getMemNickname();
-//		String rsvTime = reservationBean.getRsvTime();
-//		String rsvDate = reservationBean.getRsvDate();
-//		String rsvCount = reservationBean.getRsvCount();
-//		String rsvHole = reservationBean.getRsvHole();
-//		String rsvCaddy = reservationBean.getRsvCaddy();
-//		String rsvClothes = reservationBean.getRsvClothes();
-//		String rsvShoes = reservationBean.getRsvShoes();
-//		String rsvPrice = reservationBean.getRsvPrice();
-//
-//		PricesBean getHolePrice = this.kdbMapper.getHolePrice(rsvHole);
-//		PricesBean getCaddyPrice = this.kdbMapper.getCaddyPrice(rsvCaddy);
-//		PricesBean getClothesPrice = this.kdbMapper.getClothesPrice(rsvClothes);
-//		PricesBean getShoesPrice = this.kdbMapper.getShoesPrice(rsvShoes);
-//
-//		Integer totalPrice = Integer.parseInt(getHolePrice.getPriPrice())
-//				+ Integer.parseInt(getCaddyPrice.getPriPrice()) + Integer.parseInt(getClothesPrice.getPriPrice())
-//				+ Integer.parseInt(getShoesPrice.getPriPrice());
-//
-//		System.out.print("totalPrice:" + totalPrice);
-//
-////				+ " " + "getCaddyPrice:" + getCaddyPrice + " "
-////				+ "getClothesPrice:" + getClothesPrice + " " + "getShoesPrice:" + getShoesPrice);
-//
-//		mav.addObject("getReservationDetail", this.gson.toJson(this.shsMapper.getReservationDetail(rsvCode)));
-////		this.kdbMapper.updateReservation(rsvCode, rsvCount, rsvHole, rsvCaddy, rsvClothes, rsvShoes);
-//		mav.addObject("getRsvDetailList", this.gson.toJson(this.shsMapper.getReservationDetail(rsvCode)));
-//	}
-
 	private void reservation(ModelAndView mav) {
 		MemberBean accessInfo = this.auth.getAccessInfo();
 		ReservationBean reservationBean = (ReservationBean) mav.getModel().get("reservationBean");
 
+		if(accessInfo == null) {
+			mav.addObject("message", "먼저 로그인해주세요");
+			mav.setViewName("main");
+			return;
+		}
 		if (this.kdbMapper.checkDate(reservationBean.getRsvDate(), reservationBean.getRsvTime())) {
 			// TimeSlots에 동일한 날짜, 시간 있을 경우
 			mav.addObject("message", "예약할 수 없습니다.");
