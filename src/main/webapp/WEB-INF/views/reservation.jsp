@@ -20,11 +20,6 @@
 
     </head>
 
-    <script>
-
-
-    </script>
-
     <body>
         <header class="header">
             <img id="logo" onclick="location.href='/'" src="/img/SNP_LOGO4.png" />
