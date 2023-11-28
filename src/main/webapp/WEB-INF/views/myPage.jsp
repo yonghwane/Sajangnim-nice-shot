@@ -42,8 +42,7 @@
    </main>
 </body>
 <script>
-        if (`${message}` !== ``) {alert(`${message}`);
-        }
+        if (`${message}` !== ``) {alert(`${message}`); window.location.href = "/"; }
         if (`${headerHTML}` !== ``) document.querySelector('.header').innerHTML = `${headerHTML}`;
     
         let reservation = document.querySelector('#reservation');
