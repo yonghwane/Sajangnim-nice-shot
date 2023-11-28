@@ -2,6 +2,9 @@
 <html>
 <head>
     <title>Crawled Data</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/reset.css" />
     <link rel="stylesheet" href="/css/KDB.css" />
     <link rel="stylesheet" href="/css/KYH.css" />
@@ -16,8 +19,9 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
     text-align: left;
     display: flex;
-    flex-direction: column;  
-    
+    flex-direction: column;
+    overflow-y:scroll; 
+    height:500px;
 }
 .banner-box {
     display: flex; 
@@ -79,12 +83,12 @@
         </div>
     </header>
     <main>
-	    <aside>
-		 	<div id="aside-main" onclick="location.href='/'">메인페이지</div>
-		    <div onclick="location.href='/moveReservation'">예약</div>
-		    <div onclick="location.href='/moveMyPage'">마이페이지</div>
-		    <div onclick="location.href='/moveCrawledData'">이벤트</div>
-	    </aside>
+        <aside>
+        <div id="aside-main" onclick="location.href='/'">메인페이지</div>
+        <div onclick="location.href=location.href='/moveReservation'">예약</div>
+        <div onclick="location.href='/moveMyPage'">마이페이지</div>
+        <div onclick="location.href='moveCrawledData'">이벤트</div>
+        </aside>
         <section>
         <div id="container">
         <div class="banner-box"> 
@@ -93,6 +97,9 @@
         </div>
         </section>
         </main>
+        <footer>
+        <div id="contact" onclick="location.href='/moveContact'">문의하기</div>
+        </footer>
         </body>
 <script>
     	if (`${message}` !== ``) {

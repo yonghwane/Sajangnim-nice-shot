@@ -39,6 +39,9 @@
 	    </ul>
 	</section>
 	</main>
+	<footer>
+    <div id="contact" onclick="location.href='/moveContact'">문의하기</div>
+    </footer>
 </body>
 <script>
     	if (`${message}` !== ``) {
