@@ -51,6 +51,7 @@
               <div class="card">
                 <div class="card-body" style="height: 30rem">
                 <img src="/img/event.jpg" class="card-img-top" alt="">
+                <p></p>
                   <h5 class="card-title">EVENT</h5>
                   <p></p>
                   <p class="card-text">일본에서 일어나는 다양한 골프 관련 정보를 받아보세요.</p>
