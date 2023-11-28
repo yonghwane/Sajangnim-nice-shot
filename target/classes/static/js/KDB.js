@@ -170,4 +170,8 @@ function removeReservation(rsvCode) { // 프론트 서버로 요청 보내고, �
 			alert("삭제 성공");
 			console.log(getRsvList)
 		}
-	}
+}
+
+function redirectToGitHub() {
+	window.location.href = 'https://github.com/yonghwane/Sajangnim-nice-shot';
+}

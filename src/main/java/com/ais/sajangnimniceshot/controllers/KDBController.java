@@ -56,20 +56,6 @@ public class KDBController {
 		return mav;
 	}
 
-//	// 예약이동
-//	@PostMapping("/reservation/{rsvCode}")
-//	public ModelAndView reservation(ModelAndView mav, @PathVariable("rsvCode") String rsvCode,
-//			ReservationBean reservationBean) {
-//
-//		mav.setViewName("reservationResult");
-//		mav.addObject("rsvCode", rsvCode);
-//		mav.addObject("reservationBean", reservationBean);
-//
-//		this.service.backController("reservation", mav);
-//		this.auth.backController("changeHeader", mav);
-//		return mav;
-//	}
-
 //	@GetMapping("/moveReservedDetail/{rsvCode}")
 //	public ModelAndView moveReservedDetail(ModelAndView mav, @PathVariable("rsvCode") String rsvCode) {
 //		mav.setViewName("reservedDetail");
