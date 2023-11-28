@@ -70,13 +70,14 @@
                                 <th class = "th_style">인원수</th>`;
                                 
             postType.forEach((detail) => {
+		const convertedTime = convertTimeFormat(detail.rsvTime); 
                 const tr1 = document.createElement('tr');
                 tr1.innerHTML =
-                    `<td class = "td_style">` + detail.rsvCode + "홀" +`</td>
+                    `<td class = "td_style">` + detail.rsvCode + `</td>
                     <td class = "td_style">` + detail.rsvMemNickname + `</td>
                     <td class = "td_style">` + detail.rsvDate + `</td>
-                    <td class = "td_style">` + detail.rsvTime + `</td>
-                    <td class = "td_style">` + detail.rsvCount+ `</td>`;
+                    <td class = "td_style">` + convertedTime + `</td>
+                    <td class = "td_style">` + detail.rsvCount+"명" +`</td>`;
                 table.appendChild(tr1);
             });
                 
@@ -102,7 +103,16 @@
             });
         
         }
-        
+        function convertTimeFormat(inputTime) {
+        	  // 입력된 시간 문자열을 'HHmm' 형식에서 'HH:mm' 형식으로 변환
+        	  const formattedTime = inputTime.replace(/(\d{2})(\d{2})/, '$1:$2');
+        	  // 변환된 시간 문자열에서 시와 분을 추출
+        	  const hours = formattedTime.substr(0, 2);
+        	  const minutes = formattedTime.substr(3, 2);
+        	  // 'HH시 mm분' 형식으로 반환
+        	  const result = hours + '시 ' + minutes + '분';
+        	  return result;
+        	}
         
     </script>
 </html>
