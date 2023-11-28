@@ -79,9 +79,10 @@
     </header>
     <main>
         <aside>
+        <div id="aside-main" onclick="location.href='/'">메인페이지</div>
         <div onclick="location.href=location.href='/moveReservation'">예약</div>
         <div onclick="location.href='/moveMyPage'">마이페이지</div>
-        <div onclick="location.href=''">이벤트</div>
+        <div onclick="location.href='moveCrawledData'">이벤트</div>
         </aside>
         <section>
         <div id="container">
