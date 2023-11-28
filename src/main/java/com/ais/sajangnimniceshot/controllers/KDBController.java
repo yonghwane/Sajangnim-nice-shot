@@ -47,6 +47,15 @@ public class KDBController {
 		return mav;
 	}
 
+	// 문의
+	@GetMapping("/moveContact")
+	public ModelAndView moveContact(ModelAndView mav) {
+		mav.setViewName("contact");
+		this.service.backController("moveContact", mav);
+		this.auth.backController("changeHeader", mav);
+		return mav;
+	}
+
 //	// 예약이동
 //	@PostMapping("/reservation/{rsvCode}")
 //	public ModelAndView reservation(ModelAndView mav, @PathVariable("rsvCode") String rsvCode,

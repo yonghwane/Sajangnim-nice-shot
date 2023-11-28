@@ -40,12 +40,9 @@
 	  </ul>
       </section>
    </main>
-   
-   
-   <section1>
-
-   
-   </section1>
+   <footer>
+   <div id="contact" onclick="location.href='/moveContact'">문의하기</div>
+   </footer>
 </body>
 <script>
         if (`${message}` !== ``) {alert(`${message}`);
