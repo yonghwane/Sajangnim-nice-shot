@@ -72,85 +72,36 @@ function sendAjaxPost(serviceCode, formData, callBackFunction) {
 }
 
 function login() {
-    const form = document.createElement('form');
-    form.method = 'post';
-    form.action = '/login';
+	const form = document.createElement('form');
+	form.method = 'post';
+	form.action = '/login';
 
-    const memNickname = document.querySelector('#memNickname');
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'memNickname';
-    input.value = memNickname.value;
+	const memNickname = document.querySelector('#memNickname');
+	const input = document.createElement('input');
+	input.type = 'hidden';
+	input.name = 'memNickname';
+	input.value = memNickname.value;
 
-    form.appendChild(input);
-    document.body.appendChild(form);
-    form.submit();
-}
-async function login2() {
-    const memNickname = document.querySelector('#memNickname').value;
-
-    try {
-        const response = await fetch('/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: JSON.stringify({ memNickname: memNickname }),
-        });
-
-        if (!response.ok) {
-            console.log(`Error: ${response.status} ${response.statusText}`);
-            return;
-        }
-
-        const data = await response.json();
-
-        console.log(data.message);
-        updateHeader(memNickname);
-
-    } catch (error) {
-        console.log(error);
-    }
+	form.appendChild(input);
+	document.body.appendChild(form);
+	form.submit();
 }
 
 async function updateHeader(memNickname) {
-    try {
-        const response = await fetch('/header');
+	try {
+		const response = await fetch('/header');
 
-        if (!response.ok) {
-            console.log(`Error: ${response.status} ${response.statusText}`);
-            return;
-        }
+		if (!response.ok) {
+			console.log(`Error: ${response.status} ${response.statusText}`);
+			return;
+		}
 
-        document.querySelector('.header').innerHTML = `로그인 성공: ${memNickname}`;
+		document.querySelector('.header').innerHTML = `로그인 성공: ${memNickname}`;
 
-    } catch (error) {
-        console.log(error);
-    }
+	} catch (error) {
+		console.log(error);
+	}
 }
-//function removeReservation(rsvCode) { // 프론트 서버로 요청 보내고, 서버에서 처리 후 json형식으로 반환, delete함수에 그 값을 전달
-//	const isConfirmed = confirm("예약을 취소하시겠습니까?");
-//	if (isConfirmed) {
-//		postAjaxJson('/removeReservation', '&rsvCode=' + rsvCode, 'deleteReservation')
-//	} else {
-//		alert("삭제 취소");
-//	}
-//}
-//
-//function deleteReservation(result) {
-//	console.log(result) // 1 or 0
-//	console.log(typeof (result)) // string (json은 string)
-//	if (result === '1') {
-//		alert("삭제 성공");
-//		window.location.href = "/moveMyPage";
-//		const form = document.createElement('form')
-//		document.body.appendChild(form)
-//		form.method = 'post'
-//		form.action = '/login'
-//		const memNickname = document.querySelector('#memNickname')
-//		form.appendChild(memNickname)
-//		form.submit()
-//	}
 
 function removeReservation(rsvCode) { // 프론트 서버로 요청 보내고, 서버에서 처리 후 json형식으로 반환, delete함수에 그 값을 전달
 	const isConfirmed = confirm("예약을 삭제하시겠습니까?");
@@ -163,13 +114,13 @@ function removeReservation(rsvCode) { // 프론트 서버로 요청 보내고, �
 	}
 }
 
-	function deleteReservation(result) {
-		console.log(result) // 1 or 0
-		console.log(typeof (result)) // string (json은 string)
-		if (result === '1') {
-			alert("삭제 성공");
-			console.log(getRsvList)
-		}
+function deleteReservation(result) {
+	console.log(result) // 1 or 0
+	console.log(typeof (result)) // string (json은 string)
+	if (result === '1') {
+		alert("삭제 성공");
+		console.log(getRsvList)
+	}
 }
 
 function redirectToGitHub() {
