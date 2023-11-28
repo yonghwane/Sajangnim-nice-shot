@@ -56,7 +56,7 @@
         
     </body>
     <script>
-        if (`${message}` !== ``) {alert(`${message}`); window.location.href = "/";}
+        if (`${message}` !== ``) {alert(`${message}`); }
         if (`${headerHTML}` !== ``) document.querySelector('.header').innerHTML = `${headerHTML}`;
         document.getElementById('contact-form').addEventListener('submit', function(event) {
             event.preventDefault();
