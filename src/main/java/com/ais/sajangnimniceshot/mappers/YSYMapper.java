@@ -29,4 +29,5 @@ public interface YSYMapper {
 //    int updateReservation(String rsvCode, String memNickname);
     
     boolean checkDateOverlap(@Param("rsvDate") String rsvDate, @Param("rsvTime") String rsvTime);
+
 }

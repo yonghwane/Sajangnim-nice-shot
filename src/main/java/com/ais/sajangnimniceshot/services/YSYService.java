@@ -2,9 +2,16 @@ package com.ais.sajangnimniceshot.services;
 
 import java.net.URLEncoder;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ais.sajangnimniceshot.beans.MemberBean;
@@ -61,29 +68,41 @@ public class YSYService implements ServiceRule {
 		}
 	}
 	
-//	private void moveReservation(ModelAndView mav) {
-//		String rsvCode = (String) mav.getModel().get("rsvCode");
-//		mav.addObject("insertReservation", this.gson.toJson(this.ysyMapper.getReservation(rsvCode)));
-//		
-//	}
+
 	
 //	private void updateReservation(ModelAndView mav) {
 //		String rsvCode = (String) mav.getModel().get("rsvCode");
 //		this.ysyMapper.updateReservation(rsvCode, memNickname);
 //	}
 
-	private void reservationDate(ModelAndView mav) {
-		MemberBean accessInfo = this.auth.getAccessInfo();
-		ReservationBean reservationBean = (ReservationBean) mav.getModel().get("reservationBean");
-
-		// 날짜 중복 체크
-		if (this.ysyMapper.checkDateOverlap(reservationBean.getRsvDate(), reservationBean.getRsvTime())) {
-            mav.addObject("message2", "해당 날짜와 시간에 이미 예약이 있습니다.");
-            mav.setViewName("reservationDate");
-            return;
-        }
-		mav.setViewName("redirect:/");
-	}
+//	public boolean checkDateOverlap(String rsvDate, String rsvTime, String rsvMember) {
+//        // 여기에서 ysyMapper.checkDateOverlap 호출
+//        return !ysyMapper.checkDateOverlap(rsvDate, rsvTime);
+//    }
+	
+//	private void reservationDate(ModelAndView mav) {
+//		MemberBean accessInfo = this.auth.getAccessInfo();
+//		ReservationBean reservationBean = (ReservationBean) mav.getModel().get("reservationBean");
+//
+//		// 날짜 중복 체크
+//		if (this.ysyMapper.checkDateOverlap(reservationBean.getRsvDate(), reservationBean.getRsvTime())) {
+//            mav.addObject("message2", "해당 날짜와 시간에 이미 예약이 있습니다.");
+//            mav.setViewName("reservationDate");
+//            return;
+//        }
+//		mav.setViewName("redirect:/");
+//	}
+	
+//	private void reservation(ModelAndView mav) {
+//		MemberBean accessInfo = this.auth.getAccessInfo();
+//		ReservationBean reservationBean = (ReservationBean) mav.getModel().get("reservationBean");
+//
+//		if (this.ysyMapper.checkDate(reservationBean.getRsvDate(), reservationBean.getRsvTime())) {
+//			// TimeSlots에 동일한 날짜, 시간 있을 경우
+//			mav.addObject("message", "예약할 수 없습니다.");
+//			mav.setViewName("reservationDate");
+//			return;
+//		}
 
 	private String encode(String s) {
 		try {

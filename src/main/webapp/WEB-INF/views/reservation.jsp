@@ -6,6 +6,9 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>board</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/reset.css" />
         <link rel="stylesheet" href="/css/reset.css" />
         <link rel="stylesheet" href="/css/KDB.css" />
         <script src="/js/KDB.js"></script>
@@ -34,7 +37,9 @@
             </aside>
             <section>
                 <form action="/reservation" id="reserveForm" method="post">
+                	<div id="h3" onclick="location.href='/moveMyPage'">예약</div>
                     <fieldset>
+                    
                         <label for="selectDate">date</label>
                         <input type="date" name="rsvDate" path="selectDate" id="selectDate" required><br>
                         <label for="selectTime" id="tiTime">시간 선택 : </label>
