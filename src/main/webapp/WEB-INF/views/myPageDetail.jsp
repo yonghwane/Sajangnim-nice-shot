@@ -96,7 +96,7 @@
             table.innerHTML += `<th class = "th_style">홀</th>
 						          <th class = "th_style">캐디</th>
 						          <th class = "th_style">골프웨어</th>
-						          <th class = "th_style">골프슈즈</th>
+						          <th class = "th_style">골프화화</th>
 						          <th class = "th_style">총가격</th>`;
             		
             
@@ -158,7 +158,7 @@
 		        if (detail.pricesBean && detail.pricesBean.length > 0) {
 		            const pricesBean = detail.pricesBean[0];
 		            tr7.innerHTML +=
-		                `<th class = "th_style1">` + "골프슈즈 " + `</th><td class = "td_style1">` + pricesBean.priOption4 + `</td>` + 
+		                `<th class = "th_style1">` + "골프화화" + `</th><td class = "td_style1">` + pricesBean.priOption4 + `</td>` + 
 		                `<td class = "td_style2">` + pricesBean.priPrice4 + "원" +  `</td>`;
 		        } 
 		        table.appendChild(tr7);
