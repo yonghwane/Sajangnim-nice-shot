@@ -23,7 +23,7 @@
             <img id="logo" onclick="location.href='/'" src="/img/SNP_LOGO4.png" />
             <div>
                 <input class="login-input" id="memNickname" name="memNickname" placeholder="닉네임" />
-                <button class="login-button" onclick="login()">로그인</button>
+                <button class="login-button" onclick="login()" style="height: 44px; width: 100px;">로그인</button>
             </div>
         </header>
         <main>

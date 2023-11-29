@@ -96,7 +96,7 @@
             table.innerHTML += `<th class = "th_style">홀</th>
 						          <th class = "th_style">캐디</th>
 						          <th class = "th_style">골프웨어</th>
-						          <th class = "th_style">골프화화</th>
+						          <th class = "th_style">골프화</th>
 						          <th class = "th_style">총가격</th>`;
             		
             
