@@ -44,9 +44,7 @@
          	<tr></tr>
          </table>
          	<h3 id ="price"></h3>
-      <br/>
       <hr>
-      <br/>
          <div id="reservation">
          	<input type="button" value="양도" onclick="redirectToMoveMyPageTransfer('${rsvCode}')"/>
          	<input type = "button" value = "삭제" onclick="removeandredirect('${rsvCode}')"/>
