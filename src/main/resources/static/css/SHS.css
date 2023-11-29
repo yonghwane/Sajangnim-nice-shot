@@ -1,23 +1,4 @@
-/* reset */
-*, *::before, *::after {
-	font-family: inherit;
-	font-size: 15px;
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
-
 /* my_page_Detail */
-
-
-#h3h3 {
-    padding: 10px;
-    display: inline-flex;  
-    font-weight: bold;
-    font-size:30px;
-    margin-bottom: 0px;
-    border-bottom: none;
- }
 
 .table_style1 {
 	border-radius: 30px;

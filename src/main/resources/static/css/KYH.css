@@ -127,6 +127,7 @@ h2 {
 .layout {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 .modern-form {
     background-color: #f8f9fa;
