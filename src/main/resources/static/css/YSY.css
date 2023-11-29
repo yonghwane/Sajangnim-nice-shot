@@ -2,3 +2,24 @@
 	height: 20rem;
 	object-fit: cover;
 }
+.card {
+	height: 30rem;
+}
+.card-title {
+	padding: 10px;
+	padding-bottom: 2px;
+	font-size: 25px;
+}
+.card-text {
+	padding: 8px;
+	margin: 2px;
+	font-size: 16px;
+}
+.btn {
+	margin: 4px
+}
+@media (max-width: 768px) {
+    .header {
+        position: static; /* 또는 다른 원하는 속성으로 변경 */
+    }
+}
