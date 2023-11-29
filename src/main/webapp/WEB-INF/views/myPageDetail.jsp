@@ -5,6 +5,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>myPageDetail</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/reset.css" />
 <link rel="stylesheet" href="/css/KDB.css" />
 <link rel="stylesheet" href="/css/SHS.css" />
@@ -93,7 +96,7 @@
             table.innerHTML += `<th class = "th_style">홀</th>
 						          <th class = "th_style">캐디</th>
 						          <th class = "th_style">골프웨어</th>
-						          <th class = "th_style">골프슈즈</th>
+						          <th class = "th_style">골프화화</th>
 						          <th class = "th_style">총가격</th>`;
             		
             
@@ -155,7 +158,7 @@
 		        if (detail.pricesBean && detail.pricesBean.length > 0) {
 		            const pricesBean = detail.pricesBean[0];
 		            tr7.innerHTML +=
-		                `<th class = "th_style1">` + "골프슈즈 " + `</th><td class = "td_style1">` + pricesBean.priOption4 + `</td>` + 
+		                `<th class = "th_style1">` + "골프화화" + `</th><td class = "td_style1">` + pricesBean.priOption4 + `</td>` + 
 		                `<td class = "td_style2">` + pricesBean.priPrice4 + "원" +  `</td>`;
 		        } 
 		        table.appendChild(tr7);
