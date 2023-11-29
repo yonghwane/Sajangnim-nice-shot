@@ -3,7 +3,7 @@
 	object-fit: cover;
 }
 .card {
-	height: 30rem;
+	height: static;
 }
 .card-title {
 	padding: 10px;
