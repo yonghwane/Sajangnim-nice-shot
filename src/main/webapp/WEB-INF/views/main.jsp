@@ -34,7 +34,7 @@
         	</aside>
             <section>
             <div class="row">
-            <div class="col-sm-6 mb-3 mb-sm-0" style="height: 30rem">
+            <div class="col-sm-6 mb-3 mb-sm-0">
               <div class="card">
                 <div class="card-body">
                 <img src="/img/nice.jpg" class="card-img-top" alt="">
