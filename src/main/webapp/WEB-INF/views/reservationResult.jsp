@@ -8,8 +8,8 @@
 <title>myPage</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/reset.css" />
-<link rel="stylesheet" href="/css/AJW.css" />
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/reset.css" />
 <link rel="stylesheet" href="/css/KDB.css" />
 <link rel="stylesheet" href="/css/SHS.css" />
 <script src="/js/KDB.js"></script>
