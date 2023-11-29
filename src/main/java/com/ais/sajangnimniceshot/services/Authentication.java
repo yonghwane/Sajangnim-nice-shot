@@ -33,34 +33,12 @@ public class Authentication implements ServiceRule {
 		default:
 			break;
 		}
-
-		// 로그인 필요
-		MemberBean accessInfo = this.getAccessInfo();
-		if (accessInfo == null) {
-			mav.setViewName("redirect:/");
-			mav.addObject("message", "먼저 로그인해주세요");
-			return;
-		}
 		switch (serviceCode) {
 		}
 	}
 
-	public void backController(String serviceCode, Model model) { // 비동기식
-		// 로그인 불필요
-		switch (serviceCode) {
-		default:
-			break;
-		}
-		MemberBean accessInfo = this.getAccessInfo();
-		if (accessInfo == null) {
-			model.addAttribute("message", this.encode("먼저 로그인해주세요"));
-			return;
-		}
-		// 로그인 필요
-		switch (serviceCode) {
-		case "":
-			break;
-		}
+	public void backController(String serviceCode, Model model) {
+
 	}
 
 	private void login(ModelAndView mav) {
@@ -90,11 +68,11 @@ public class Authentication implements ServiceRule {
 	private String makeHeaderHTML(MemberBean accessInfo) { // 로그인 성공 시 헤더 생성
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("<h1 onclick=\"location.href='/';\">SNP</h1>\n");
+		sb.append("<img id=\"logo\" onclick=\"location.href='/'\" src=\"/img/SNP_LOGO4.png\" />\n");
 		sb.append("<div>\n");
 		sb.append("<div class=\"login_wrap\">\n");
 		sb.append("    <p>환영합니다 " + accessInfo.getMemNickname() + "님！</p>\n");
-		sb.append("    <button onclick=\"location.href='/logout'\">로그아웃</button>\n");
+		sb.append("    <button class=\"login-button\" onclick=\"location.href='/logout'\">로그아웃</button>\n");
 		sb.append("</div>\n");
 		return sb.toString();
 	}

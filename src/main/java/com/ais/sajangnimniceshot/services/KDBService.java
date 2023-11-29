@@ -1,7 +1,6 @@
 package com.ais.sajangnimniceshot.services;
 
 import java.net.URLEncoder;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,8 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ais.sajangnimniceshot.beans.MemberBean;
+import com.ais.sajangnimniceshot.beans.PricesBean;
 import com.ais.sajangnimniceshot.beans.ReservationBean;
 import com.ais.sajangnimniceshot.mappers.KDBMapper;
+import com.ais.sajangnimniceshot.mappers.SHSMapper;
 import com.google.gson.Gson;
 
 @Service
@@ -19,6 +20,8 @@ public class KDBService implements ServiceRule {
 	@Autowired
 	private KDBMapper kdbMapper;
 	@Autowired
+	private SHSMapper shsMapper;
+	@Autowired
 	private Authentication auth;
 	@Autowired
 	private Gson gson;
@@ -26,6 +29,9 @@ public class KDBService implements ServiceRule {
 	public void backController(String serviceCode, ModelAndView mav) { // 동기식
 		// 로그인 불필요
 		switch (serviceCode) {
+		case "moveContact":
+			this.moveContact(mav);
+			return;
 		default:
 			break;
 		}
@@ -33,6 +39,7 @@ public class KDBService implements ServiceRule {
 		MemberBean accessInfo = this.auth.getAccessInfo();
 		if (accessInfo == null) {
 			mav.addObject("message", "먼저 로그인해주세요");
+			mav.setViewName("main");
 			return;
 		}
 		switch (serviceCode) {
@@ -48,6 +55,15 @@ public class KDBService implements ServiceRule {
 		case "reservedTransfer":
 			this.reservedTransfer(mav);
 			break;
+		case "moveReservation":
+			this.moveReservation(mav);
+			break;
+		case "reservation":
+			this.reservation(mav);
+			break;
+//		case "reservation":
+//			this.reservation(mav);
+//			break;
 		}
 	}
 
@@ -68,6 +84,60 @@ public class KDBService implements ServiceRule {
 			this.removeReservation(model);
 			break;
 		}
+	}
+
+	private void moveContact(ModelAndView mav) {
+	}
+
+	private void reservation(ModelAndView mav) {
+		MemberBean accessInfo = this.auth.getAccessInfo();
+		ReservationBean reservationBean = (ReservationBean) mav.getModel().get("reservationBean");
+
+		if (accessInfo == null) {
+			mav.addObject("message", "먼저 로그인해주세요");
+			mav.setViewName("main");
+			return;
+		}
+		if (this.kdbMapper.checkDate(reservationBean.getRsvDate(), reservationBean.getRsvTime())) {
+			// TimeSlots에 동일한 날짜, 시간 있을 경우
+			mav.addObject("message", "예약할 수 없습니다.");
+			mav.setViewName("reservation");
+			return;
+		}
+		System.out.println("date:" + reservationBean.getRsvDate() + "time: " + reservationBean.getRsvTime());
+		String rsvMemNickname = accessInfo.getMemNickname();
+		String rsvTime = reservationBean.getRsvTime();
+		String rsvDate = reservationBean.getRsvDate();
+		String rsvCount = reservationBean.getRsvCount();
+		String rsvHole = reservationBean.getRsvHole();
+		String rsvCaddy = reservationBean.getRsvCaddy();
+		String rsvClothes = reservationBean.getRsvClothes();
+		String rsvShoes = reservationBean.getRsvShoes();
+		PricesBean getHolePrice = this.kdbMapper.getHolePrice(rsvHole);
+		PricesBean getCaddyPrice = this.kdbMapper.getCaddyPrice(rsvCaddy);
+		PricesBean getClothesPrice = this.kdbMapper.getClothesPrice(rsvClothes);
+		PricesBean getShoesPrice = this.kdbMapper.getShoesPrice(rsvShoes);
+
+		Integer totalPrice = Integer.parseInt(getHolePrice.getPriPrice())
+				+ Integer.parseInt(getCaddyPrice.getPriPrice()) + Integer.parseInt(getClothesPrice.getPriPrice())
+				+ Integer.parseInt(getShoesPrice.getPriPrice());
+
+		System.out.print("totalPrice:" + totalPrice);
+
+		this.kdbMapper.insertReservation(rsvMemNickname, rsvDate, rsvTime, rsvCount, rsvHole, rsvCaddy, rsvClothes,
+				rsvShoes, String.valueOf(totalPrice));
+
+		this.kdbMapper.insertTimeslots(rsvDate, rsvTime);
+    
+		System.out.println("getRsvCode : " + this.kdbMapper.getRsvCode());
+
+//		mav.addObject("getRsvDetailList",
+//				this.gson.toJson(this.shsMapper.getReservationDetail(this.kdbMapper.getRsvCode())));
+		mav.addObject("rsvDetail", this.gson.toJson(this.shsMapper.getReservationDetail(this.kdbMapper.getRsvCode())));
+	}
+
+	private void moveReservation(ModelAndView mav) {
+
 	}
 
 	private void moveReservedTransfer(ModelAndView mav) {

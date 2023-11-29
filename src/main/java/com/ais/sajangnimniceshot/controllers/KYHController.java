@@ -1,5 +1,7 @@
 package com.ais.sajangnimniceshot.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +21,8 @@ public class KYHController {
 
 	@Autowired
 	private Authentication auth;
+
+	public static List<String> crawledData;
 
 	@GetMapping("/moveMyPageTransfer/{rsvCode}")
 	public ModelAndView moveMyPageTransfer(ModelAndView mav, @PathVariable String rsvCode) {
@@ -46,4 +50,13 @@ public class KYHController {
 		return mav;
 	}
 
+
+    @GetMapping("/moveCrawledData")
+    public ModelAndView showCrawledData(ModelAndView mav) {
+        mav.setViewName("crawledData");
+//        System.out.println("crawledData" + crawledData);
+        this.service.backController("WebCrawlerApplication", mav);
+        this.auth.backController("changeHeader", mav);
+        return mav;
+    }
 }

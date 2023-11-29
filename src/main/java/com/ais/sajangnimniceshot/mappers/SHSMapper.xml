@@ -21,10 +21,13 @@
    <resultMap id="pricesBeanMap" type="PRICESBEAN">
       <id property="priCode" column="pri_Code"/>
       <result property="priOption1" column="priOption1"/>
+      <result property="priPrice1" column="priPrice1"/>
       <result property="priOption2" column="priOption2"/>
+      <result property="priPrice2" column="priPrice2"/>
       <result property="priOption3" column="priOption3"/>
+      <result property="priPrice3" column="priPrice3"/>
       <result property="priOption4" column="priOption4"/>
-      <result property="priPrice" column="pri_Price"/>
+      <result property="priPrice4" column="priPrice4"/>
    </resultMap>
    
    <select id= "getReservationDetail" resultMap="ReservationBean"> 
@@ -41,9 +44,13 @@
          RSV_STATUS,
          RSV_PRICE,
          pri1.PRI_OPTION AS priOption1,
+         pri1.PRI_PRICE AS priPrice1,
          pri2.PRI_OPTION AS priOption2,
+         pri2.PRI_PRICE AS priPrice2,
          pri3.PRI_OPTION AS priOption3,
-         pri4.PRI_OPTION AS priOption4
+         pri3.PRI_PRICE AS priPrice3,
+         pri4.PRI_OPTION AS priOption4,
+         pri4.PRI_PRICE AS priPrice4
       FROM 
          RSVDS
         JOIN

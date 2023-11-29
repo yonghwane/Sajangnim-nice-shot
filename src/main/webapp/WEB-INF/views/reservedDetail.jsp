@@ -6,22 +6,26 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>myPage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/reset.css" />
 <link rel="stylesheet" href="/css/KDB.css" />
+<link rel="stylesheet" href="/css/KYH.css" />
 <script src="/js/KDB.js"></script>
 </head>
 
 <body>
-	<header class="header">
-		<h1 onclick="location.href='/'">SNP</h1>
-		<div>
-			<input id="memNickname" name="memNickname" placeholder="닉네임" />
-			<button onclick="login()">로그인</button>
-		</div>
-	</header>
+    <header class="header">
+        <img id="logo" onclick="location.href='/'" src="/img/SNP_LOGO4.png" />
+        <div>
+            <input class="login-input" id="memNickname" name="memNickname" placeholder="닉네임" />
+            <button class="login-button" onclick="login()">로그인</button>
+        </div>
+    </header>
 	<main>
 		<aside>
-			<div onclick="location.href=''">예약</div>
+			<div onclick="location.href='reservationDate'">예약</div>
 			<div onclick="location.href='/moveMyPage'">마이페이지</div>
 			<div onclick="location.href=''">이벤트</div>
 		</aside>
@@ -33,6 +37,11 @@
 			</table>
 		</section>
 	</main>
+	<footer>
+	<span id="company">Sajangnim Nice Shot</span>
+    <span id="git" onclick="redirectToGitHub()">contact-us</span>
+    <span id="contact" onclick="location.href='/moveContact'">문의하기</span>
+    </footer>
 </body>
 <script>
         if (`${message}` !== ``) {
@@ -40,14 +49,14 @@
             window.location.href = '/';
         }
         if (`${headerHTML}` !== ``) document.querySelector('.header').innerHTML = `${headerHTML}`;
-
+        
         console.log(`${getReservationDetail}`);
         const getReservationDetail = JSON.parse(`${getReservationDetail}`);
         
         let postType = getReservationDetail;
         createTable();
-//      [{"rsvCode":"44","rsvMemNickname":"kwon","rsvTime":"1207","rsvCount":"8","rsvPrice":"15000",
-//       "pricesBean":[{"priOption1":"18","priOption2":"CADDY〇","priOption3":"CLOTHES×","priOption4":"SHOES×"}]}]
+//     [{"rsvCode":"2","rsvMemNickname":"kwon","rsvDate":"2023-11-10","rsvTime":"1207","rsvCount":"8","rsvHole":"1 ","rsvCaddy":"3","rsvClothes":"5","rsvShoes":"7","rsvStatus":"F","rsvPrice":"15000",
+//     "pricesBean":[{"priOption1":"9","priOption2":"〇","priOption3":"〇","priOption4":"〇","priPrice1":"5000","priPrice2":"5000","priPrice3":"3000","priPrice4":"2000"}]}]
         function createTable() {
             const table = document.querySelector('table');
             table.innerHTML = `<th>예약자명</th>
