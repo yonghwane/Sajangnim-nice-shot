@@ -23,10 +23,11 @@ p {
 }
 
 header {
+	margin-left:1px;
+	margin-right:1px;
 	background-color: white;
 	position: fixed;
-	height: 60px;
-	width: 100%;
+	width: 99.9%;
 	height:65px;
 	border: 1px solid;
 	padding: 10px;
