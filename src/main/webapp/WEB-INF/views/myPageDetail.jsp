@@ -50,8 +50,6 @@
          <div id="reservation">
          	<input type="button" value="양도" onclick="redirectToMoveMyPageTransfer('${rsvCode}')"/>
          	<input type = "button" value = "삭제" onclick="removeandredirect('${rsvCode}')"/>
-         	<br/>
-         	<br/>
          	<div onclick="location.href='/moveMyPage'">마이페이지로 돌아가기</div>
          </div>
       </section>
