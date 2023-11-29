@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ais.sajangnimniceshot.beans.MemberBean;
+import com.ais.sajangnimniceshot.beans.PricesBean;
 import com.ais.sajangnimniceshot.beans.ReservationBean;
 
 @Mapper
@@ -21,8 +22,24 @@ public interface KDBMapper {
 
 	boolean checkMemNickname(String memNickname);
 
-//	int insertReservedTransfer(String memNickname, String rsvTime, String rsvDate, String rsvCount, String rsvHole,
-//			String rsvCaddy, String rsvClothes, String rsvShoes, String rsvStatus, String rsvPrice);
-
 	int updateReservedTransfer(String rsvCode, String memNickname);
+
+	boolean checkDate(String tiDate, String tiTime);
+
+    int insertDateAndTime(String memNickname, String rsvDate, String rsvTime);
+    
+    int insertTimeslots(String rsvDate, String rsvTime);
+    
+	String getRsvCode();
+
+	PricesBean getHolePrice(String rsvHole);
+
+	PricesBean getCaddyPrice(String rsvCaddy);
+
+	PricesBean getClothesPrice(String rsvClothes);
+
+	PricesBean getShoesPrice(String rsvShoes);
+
+	int insertReservation(String memNickname, String rsvDate, String rsvTime, String rsvCount, String rsvHole,
+			String rsvCaddy, String rsvClothes, String rsvShoes, String rsvPrice);
 }
