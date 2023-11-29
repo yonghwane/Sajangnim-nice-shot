@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="/css/KYH.css" />
         <link rel="stylesheet" href="/css/YSY.css" />
         <script src="/js/KDB.js"></script>
+        <script src="/js/YSY.js"></script>
     </head>
 
     <body>
