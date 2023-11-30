@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ais.sajangnimniceshot.mappers.SHSMapper">
+	<select id="getRsvCodeSearch" resultType="boolean">
+        SELECT 
+            COUNT(*) 
+        FROM 
+            RSVDS
+        WHERE
+            RSV_CODE = #{rsvCode}
+    </select>
+
 	<resultMap id="ReservationBean" type="reservationBean">
       <id property="rsvCode" column="rsv_Code"/>
       <result property="rsvMemNickname" column="rsv_MemNickname"/>

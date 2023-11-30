@@ -9,4 +9,5 @@ import com.ais.sajangnimniceshot.beans.ReservationBean;
 @Mapper
 public interface SHSMapper {
 	List<ReservationBean> getReservationDetail(String rsvCode);
+	boolean getRsvCodeSearch(String rsv);
 }

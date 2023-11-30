@@ -19,3 +19,5 @@ public class ReservationBean {
     private String rsvPrice;
     private List<PricesBean> pricesBean;
 }
+
+
